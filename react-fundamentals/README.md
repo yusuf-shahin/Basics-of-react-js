@@ -2,16 +2,21 @@
 
 ## Table of Contents
 
-- Folder Structure
-- First Component
-  - Typical Component
-  - Root Component
-- Possible Bug
-- First Component in Detail
-- JSX Rules
-- Nest Components
+- Basics in React
+  - Folder Structure
+  - First Component
+    - Root Component
+  - Possible Bug
+  - First Component in Detail
+  - JSX Rules
+  - Nest Components
+  - Gloval CSS
+  - Local Images (Public Folder)
+  - JSX CSS (optional)
+  - JSX javascript
+- Props ( Initial Setup )
 
-## Basics.jsx
+## Basics
 
 #### Folder Structure
 
@@ -42,36 +47,40 @@
 
 #### First Component
 
+**First.jsx**
+
 ```js
-function Greeting() {
-  return <h2>My First Component</h2>;
+function Show() {
+  return (
+    <div>
+      <Hello />
+      <Name />
+    </div>
+  );
 }
 
-// arrow function also works
+//# starting name of component must be upper case
+function Hello() {
+  return <h1>Hello world</h1>;
+}
 
-const Greeting = () => {
-  return <h2>My First Component</h2>;
-};
+function Name() {
+  return <h4>My name is yusuf</h4>;
+}
+
+export default First;
 ```
+
+**_In component_**
 
 - starts with capital letter
 - must return JSX (html)
 - always close tag <Greeting/> or <Greeting></Greeting>
-
-##### Typical Component
-
-```js
-// imports or logic
-
-const Greeting = () => {
-  return <h2>My First Component</h2>;
-};
-export default Greeting;
-```
+- create any component reander thorugh parent component
 
 ##### Root Component (only one)
 
-**index.js**
+**Main.jsx**
 
 ```js
 import React from "react";
@@ -86,7 +95,24 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Greeting />);
 ```
 
-#### First Component in Detail
+- create a div ---> <div id="root"></div> in **index.html**.
+- in main.jsx import "createRoot" function from "react-dom/client". In react it gives us a vartual DOM by createRoot().
+- Inside createRoot() function we pass our "div" .
+- this function render our all component using jsx.
+- Every parent component stand in here . For example --->
+
+```js
+createRoot(root).render(
+  <StrictMode>
+    <Navbar />
+    <Header />
+    <Main />
+    <Footer />
+  </StrictMode>
+);
+```
+
+#### Component in Detail
 
 - capital letter
 - must return something
@@ -94,7 +120,7 @@ root.render(<Greeting />);
   - to make our lives easier
   - calling function under the hood
 
-**index.js**
+**How jsx work :-**
 
 ```js
 const Greeting = () => {
@@ -137,6 +163,8 @@ return <>...rest of the return</>;
 
 - camelCase property naming convention
 
+**in jsx**
+
 ```js
 return (
   <div tabIndex={1}>
@@ -144,12 +172,16 @@ return (
     <label htmlFor='name'>Name</label>
     <input readOnly={true} id='name' />
   </div>
-)
-// in html
+);
+```
+
+**in HTML**
+
+```html
 <div tabindex="1">
-    <button onclick="myFunction()">click me</button>
-    <label for='name'>Name</label>
-    <input readonly id='name' />
+  <button onclick="myFunction()">click me</button>
+  <label for="name">Name</label>
+  <input readonly id="name" />
 </div>
 ```
 
@@ -191,6 +223,8 @@ function Greeting() {
 
 #### Nest Components
 
+_component inside component_
+
 ```js
 function Greeting() {
   return (
@@ -207,54 +241,14 @@ const Message = () => {
 };
 ```
 
-#### Book List (Simple Projects)
+#### Simple Book List (Simple Projects)
 
 - setup structure
 
-```js
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-function BookList() {
-  return (
-    <section>
-      <Book />
-      <Book />
-      <Book />
-      <Book />
-    </section>
-  );
-}
-
-const Book = () => {
-  return (
-    <article>
-      <Image />
-      <Title />
-      <Author />
-    </article>
-  );
-};
-
-const Image = () => <h2>image placeholder</h2>;
-const Title = () => {
-  return <h2>Book Title</h2>;
-};
-const Author = () => <h4>Author</h4>;
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<BookList />);
-```
-
-- root.render(<BookList />) --> inside **Booklist** component we pass **Book** component in four times. So browser gonna show us **Book** component in four time
-- Inside **Book** component we create a structure
+**SimpleRender.jsx**:-
 
 ```js
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-function BookList() {
+function SimpleBookList() {
   return (
     <section>
       <Book />
@@ -286,10 +280,11 @@ const Title = () => {
 };
 const Author = () => <h4>Jordan Moore </h4>;
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<BookList />);
+export default SimpleBookList;
 ```
+
+- root.render(<BookList />) --> inside **SimpleBooklist** component we pass **Book** component in four times. So browser gonna show us **Book** component in four time
+- Inside **Book** component we create a structure with three components..
 
 #### CSS
 
@@ -315,7 +310,7 @@ body {
 ```js
 import "./index.css";
 
-function BookList() {
+function SimpleBookList() {
   return (
     <section className='booklist'>
       <Book />
@@ -396,6 +391,8 @@ const Image = () => (
 
 #### JSX - CSS (inline styles)
 
+- Basic Idea
+
 - style prop
 - {} in JSX means going back to JS Land
 - value is an object with key/value pairs - capitalized and with ''
@@ -470,92 +467,94 @@ const Book = () => {
 
 - {} in JSX means going back to JS Land
 - value inside must be an expression (return value),
-  can't be a statement
+  can't be a statement .
+  -for example , `<p>{let x = 6}</p>` its statement and `<p>{6 + 6}</p>` its expression.
+
+**SimpleBookList.jsx** using js in jsx
 
 ```js
-const author = "Jordan Moore";
+const author = "Elizabeth Strout";
+const title = "Tell Me Everything";
+const img =
+  "https://images-na.ssl-images-amazon.com/images/I/71XX7KlB7HL._AC_UL254_SR254,254_.jpg";
+
+function SimpleBookList() {
+  return (
+    <section className='booklist'>
+      <Book />
+      <Book />
+    </section>
+  );
+}
+
+//? inside curly bracket , must be a expression
+
 const Book = () => {
-  const title = "Interesting Facts For Curious Mindssssss";
   return (
     <article className='book'>
-      <img
-        src='./images/book-1.jpg'
-        alt='Interesting Facts For Curious Minds'
-      />
+      <img src={img} alt={title} />
       <h2>{title}</h2>
-
-      <h4>{author.toUpperCase()} </h4>
-      {/* <p>{let x = 6}</p> */}
-      <p>{6 + 6}</p>
+      <h4>{author} </h4>
     </article>
   );
 };
+
+export default SimpleBookList;
 ```
 
 - toggle line comment Edit/Toggle Line Comment
 
-#### Props - Initial Setup
+### Props - Initial Setup
 
-- refactor/clean up
-
-```js
-const author = "Jordan Moore";
-const title = "Interesting Facts For Curious Minds";
-const img = "./images/book-1.jpg";
-
-function BookList() {
-  return (
-    <section className='booklist'>
-      <Book />
-      <Book />
-    </section>
-  );
-}
-const Book = () => {
-  return (
-    <article className='book'>
-      <img src={img} alt={title} />
-      <h2>{title}</h2>
-      <h4>{author} </h4>
-    </article>
-  );
-};
-```
-
-```js
-// parameters
-const someFunc = (param1, param2) => {
-  console.log(param1, param2);
-};
-// arguments
-someFunc("job", "developer");
-```
+- We konw component is function which return always **JSX** . _Generally, when we create a function we pass parameter. Here comes the concept of **Props** ._
+- When we create the UI structure in a component. Everytime we must need show different different value. Thats value we provide using **Props**
+- Every component has its own props.
+- In react , we create a component and render it at any place in any time.
+- When we render it, we can pass the value inside it.
 
 ```js
 const Book = (props) => {
-  console.log(props);
+  console.log(props); // --> {} empty object
   return (
     <article className='book'>
-      <img src={img} alt={title} />
-      <h2>{title}</h2>
-      <h4>{author} </h4>
-      {console.log(props)}
+      <h2>Name : {props.name}</h2>
+      <h4>Author : {props.author}</h4>
     </article>
   );
 };
 ```
 
-- props object, convention to call props, 'shakeAndBake' is an excellent alternative
+- Here we create book component.
+- when we render **Book** , we pass the value inside it .
 
-- pass as key/value pairs
-- if the prop exists it will return value, otherwise no value
+  - for example `<Book name="Trock" author="Yusuf" />`
+  - here `name` is key and `Trock` is value.
+
+- props is a object, convention to call props or any name .
+
+  - inside parameter of Book component we get _props_ .
+  - here `props.name === Trock` and `props.author === "Yusuf"`
+    just like :
+
+  ```js
+  props = {
+    name: "Trock",
+    author: "Yusuf",
+  };
+  ```
+
+- So, pass as key/value pairs
+- If the prop exists it will return value, otherwise no value
+
+**For basic idea**
 
 ```js
-function BookList() {
+function Person() {
+  // rendering the Book component and pass the Props as key/value pair .
   return (
     <section className='booklist'>
-      <Book job='developer' />
-      <Book title='random title' number={22} />
+      <Book name='Yusuf' age='27' address='andorkillah' wife='amatullah' />
+      <Book name='Nazmul' age='25' address='hazarigoli' num='164575876' />
     </section>
   );
 }
@@ -563,23 +562,35 @@ const Book = (props) => {
   console.log(props);
   return (
     <article className='book'>
-      <img src={img} alt={title} />
-      <h2>{title}</h2>
-      <h4>{author} </h4>
-      <p>{props.job}</p>
-      <p>{props.title}</p>
-      <p>{props.number}</p>
+      <h1>Hello , my name is {props.name}</h1>
+      <p>I am ,{props.age} years old</p>
+      <p>My wife name is {props.wife}</p>
+      <p>I live in , {props.address}</p>
+      <p>{props.num}</p>
     </article>
   );
 };
 ```
 
+**Result**:-
+
+![Relative](./public/WhatsApp%20Image%202024-09-16%20at%204.21.11%20PM.jpeg)
+
+**_Using Props show the same result_** like **SimpleBookList.jsx** component
+
+**PropsBookList** :-
+
 ```js
-function BookList() {
+const author = "Elizabeth Strout";
+const title = "Tell Me Everything";
+const img =
+  "https://images-na.ssl-images-amazon.com/images/I/71XX7KlB7HL._AC_UL254_SR254,254_.jpg";
+
+function PropsBookList() {
   return (
     <section className='booklist'>
       <Book author={author} title={title} img={img} />
-      <Book title={title} img={img} />
+      <Book author={author} title={title} img={img} />
     </section>
   );
 }
@@ -593,6 +604,8 @@ const Book = (props) => {
     </article>
   );
 };
+
+export default PropsBookList;
 ```
 
 #### Props - Somewhat Dynamic Setup
@@ -603,19 +616,28 @@ const Book = (props) => {
 - get values for second book
 - setup props
 
+**_Using props show different two books._**
+**PropsBookListTwo.jsx** :
+
 ```js
+import "./index.css";
+
+//! ================
+//? passing different different value using props
+//! ================
+
 const firstBook = {
-  author: "Jordan Moore",
-  title: "Interesting Facts For Curious Minds",
-  img: "./images/book-1.jpg",
+  author: "Casey Means",
+  title: "Good Energy",
+  img: "https://images-na.ssl-images-amazon.com/images/I/71KTwO53SnL._AC_UL600_SR600,400_.jpg",
 };
 const secondBook = {
   author: "James Clear",
   title: "Atomic Habits",
-  img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
+  img: "https://images-na.ssl-images-amazon.com/images/I/81YkqyaFVEL._AC_UL600_SR600,400_.jpg",
 };
 
-function BookList() {
+function PropsBookListTwo() {
   return (
     <section className='booklist'>
       <Book
@@ -641,9 +663,13 @@ const Book = (props) => {
     </article>
   );
 };
+
+export default PropsBookListTwo;
 ```
 
 #### Access Props - Multiple Approaches
+
+- we can access the props in various way.
 
 - there is no right or wrong - again preference !!!
 
@@ -667,7 +693,7 @@ const { name, job } = someObject;
 console.log(job);
 ```
 
-- no need for all the props.propName
+- no need for all the **props.user**
 - destructure inside component
 
 ```js
@@ -698,7 +724,7 @@ const Book = ({ img, title, author }) => {
 };
 ```
 
-#### Children Prop
+#### Children Prop (Side Topic)
 
 - everything we render between component tags
 - during the course we will mostly use it Context API
@@ -762,6 +788,7 @@ const Book = (props) => {
 
 #### Simple List
 
+- using map mehod we reader the component. As **map** method always return a value . Its a javascript _expression_ .
 - [Javascript Nuggets - Map ](https://www.youtube.com/watch?v=80KX6aD9R7M&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=1)
 
 - refactor
