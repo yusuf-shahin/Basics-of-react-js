@@ -20,7 +20,7 @@ function Name() {
   return <h4>My name is yusuf</h4>;
 }
 
-export default First;
+// export default First;
 
 //! ============
 //? Different subject
@@ -49,3 +49,46 @@ const Book = (props) => {
 };
 
 // export default Person;
+
+//! =============
+//? using map mathod to show the value
+//! =============
+
+const names = ["john", "peter", "susan"];
+
+//* render the array
+// function NameList() {
+//   return <section className='booklist'>{names}</section>;
+// }
+
+//* MAP method
+const newNames = names.map((name) => {
+  return <h1 key={Math.random()}>{name}</h1>;
+});
+
+function NameList() {
+  return <section className='booklist'>{newNames}</section>;
+
+  //   //* same things
+  // return (
+  //   <section className='booklist'>
+  //     {names.map((name) => {
+  //       return <h1 key={Math.random()}>{name}</h1>;
+  //     })}
+  //   </section>
+  // );
+}
+
+//! ============
+//? Without map method
+//! ===========
+
+// function NameList() {
+//   return (
+//     <section className='booklist'>
+//       {[<h1>john</h1>, <h1>peter</h1>, <h1>susan</h1>]}
+//     </section>
+//   );
+// }
+
+export default NameList;

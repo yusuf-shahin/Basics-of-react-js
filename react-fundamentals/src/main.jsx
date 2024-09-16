@@ -5,14 +5,16 @@ import SimpleRender from "./components/SimpleRender.jsx";
 import SimpleBookList from "./components/SimpleBookList.jsx";
 import PropsBookList from "./components/PropsBookList.jsx";
 import PropsBookListTwo from "./components/PropsBookListTwo.jsx";
+import MapPropsBookList from "./components/MapPropsBookList.jsx";
 
 const root = document.getElementById("root");
 createRoot(root).render(
   <StrictMode>
-    {/* <First /> */}
+    <First />
     {/* <SimpleRender /> */}
     {/* <SimpleBookList /> */}
     {/* <PropsBookList /> */}
     {/* <PropsBookListTwo /> */}
+    {/* <MapPropsBookList /> */}
   </StrictMode>
 );

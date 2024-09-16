@@ -504,7 +504,9 @@ export default SimpleBookList;
 
 - toggle line comment Edit/Toggle Line Comment
 
-### Props - Initial Setup
+### Props
+
+#### Initial Setup (Props)
 
 - We konw component is function which return always **JSX** . _Generally, when we create a function we pass parameter. Here comes the concept of **Props** ._
 - When we create the UI structure in a component. Everytime we must need show different different value. Thats value we provide using **Props**
@@ -574,7 +576,7 @@ const Book = (props) => {
 
 **Result**:-
 
-![Relative](./public/WhatsApp%20Image%202024-09-16%20at%204.21.11%20PM.jpeg)
+![Relative](./public/passing-props.jpeg)
 
 **_Using Props show the same result_** like **SimpleBookList.jsx** component
 
@@ -611,13 +613,10 @@ export default PropsBookList;
 #### Props - Somewhat Dynamic Setup
 
 - setup an object
-- refactor vars to properties
-- copy/paste and rename
-- get values for second book
 - setup props
 
-**_Using props show different two books._**
-**PropsBookListTwo.jsx** :
+- _Using props show different two books._
+  **PropsBookListTwo.jsx** :
 
 ```js
 import "./index.css";
@@ -626,6 +625,7 @@ import "./index.css";
 //? passing different different value using props
 //! ================
 
+//* Create two obj
 const firstBook = {
   author: "Casey Means",
   title: "Good Energy",
@@ -671,30 +671,13 @@ export default PropsBookListTwo;
 
 - we can access the props in various way.
 
-- there is no right or wrong - again preference !!!
-
 - Destructuring (object)
   [JS Nuggets - Destructuring (object)](https://www.youtube.com/watch?v=i4vhNKihfto&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=8&t=1s)
 
-- destructuring in Vanilla JS
-- saves time/typing
-- pull out the properties
-- don't need to reference object anymore
+- no need for **props.keyName** in everytime
+- destructure **props** inside component.
 
-```js
-const someObject = {
-  name: "john",
-  job: "developer",
-  location: "florida",
-};
-
-console.log(someObject.name);
-const { name, job } = someObject;
-console.log(job);
-```
-
-- no need for all the **props.user**
-- destructure inside component
+**first approach**
 
 ```js
 const Book = (props) => {
@@ -711,6 +694,8 @@ const Book = (props) => {
 
 - destructure in function parameters (in our case props)
 - if you have console.log(props) - it won't be defined
+
+**first approach**
 
 ```js
 const Book = ({ img, title, author }) => {
@@ -772,7 +757,7 @@ const Book = (props) => {
 };
 ```
 
-- optional
+- optional CSS
 
 ```css
 @media screen and (min-width: 768px) {
@@ -786,29 +771,31 @@ const Book = (props) => {
 }
 ```
 
-#### Simple List
+#### Simple List (using Map method)
 
-- using map mehod we reader the component. As **map** method always return a value . Its a javascript _expression_ .
+- using map mehod we also reader the component. As **map** method always return a new array . Its a javascript _expression_ .
+- we can render array in _JSX_ .
 - [Javascript Nuggets - Map ](https://www.youtube.com/watch?v=80KX6aD9R7M&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=1)
 
-- refactor
+**refactor**
 
 ```js
+//* create  a array of obj
 const books = [
   {
-    author: "Jordan Moore",
-    title: "Interesting Facts For Curious Minds",
-    img: "./images/book-1.jpg",
+  author: "Casey Means",
+  title: "Good Energy",
+  img: "https://images-na.ssl-images-amazon.com/images/I/71KTwO53SnL._AC_UL600_SR600,400_.jpg",
   },
   {
-    author: "James Clear",
-    title: "Atomic Habits",
-    img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
-  },
+  author: "James Clear",
+  title: "Atomic Habits",
+  img: "https://images-na.ssl-images-amazon.com/images/I/81YkqyaFVEL._AC_UL600_SR600,400_.jpg",
+  };
 ];
 
 function BookList() {
-  return <section className='booklist'></section>;
+  return <section className='booklist'>{books}</section>;
 }
 
 const Book = (props) => {
@@ -824,71 +811,173 @@ const Book = (props) => {
 };
 ```
 
-- can't render objects in React
+- Its show us nothing .
+- we can't render objects in React .
+
+- But we can render the array in _JSX_ .
+
+**For Example :**
 
 ```js
-function BookList() {
-  return <section className='booklist'>{books}</section>;
+const names = ["john", "peter", "susan"];
+function NameList() {
+  return <section className='booklist'>{names}</section>;
 }
 ```
 
-- map - creates a new array from calling a function for every array element.
+**in browser we find**
+![!Relative](./public/render-array.jpeg)
+
+- using **map** method
 
 ```js
 const names = ["john", "peter", "susan"];
 const newNames = names.map((name) => {
-  console.log(name);
-  return <h1>{name}</h1>;
+  return <h1 key={Math.random()}>{name}</h1>;
 });
+
+// newNames = [<h1 key={Math.random()}>john</h1>,<h1 key={Math.random()}>peter</h1>,<h1 key={Math.random()}>susan</h1>]
 
 function BookList() {
   return <section className='booklist'>{newNames}</section>;
 }
-```
 
-#### Proper List
+// or
 
-- remove names and newNames
-
-```js
 function BookList() {
   return (
     <section className='booklist'>
-      {books.map((book) => {
-        console.log(book);
-
-        // return 'hello';
-        return (
-          <div>
-            <h2>{book.title}</h2>
-          </div>
-        );
+      {names.map((name) => {
+        return <h1 key={Math.random()}>{name}</h1>;
       })}
     </section>
   );
 }
 ```
 
-- render component
-- pass properties one by one
+- BookList function in different way
+
+  ```js
+  function BookList() {
+    return (
+      <section className='booklist'>
+        {[
+          <h1 key={Math.random()}>john</h1>,
+          <h1 key={Math.random()}>peter</h1>,
+          <h1 key={Math.random()}>susan</h1>,
+        ]}
+      </section>
+    );
+  }
+  ```
+
+- in here array item === 3 , so using map method we get a new array. Inside this array we render this element`<section className='booklist'>{newNames}</section>`. Everytime we render different different data in browser . Because of `{newNames}`
+
+**same thing without map method**
 
 ```js
+function NameList() {
+  // return <section className='booklist'>{newNames}</section>;
+  return (
+    <section className='booklist'>
+      {[<h1>john</h1>, <h1>peter</h1>, <h1>susan</h1>]}
+    </section>
+  );
+}
+```
+
+- same result .
+
+**In browser we can see**
+![Relative](./public/render-array-map.jpeg)
+
+#### Proper List
+
+- **Render book item using map method**
+
+**MapPropsBookList.jsx**
+
+```js
+const books = [
+  {
+    author: "Casey Means",
+    title: "Good Energy",
+    img: "https://images-na.ssl-images-amazon.com/images/I/71KTwO53SnL._AC_UL600_SR600,400_.jpg",
+  },
+  {
+    author: "James Clear",
+    title: "Atomic Habits",
+    img: "https://images-na.ssl-images-amazon.com/images/I/81YkqyaFVEL._AC_UL600_SR600,400_.jpg",
+  },
+];
 function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        console.log(book);
+        // destructuring book obj
         const { img, title, author } = book;
         return <Book img={img} title={title} author={author} />;
       })}
     </section>
   );
+  const Book = (props) => {
+    console.log(props);
+    return (
+      <article className='book'>
+        <img src={props.img} alt={props.title} />
+        <h2>{props.title}</h2>
+        <h4>{props.author} </h4>
+      </article>
+    );
+  };
 }
 ```
 
+- In console we get this error `Warning: Each child in a list should have a unique "key"`
+- so we need a key prop .
+
 #### Key Prop
 
-- typically it's going to be id
+- typically it's going to be id .
+
+**using key props when we render the component**
+
+```js
+function BookList() {
+  return (
+    <section className='booklist'>
+      {books.map((book) => {
+        console.log(book);
+        const { img, title, author, id } = book;
+        return <Book book={book} key={id} />;
+      })}
+    </section>
+  );
+}
+```
+
+- in map method we also get the index . We also pass the index as key value.
+
+```js
+function BookList() {
+  return (
+    <section className='booklist'>
+      {book.map((book, index) => {
+        console.log(book);
+        const { img, title, author, id } = book;
+        return <Book book={book} key={index} />;
+      })}
+    </section>
+  );
+}
+```
+
+#### Pass The Entire Obj as props
+
+- render component
+- pass entire object
+- Destructuring (object)
+  [JS Nuggets - Destructuring (object)](https://www.youtube.com/watch?v=i4vhNKihfto&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=8&t=1s)
 
 ```js
 const books = [
@@ -905,57 +994,21 @@ const books = [
     id: 2,
   },
 ];
-
 function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
+        // book --> obj
         console.log(book);
-        const { img, title, author, id } = book;
-        return <Book book={book} key={id} />;
-      })}
-    </section>
-  );
-}
-```
-
-- you will see index,but it's not advised if the list is changing
-
-```js
-function BookList() {
-  return (
-    <section className='booklist'>
-      {books.map((book, index) => {
-        console.log(book);
-        const { img, title, author, id } = book;
-        return <Book book={book} key={index} />;
-      })}
-    </section>
-  );
-}
-```
-
-#### Pass The Entire Object
-
-- render component
-- pass entire object
-- Destructuring (object)
-  [JS Nuggets - Destructuring (object)](https://www.youtube.com/watch?v=i4vhNKihfto&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=8&t=1s)
-
-```js
-function BookList() {
-  return (
-    <section className='booklist'>
-      {books.map((book) => {
-        console.log(book);
-        const { img, title, author } = book;
-        return <Book book={book} />;
+        return <Book book={book} key={Math.random()} />;
+        // here we
       })}
     </section>
   );
 }
 
 const Book = (props) => {
+  // obj inside array
   const { img, title, author } = props.book;
 
   return (
@@ -969,9 +1022,10 @@ const Book = (props) => {
 ```
 
 - alternative
+  **same thing in different way**
 
 ```js
-const Book = ({ book: { img, title, author } }) => {
+const Book = ({ books: { img, title, author } }) => {
   return (
     <article className='book'>
       <img src={img} alt={title} />
@@ -982,32 +1036,51 @@ const Book = ({ book: { img, title, author } }) => {
 };
 ```
 
-#### My Personal Preference
+#### Personal Preference
 
-- utilize spread operator (...) - copy values
-- Spread Operator
+- utilize spread operator (...) - create a shallow copy of values
 - [JS Nuggets - Spread Operator](https://www.youtube.com/watch?v=4Zyr5a3m0Fc&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=10)
+
+**Spread Operator**
 
 ```js
 const friends = ["john", "peter", "anna"];
 const newFriends = [...friends, "susan"];
-console.log(friends);
-console.log(newFriends);
+console.log(friends); // ["john", "peter", "anna"]
+console.log(newFriends); // ["john", "peter", "anna", "susan"]
 const someObject = {
   name: "john",
   job: "developer",
 };
-// COPY NOT A REFERENCE !!!!
+// in obj and array , data are pass by referance .
+// spread operatior create a copy of array and obj .In different referance .
 const newObject = { ...someObject, location: "florida" };
 console.log(someObject);
 console.log(newObject);
 ```
 
+**BookList.jsx** :-
+
 ```js
+const books = [
+  {
+    author: "Jordan Moore",
+    title: "Interesting Facts For Curious Minds",
+    img: "./images/book-1.jpg",
+    id: 1,
+  },
+  {
+    author: "James Clear",
+    title: "Atomic Habits",
+    img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
+    id: 2,
+  },
+];
 function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
+        // passing the copy of whole array using spread operator via propes
         return <Book {...book} key={book.id} />;
       })}
     </section>
@@ -1028,6 +1101,8 @@ const Book = ({ img, title, author }) => {
   // rest of the code
 };
 ```
+
+- passing the copy of whole array using spread operator via propes .
 
 #### Events - Fundamentals
 
