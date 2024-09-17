@@ -10,11 +10,11 @@ import MapPropsBookList from "./components/MapPropsBookList.jsx";
 const root = document.getElementById("root");
 createRoot(root).render(
   <StrictMode>
-    <First />
+    {/* <First /> */}
     {/* <SimpleRender /> */}
     {/* <SimpleBookList /> */}
     {/* <PropsBookList /> */}
     {/* <PropsBookListTwo /> */}
-    {/* <MapPropsBookList /> */}
+    <MapPropsBookList />
   </StrictMode>
 );

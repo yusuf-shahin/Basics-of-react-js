@@ -45,15 +45,22 @@ const books = [
 //       {books.map((book, index) => {
 //#     create new array using book component
 //         console.log(book);
+//!         in component we pass the value like key,value pair
 //         return <Book book={book} key={index} />;
-//         // here we pass two obj inside array
 //       })}
 //     </section>
 //   );
 // }
 
 // const Book = (props) => {
-//   // book is a obj inside props
+//   //# book is a obj inside props
+//! const props = {
+//!   books: {
+//!     author: "Casey Means",
+//!     title: "Good Energy",
+//!     img: "https://images-na.ssl-images-amazon.com/images/I/71KTwO53SnL._AC_UL600_SR600,400_.jpg",
+//!   },
+//! };
 //   const { img, title, author } = props.book;
 
 //   return (
@@ -80,7 +87,8 @@ function MapPropsBookList() {
 }
 
 const Book = (props) => {
-  // obj inside array
+  // here props is also obj.
+  // const props = {};
   const { img, title, author } = props;
 
   return (

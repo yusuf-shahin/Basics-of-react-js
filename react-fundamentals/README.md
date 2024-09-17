@@ -508,11 +508,12 @@ export default SimpleBookList;
 
 #### Initial Setup (Props)
 
-- We konw component is function which return always **JSX** . _Generally, when we create a function we pass parameter. Here comes the concept of **Props** ._
 - When we create the UI structure in a component. Everytime we must need show different different value. Thats value we provide using **Props**
 - Every component has its own props.
-- In react , we create a component and render it at any place in any time.
-- When we render it, we can pass the value inside it.
+- In react , when we create a component we must render it .
+- When we rendering our component, we pass any **_expression_** through **props** .
+
+create a component :-
 
 ```js
 const Book = (props) => {
@@ -526,29 +527,27 @@ const Book = (props) => {
 };
 ```
 
-- Here we create book component.
+- Here we create **Book** component.
 - when we render **Book** , we pass the value inside it .
 
   - for example `<Book name="Trock" author="Yusuf" />`
   - here `name` is key and `Trock` is value.
 
+  ```js
+  props = {
+    name : "Trock";
+    author : "Yusuf";
+  }
+  ```
+
 - props is a object, convention to call props or any name .
 
   - inside parameter of Book component we get _props_ .
-  - here `props.name === Trock` and `props.author === "Yusuf"`
-    just like :
+  - here `props.name === Trock` and `props.author === "Yusuf"`.
 
-  ```js
-  props = {
-    name: "Trock",
-    author: "Yusuf",
-  };
-  ```
-
-- So, pass as key/value pairs
-- If the prop exists it will return value, otherwise no value
-
-**For basic idea**
+- So, pass the value as key/value pairs
+- If the prop exists it will return value, otherwise no value.
+  **For basic idea**
 
 ```js
 function Person() {
@@ -703,7 +702,7 @@ const Book = ({ img, title, author }) => {
     <article className='book'>
       <img src={img} alt={title} />
       <h2>{title}</h2>
-      <h4>{author} </h4>
+      <h4>{author}</h4>
     </article>
   );
 };
@@ -794,6 +793,7 @@ const books = [
   };
 ];
 
+// pass the obj as value
 function BookList() {
   return <section className='booklist'>{books}</section>;
 }
@@ -914,14 +914,14 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        // destructuring book obj
+        // destructuring two obj element of book array
         const { img, title, author } = book;
+        // indivitualy pass the value of propes
         return <Book img={img} title={title} author={author} />;
       })}
     </section>
   );
   const Book = (props) => {
-    console.log(props);
     return (
       <article className='book'>
         <img src={props.img} alt={props.title} />
@@ -998,10 +998,10 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        // book --> obj
+        // book --> obj, element of books array
         console.log(book);
         return <Book book={book} key={Math.random()} />;
-        // here we
+        // here we get two different types of Book component inside array.
       })}
     </section>
   );
@@ -1021,8 +1021,21 @@ const Book = (props) => {
 };
 ```
 
+- inside the props we get the intire obj indivitually .
+
+  ```js
+  props = {
+    book: {
+      author: "Jordan Moore",
+      title: "Interesting Facts For Curious Minds",
+      img: "./images/book-1.jpg",
+      id: 1,
+    },
+  };
+  ```
+
 - alternative
-  **same thing in different way**
+  **same thing in but here we destructuring props in params**
 
 ```js
 const Book = ({ books: { img, title, author } }) => {
@@ -1038,7 +1051,7 @@ const Book = ({ books: { img, title, author } }) => {
 
 #### Personal Preference
 
-- utilize spread operator (...) - create a shallow copy of values
+- utilize spread operator (...) - create a shallow copy of obj and pass this .
 - [JS Nuggets - Spread Operator](https://www.youtube.com/watch?v=4Zyr5a3m0Fc&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=10)
 
 **Spread Operator**
@@ -1080,7 +1093,7 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        // passing the copy of whole array using spread operator via propes
+        // passing the copy of obj  using spread operator via propes
         return <Book {...book} key={book.id} />;
       })}
     </section>
@@ -1097,23 +1110,51 @@ const Book = (props) => {
     </article>
   );
 };
+
+// different approach
 const Book = ({ img, title, author }) => {
   // rest of the code
 };
 ```
 
-- passing the copy of whole array using spread operator via propes .
+- inside the props we get the intire copy of book obj .
+- using spread operator we unpack the obj and set this inside props.
+  Example :-
+
+```js
+props = {
+  author: "James Clear",
+  title: "Atomic Habits",
+  img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
+  id: 2,
+};
+```
+
+- if we dont use spread operator and pass the name of obj like :-
+- `<Book {book} key={book.id}`
+
+```js
+  props = {
+  {
+  author: "James Clear",
+  title: "Atomic Habits",
+  img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
+  id: 2,
+  }
+};
+```
+
+- here we neve get the value .
 
 #### Events - Fundamentals
 
-- Vanilla JS
+- In Vanilla JS
 
 ```js
 const btn = document.getElementById("btn");
 
-btn.addEventListener("click", function (e) {
-  // access event object
-  // do something when event fires
+btn.addEventListener("click", function () {
+  alert("handle button click");
 });
 ```
 
