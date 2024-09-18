@@ -1146,7 +1146,7 @@ props = {
 
 - here we neve get the value .
 
-#### Events - Fundamentals
+### Events - Fundamentals
 
 - In Vanilla JS
 
@@ -1181,6 +1181,8 @@ const EventExamples = () => {
   - onClick (click events)
   - onSubmit (submit form )
   - onChange (input change )
+
+**FirstEvent.jsx**
 
 ```js
 function BookList() {
@@ -1220,13 +1222,18 @@ const EventExamples = () => {
 
 #### Event Object and Form Submission
 
+**FromSubmission.jsx :-**
+
 ```js
 const EventExamples = () => {
   const handleFormInput = (e) => {
     console.log(e);
     // e.target - element
     console.log(`Input Name : ${e.target.name}`);
+    // target the input name
     console.log(`Input Value : ${e.target.value}`);
+    // target the input value
+
     // console.log('handle form input');
   };
   const handleButtonClick = () => {
@@ -1256,17 +1263,32 @@ const EventExamples = () => {
 };
 ```
 
-- alternative approach
+-add button with type='submit'
+
+**alternative approach of form submit**
 
 ```js
-<button type='submit' onClick={handleFormSubmission}>
-  submit form
-</button>
+<form>
+  <h2>Typical Form</h2>
+  <input
+    type='text'
+    name='example'
+    onChange={handleFormInput}
+    style={{ margin: "1rem 0" }}
+  />
+  <button type='submit' onClick={handleFormSubmission}>
+    submit form
+  </button>
+</form>
 ```
 
-#### Mind Grenade
+- here we dont use **onSubmit** event on from tag :
 
-- alternative approach
+  - `<form onSubmit={handleFormSubmission}></form>` we dont use this
+  - rether we use `<button type='submit' onClick={handleFormSubmission}>submit form</button>` in _button_ inside from tag .
+
+**alternative approach**
+
 - pass anonymous function (in this case arrow function)
 - one liner - less code
 

@@ -6,6 +6,8 @@ import SimpleBookList from "./components/SimpleBookList.jsx";
 import PropsBookList from "./components/PropsBookList.jsx";
 import PropsBookListTwo from "./components/PropsBookListTwo.jsx";
 import MapPropsBookList from "./components/MapPropsBookList.jsx";
+import FirstEvent from "./components/FirstEvent.jsx";
+import FromSubmission from "./components/FromSubmission.jsx";
 
 const root = document.getElementById("root");
 createRoot(root).render(
@@ -15,6 +17,8 @@ createRoot(root).render(
     {/* <SimpleBookList /> */}
     {/* <PropsBookList /> */}
     {/* <PropsBookListTwo /> */}
-    <MapPropsBookList />
+    {/* <MapPropsBookList /> */}
+    {/* <FirstEvent /> */}
+    <FromSubmission />
   </StrictMode>
 );
