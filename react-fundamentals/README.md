@@ -14,7 +14,8 @@
   - Local Images (Public Folder)
   - JSX CSS (optional)
   - JSX javascript
-- Props ( Initial Setup )
+- [Props ( Initial Setup )](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/react-fundamentals#props)
+- [Events in React](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/react-fundamentals#events---fundamentals)
 
 ## Basics
 
@@ -505,6 +506,8 @@ export default SimpleBookList;
 - toggle line comment Edit/Toggle Line Comment
 
 ### Props
+
+- [Personal Preference](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/react-fundamentals#personal-preference)
 
 #### Initial Setup (Props)
 
@@ -1144,7 +1147,7 @@ props = {
 };
 ```
 
-- here we neve get the value .
+- here we do not get the value .
 
 ### Events - Fundamentals
 
@@ -1158,9 +1161,7 @@ btn.addEventListener("click", function () {
 });
 ```
 
-- similar approach
-- element, event, function
-- again camelCase
+- In React
 
 ```js
 const EventExamples = () => {
@@ -1175,8 +1176,10 @@ const EventExamples = () => {
 };
 ```
 
+- Here we diclare the `handleButtonClick` function
+- pass the function name inside `onClick={}`
+
 - [React Events](https://reactjs.org/docs/events.html)
-- no need to memorize them(idea is the same)
 - most common
   - onClick (click events)
   - onSubmit (submit form )
@@ -1263,7 +1266,7 @@ const EventExamples = () => {
 };
 ```
 
--add button with type='submit'
+- add button with type='submit'
 
 **alternative approach of form submit**
 
@@ -1284,12 +1287,12 @@ const EventExamples = () => {
 
 - here we dont use **onSubmit** event on from tag :
 
-  - `<form onSubmit={handleFormSubmission}></form>` we dont use this
-  - rether we use `<button type='submit' onClick={handleFormSubmission}>submit form</button>` in _button_ inside from tag .
+  - `<form onSubmit={handleFormSubmission}></form>` we dont use this .
+  - Rether we use `<button type='submit' onClick={handleFormSubmission}>submit form</button>` in _button_ inside from tag .
 
-**alternative approach**
+**Pass anonymous function as Events**
 
-- pass anonymous function (in this case arrow function)
+- alternative approach
 - one liner - less code
 
 ```js
@@ -1358,10 +1361,11 @@ const Book = (props) => {
 
 - remove button
 
-#### Prop Drilling
+### Prop Drilling
 
 - react data flow - can only pass props down
-- alternatives Context API, redux, other state libraries
+- parents component ----> child component
+- alternatives we can use :- Context API, redux, other state libraries
 
 ```js
 function BookList() {
@@ -1392,6 +1396,9 @@ const Book = (props) => {
 };
 ```
 
+- create **displayValue** on **_BookList_** component .
+- pass this function to **_Book_** component through props .
+
 #### More Complex Example
 
 - initial setup
@@ -1402,6 +1409,8 @@ const Book = (props) => {
 - in the Book Component destructure id and function
 - invoke the function when user clicks the button, pass the id
 - the goal : you should see the same book in the console
+
+**Create a function , after click event which gonna show as a specific book item in console**
 
 ```js
 const BookList = () => {
@@ -1429,14 +1438,24 @@ const Book = (props) => {
       <h2>{title}</h2>
       {/* this is not going to work */}
       <button onClick={getBook(id)}>display title</button>
+      {/*we always pass the function name, we never invoke this function . */}
       <h4>{author}</h4>
     </article>
   );
 };
 ```
 
-- two fixes
-- first option - setup wrapper
+- we create **getBook** function in _BookList_ component.
+- pass this **getBook** function as props of _Book_ component .
+- in _Book_ component `<button onClick={getBook(id)}>display title</button>`
+- This \_onClick\* is not going to work
+- we always pass the function name, we never invoke function inside `{}` .
+
+- _**Here two fixes**_
+
+**first option**
+
+- setup wrapper
 
 ```js
 const Book = (props) => {
@@ -1456,8 +1475,12 @@ const Book = (props) => {
 };
 ```
 
-- two fixes
-- second option - wrap in the anonymous arrow function
+- here in **Book** component , we create _getSingleBook_ function, invoke the **getBook** function inside it.
+- in console we see the result .
+
+**second option**
+
+- wrap in the anonymous arrow function
 
 ```js
 const Book = (props) => {
@@ -1477,6 +1500,8 @@ const Book = (props) => {
   );
 };
 ```
+
+- personal prefarance
 
 #### Import and Export Statements
 
@@ -1622,10 +1647,10 @@ export const books = [
 ];
 ```
 
-#### Challenges
+### Challenges
 
-- setup numbers
-- don't worry about css
+**setup numbers challange**
+
 - hint - index (second parameter in map)
 
 index.js
@@ -1683,7 +1708,7 @@ index.css
 
 #### Add Title
 
-- add a title to our app (css optional)
+- **add a title** to our app (css optional)
 - change page title
 
 index.js
