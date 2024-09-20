@@ -95,11 +95,22 @@ import Starter from "./tutorial/01-useState/starter/02-useState-basics.jsx"
 
 - **useState** is a function thats we get back from _React_
 - **returns an array with two elements: the current state value, and a function that we can use to update the state**
-- So **useState** hook change our state value.
-- Inside `const [state , setState] = useState(expresstion)`
-  - inside _expression_ of useState === **state**
-  - **setState** is a function, where also we pass only the _expression_
-- accepts default value as an argument
+- So **useState** hook are using to change our state value.
+- Basic Example :-
+
+  - Inside `const [name , setName] = useState("Yusuf")`
+    - initial value of **name** === "Yusuf";
+    - we render this at any place of component in react .
+    - **setName** is a function, where also we pass only the _expression_ . `setName("Shahin")`
+    - pass inside any function like `onClick={() => setName("Shahin")}`
+      or
+    - ```js
+      const handleClick = () => {
+        setName("Shahin")
+      }
+      ;<button onClick={handleClick}>Click me</button>
+      ```
+
 - state update triggers re-render
 
 ```js
@@ -284,9 +295,10 @@ const UseStateObject = () => {
 
   const displayPerson = () => {
     setPerson({ name: "john", age: 28, hobby: "scream at the computer" })
+
     // be careful, don't overwrite
-    // setPerson('shakeAndBake');
-    // setPerson({ name: 'susan' });
+    // setPerson('shakeAndBake'); // render nothing
+    // setPerson({ name: 'susan' }); // just render the name
     // setPerson({ ...person, name: 'susan' });
   }
   return (
@@ -557,6 +569,8 @@ Setup Challenge :
   - iterate over the list and display image, user name and link
 - DON'T WORRY ABOUT CSS, MOST IMPORTANT LOGIC !!!
 
+**Basics.jsx**
+
 ```js
 import { useEffect } from "react"
 import { useState } from "react"
@@ -584,10 +598,30 @@ const FetchData = () => {
 export default FetchData
 ```
 
-- value of user === `[]` empty array
-- here inside `useEffect()` , we set **setUsers(data)**
-- that means, we fetch and pass the the data in **setUsers(data)**
-- for that reason value of **users** , coz value of **setUsers(data)** === **users**
+- `[users, setUsers] = useState([])`
+- initial value of **user** === `[]` empty array
+-
+- inside `useEffect()`
+
+  - ```js
+    useEffect(() => {
+      const showUsers = async () => {
+        try {
+          const resp = await fetch(url)
+          const data = await resp.json()
+          // console.log(data)
+          setUsers(data)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      showUsers()
+    }, [])
+    ```
+
+- here we _fetch_ data from _api_ and pass the data as a expression of --> `setUsers(data)`
+- **useEffect** hook basically initially render anything .
+- so the value of **users** === data ,
 - inspect --> component --> we get the data like that :-
 
 ![Relative](./src/assets/WhatsApp%20Image%202024-09-20%20at%204.26.10%20PM.jpeg)
@@ -597,7 +631,8 @@ export default FetchData
 04-fetch-data.jsx :-
 
 ```js
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
+import { useState } from "react"
 
 const url = "https://api.github.com/users"
 
@@ -605,17 +640,17 @@ const FetchData = () => {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    // you can also setup function outside
-    const fetchData = async () => {
+    const showUsers = async () => {
       try {
-        const response = await fetch(url)
-        const users = await response.json()
-        setUsers(users)
+        const resp = await fetch(url)
+        const data = await resp.json()
+        // console.log(data)
+        setUsers(data)
       } catch (error) {
         console.log(error)
       }
     }
-    fetchData()
+    showUsers()
   }, [])
   return (
     <section>
@@ -637,8 +672,13 @@ const FetchData = () => {
     </section>
   )
 }
+
 export default FetchData
 ```
+
+**IN Browser**
+
+![Relative](./src/assets/WhatsApp%20Image%202024-09-20%20at%2010.48.17%20PM.jpeg)
 
 #### Cleanup Function
 

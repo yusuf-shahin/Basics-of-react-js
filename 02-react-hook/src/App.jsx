@@ -1,14 +1,14 @@
-import FetchData from "./tutorial/02-useEffect/starter/04-fetch-data";
+import UseStateObject from "./tutorial/01-useState/starter/04-useState-object"
 
 function App() {
   return (
     <div className='container'>
-      <FetchData />
+      <UseStateObject />
     </div>
-  );
+  )
 }
 
 // invoke setCount() func inside any function .
 // we must set when we invoke useState
 
-export default App;
+export default App
