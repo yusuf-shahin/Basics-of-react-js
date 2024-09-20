@@ -7,15 +7,15 @@
   - First Component
     - Root Component
   - Possible Bug
-  - First Component in Detail
-  - JSX Rules
+  - [First Component in Detail](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#component-in-detail)
+  - [JSX Rules](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#jsx-rules)
   - Nest Components
   - Gloval CSS
   - Local Images (Public Folder)
   - JSX CSS (optional)
   - JSX javascript
-- [Props ( Initial Setup )](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/react-fundamentals#props)
-- [Events in React](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/react-fundamentals#events---fundamentals)
+- [Props ( Initial Setup )](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#props)
+- [Events in React](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#events---fundamentals)
 
 ## Basics
 

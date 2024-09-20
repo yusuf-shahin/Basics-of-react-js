@@ -1,40 +1,38 @@
-## Setup
+## Table of Content
 
-- traditional Vite app
-  - removed boilerplate
-  - provided some assets (css, data)
-    - just so we can focus on important stuff
-  - removed <StrictMode>, so it's less logs
+- General Rules of Hooks
+  - Initial Render and Re-Renders
+  - [useState hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usestate-basics)
 
-## Advanced Topics
+### General Rules of Hooks
 
-- /tutorial directory
-- work in the starter folder
-- complete code in the final folder
-- in order to work on topic import component from 'starter'
-- in order to test final import component from 'final'
-- setup challenges
-- in the beginning examples with numbers and buttons :):):)
+- starts with "use" (both -react and custom hooks)
+- component must be uppercase
+- **invoke inside function/component body**
+- don't call hooks conditionally (cover later)
+- set functions don't update state immediately (cover later)
+
+### App.jsx (Setup)
 
 ```js
-import Starter from './tutorial/1-useState/starter/1-error-example';
-import Final from './tutorial/1-useState/final/1-error-example';
+import Starter from "./tutorial/1-useState/starter/1-error-example"
+import Final from "./tutorial/1-useState/final/1-error-example"
 function App() {
   return (
     <div className='container'>
       <Starter />
       <Final />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 #### The Need For State
 
 ```js
-import Starter from './tutorial/01-useState/starter/01-error-example.jsx';
+import Starter from "./tutorial/01-useState/starter/01-error-example.jsx"
 ```
 
 - in App.jsx setup import and container div
@@ -48,14 +46,14 @@ import Starter from './tutorial/01-useState/starter/01-error-example.jsx';
 
 ```js
 const ErrorExample = () => {
-  let count = 0;
+  let count = 0
 
   const handleClick = () => {
-    count = count + 1;
-    console.log(count);
+    count = count + 1
+    console.log(count)
     // preserve value between renders
     // trigger re-render
-  };
+  }
   return (
     <div>
       <h2>{count}</h2>
@@ -63,42 +61,63 @@ const ErrorExample = () => {
         increment
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default ErrorExample;
+export default ErrorExample
 ```
 
-#### useState Basics
+- in **console** the value of count gradually increasing .
+- in **browser** the value of count not increasing .
+- here come the concepts of **_useState_** hook .
+
+### Initial Render and Re-Renders
+
+- In a React application, the initial render is the first time that the component tree is rendered to the DOM. It happens when the application first loads, or when the root component is first rendered. This is also known as "mounting" the components.
+
+- Re-renders, on the other hand, happen when the component's state or props change, and the component needs to be updated in the DOM to reflect these changes. React uses a virtual DOM to optimize the process of updating the actual DOM, so that only the necessary changes are made.
+
+**There are a few ways that you can trigger a re-render in a React component:**
+
+- By changing the component's state or props. When the component's state or props change, React will re-render the component to reflect these changes.
+
+- When the parent element re-renders, even if the component's state or props have not changed.
+
+### useState Basics
+
+- [Initial Render and Re-Renders](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usestate-with-object)
 
 ```js
-import Starter from './tutorial/01-useState/starter/02-useState-basics.jsx';
+import Starter from "./tutorial/01-useState/starter/02-useState-basics.jsx"
 ```
 
 [Javascript Nuggets - Destructuring (Array)](https://www.youtube.com/watch?v=qhECs40xMec&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=7&t=9s)
 
-- useState hook
-- returns an array with two elements: the current state value, and a function that we can use to update the state
+- **useState** is a function thats we get back from _React_
+- **returns an array with two elements: the current state value, and a function that we can use to update the state**
+- So **useState** hook change our state value.
+- Inside `const [state , setState] = useState(expresstion)`
+  - inside _expression_ of useState === **state**
+  - **setState** is a function, where also we pass only the _expression_
 - accepts default value as an argument
 - state update triggers re-render
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const UseStateBasics = () => {
-  // console.log(useState());
-  // console.log(useState('jo koy'));
-  // const value = useState()[0];
-  // const handler = useState()[1];
-  // console.log(value, handler);
+  // console.log(useState()); ---> [initial value , func]
+  // console.log(useState('jo koy')); ---> ["jo koy" , func]
+  // const value = useState()[0]; ---> "jo koy"
+  // const handler = useState()[1]; ---> func
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
   const handleClick = () => {
     // console.log(count)
-    setCount(count + 1);
+    setCount(count + 1)
     // be careful, we can set any value
     // setCount('pants');
-  };
+  }
   return (
     <div>
       <h4>You clicked {count} times</h4>
@@ -106,36 +125,16 @@ const UseStateBasics = () => {
         Click me
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default UseStateBasics;
+export default UseStateBasics
 ```
-
-#### Initial Render and Re-Renders
-
-In a React application, the initial render is the first time that the component tree is rendered to the DOM. It happens when the application first loads, or when the root component is first rendered. This is also known as "mounting" the components.
-
-Re-renders, on the other hand, happen when the component's state or props change, and the component needs to be updated in the DOM to reflect these changes. React uses a virtual DOM to optimize the process of updating the actual DOM, so that only the necessary changes are made.
-
-There are a few ways that you can trigger a re-render in a React component:
-
-- By changing the component's state or props. When the component's state or props change, React will re-render the component to reflect these changes.
-
-- When the parent element re-renders, even if the component's state or props have not changed.
-
-#### General Rules of Hooks
-
-- starts with "use" (both -react and custom hooks)
-- component must be uppercase
-- invoke inside function/component body
-- don't call hooks conditionally (cover later)
-- set functions don't update state immediately (cover later)
 
 #### useState with Array
 
 ```js
-import Starter from './tutorial/01-useState/starter/03-useState-array.jsx';
+import Starter from "./tutorial/01-useState/starter/03-useState-array.jsx"
 ```
 
 Setup Challenge :
@@ -150,29 +149,29 @@ Setup Challenge :
   - one that removes single item from the list
   - one that clears entire list
 
-1. render the list
+1. **render the list**
 
 ```js
-import React from 'react';
-import { data } from '../../../data';
+import React from "react"
+import { data } from "../../../data"
 const UseStateArray = () => {
-  const [people, setPeople] = React.useState(data);
+  const [people, setPeople] = React.useState(data)
 
   return (
     <div>
       {people.map((person) => {
-        const { id, name } = person;
+        const { id, name } = person
         return (
           <div key={id} className='item'>
             <h4>{name}</h4>
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default UseStateArray;
+export default UseStateArray
 ```
 
 2. remove items
@@ -180,46 +179,46 @@ export default UseStateArray;
 [Javascript Nuggets - Filter and Find](https://www.youtube.com/watch?v=KeYxsev737s&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=4)
 
 ```js
-import React from 'react';
-import { data } from '../../../data';
+import React from "react"
+import { data } from "../../../data"
 const UseStateArray = () => {
-  const [people, setPeople] = React.useState(data);
+  const [people, setPeople] = React.useState(data)
 
   const removeItem = (id) => {
-    let newPeople = people.filter((person) => person.id !== id);
-    setPeople(newPeople);
-  };
+    let newPeople = people.filter((person) => person.id !== id)
+    setPeople(newPeople)
+  }
   return (
     <div>
       {people.map((person) => {
-        const { id, name } = person;
+        const { id, name } = person
         return (
           <div key={id} className='item'>
             <h4>{name}</h4>
             <button onClick={() => removeItem(id)}>remove</button>
           </div>
-        );
+        )
       })}
       <button
         className='btn'
-        style={{ marginTop: '2rem' }}
+        style={{ marginTop: "2rem" }}
         onClick={() => setPeople([])}
       >
         clear items
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default UseStateArray;
+export default UseStateArray
 ```
 
-- should we update backroads app project?
+-
 
 #### useState with Object
 
 ```js
-import Starter from './tutorial/01-useState/starter/04-useState-object.jsx';
+import Starter from "./tutorial/01-useState/starter/04-useState-object.jsx"
 ```
 
 Setup Challenge :
@@ -236,18 +235,18 @@ Setup Challenge :
   new person is displayed in the browser
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const UseStateObject = () => {
-  const [name, setName] = useState('peter');
-  const [age, setAge] = useState(24);
-  const [hobby, setHobby] = useState('read books');
+  const [name, setName] = useState("peter")
+  const [age, setAge] = useState(24)
+  const [hobby, setHobby] = useState("read books")
 
   const displayPerson = () => {
-    setName('john');
-    setAge(28);
-    setHobby('scream at the computer');
-  };
+    setName("john")
+    setAge(28)
+    setHobby("scream at the computer")
+  }
   return (
     <>
       <h3>{name}</h3>
@@ -257,10 +256,10 @@ const UseStateObject = () => {
         show john
       </button>
     </>
-  );
-};
+  )
+}
 
-export default UseStateObject;
+export default UseStateObject
 ```
 
 #### Automatic Batching
@@ -274,22 +273,22 @@ React 18 ensures that state updates invoked from any location will be batched by
 #### Switch to Object
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const UseStateObject = () => {
   const [person, setPerson] = useState({
-    name: 'peter',
+    name: "peter",
     age: 24,
-    hobby: 'read books',
-  });
+    hobby: "read books",
+  })
 
   const displayPerson = () => {
-    setPerson({ name: 'john', age: 28, hobby: 'scream at the computer' });
+    setPerson({ name: "john", age: 28, hobby: "scream at the computer" })
     // be careful, don't overwrite
     // setPerson('shakeAndBake');
     // setPerson({ name: 'susan' });
     // setPerson({ ...person, name: 'susan' });
-  };
+  }
   return (
     <>
       <h3>{person.name}</h3>
@@ -299,16 +298,16 @@ const UseStateObject = () => {
         show john
       </button>
     </>
-  );
-};
+  )
+}
 
-export default UseStateObject;
+export default UseStateObject
 ```
 
 #### Set Function "Gotcha"
 
 ```js
-import Starter from './tutorial/01-useState/starter/05-useState-gotcha.jsx';
+import Starter from "./tutorial/01-useState/starter/05-useState-gotcha.jsx"
 ```
 
 Setup Challenge :
@@ -322,19 +321,19 @@ Keep in mind that the state update function setState does not immediately mutate
 trivial example
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const UseStateGotcha = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
 
   const handleClick = () => {
-    setValue(value + 1);
+    setValue(value + 1)
     //  be careful it's the old value
-    console.log(value);
+    console.log(value)
     //  so if you have any functionality
     // that relies on the latest value
     // it will be wrong !!!
-  };
+  }
   return (
     <div>
       <h1>{value}</h1>
@@ -342,18 +341,18 @@ const UseStateGotcha = () => {
         increase
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default UseStateGotcha;
+export default UseStateGotcha
 ```
 
 If you want to update the state immediately and synchronously, you can pass a function to setState that receives the previous state as an argument and returns the new state. For example:
 
 ```js
 setState((prevState) => {
-  return { ...prevState, value: newValue };
-});
+  return { ...prevState, value: newValue }
+})
 ```
 
 This can be useful if you need to update the state based on the previous state, or if you need to update the state synchronously.
@@ -363,10 +362,10 @@ const handleClick = () => {
   setValue((currentState) => {
     // must return otherwise undefined
     // below is the latest/current state value
-    const newState = currentState + 1;
-    return newState;
-  });
-};
+    const newState = currentState + 1
+    return newState
+  })
+}
 ```
 
 - setTimeout Example
@@ -378,12 +377,12 @@ const handleClick = () => {
   //   setValue(value + 1);
   // }, 3000);
   setTimeout(() => {
-    console.log('clicked the button');
+    console.log("clicked the button")
     setValue((currentState) => {
-      return currentState + 1;
-    });
-  }, 3000);
-};
+      return currentState + 1
+    })
+  }, 3000)
+}
 ```
 
 - as an example refactor code in
@@ -393,20 +392,20 @@ const handleClick = () => {
 #### Code Example
 
 ```js
-import Starter from './tutorial/02-useEffect/starter/01-code-example.jsx';
+import Starter from "./tutorial/02-useEffect/starter/01-code-example.jsx"
 ```
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const ComponentExample = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
   const sayHello = () => {
-    console.log('hello there');
+    console.log("hello there")
     // be careful
     // setValue(value + 1);
-  };
-  sayHello();
+  }
+  sayHello()
   return (
     <div>
       <h1>value : {value}</h1>
@@ -414,22 +413,22 @@ const ComponentExample = () => {
         click me
       </button>
     </div>
-  );
-};
-export default ComponentExample;
+  )
+}
+export default ComponentExample
 ```
 
 - the problem starts when we update the state
 
 ```js
-const [value, setValue] = useState(0);
+const [value, setValue] = useState(0)
 
 const sayHello = () => {
-  console.log('hello there');
+  console.log("hello there")
   // be careful, you will have infinite loop
-  setValue(value + 1);
-};
-sayHello();
+  setValue(value + 1)
+}
+sayHello()
 ```
 
 - initial render - setup state value and invoke sayHello
@@ -445,10 +444,10 @@ sayHello();
 
 - but what about fetching data?
 
-#### useEffect Basics
+### useEffect Basics
 
 ```js
-import Starter from './tutorial/02-useEffect/starter/02-useEffect-basics.jsx';
+import Starter from "./tutorial/02-useEffect/starter/02-useEffect-basics.jsx"
 ```
 
 useEffect is a hook in React that allows you to perform side effects in function components.There is no need for urban dictionary - basically any work outside of the component. Some examples of side effects are: subscriptions, fetching data, directly updating the DOM, event listeners, timers, etc.
@@ -462,23 +461,26 @@ useEffect is a hook in React that allows you to perform side effects in function
 - if dependency array empty [] runs only on initial render
 
 ```js
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react"
 
 const UseEffectBasics = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
   const sayHello = () => {
-    console.log('hello there');
-  };
+    console.log("hello there")
+  }
 
-  sayHello();
+  sayHello()
 
-  // useEffect(() => {
-  //   console.log('hello from useEffect');
-  // });
-
+  // without dependency array
   useEffect(() => {
-    console.log('hello from useEffect');
-  }, []);
+    console.log("hello from useEffect")
+  })
+
+  // dependency array
+  useEffect(() => {
+    console.log("hello from useEffect")
+  }, [])
+
   return (
     <div>
       <h1>value : {value}</h1>
@@ -486,31 +488,33 @@ const UseEffectBasics = () => {
         click me
       </button>
     </div>
-  );
-};
-export default UseEffectBasics;
+  )
+}
+export default UseEffectBasics
 ```
+
+- If we have just the plain function or we invoke the function inside of the component, it's going to run on initial render and on every re-render.
 
 #### Multiple Effects
 
 ```js
-import Starter from './tutorial/02-useEffect/starter/03-multiple-effects.jsx';
+import Starter from "./tutorial/02-useEffect/starter/03-multiple-effects.jsx"
 ```
 
 ```js
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react"
 
 const MultipleEffects = () => {
-  const [value, setValue] = useState(0);
-  const [secondValue, setSecondValue] = useState(0);
+  const [value, setValue] = useState(0)
+  const [secondValue, setSecondValue] = useState(0)
 
   useEffect(() => {
-    console.log('hello from first useEffect');
-  }, [value]);
+    console.log("hello from first useEffect")
+  }, [value])
 
-  useEffect(() => {
-    console.log('hello from second useEffect');
-  }, [secondValue]);
+  // useEffect(() => {
+  //   console.log("hello from second useEffect");
+  // }, [secondValue]);
   return (
     <div>
       <h1>value : {value}</h1>
@@ -522,15 +526,17 @@ const MultipleEffects = () => {
         second value
       </button>
     </div>
-  );
-};
-export default MultipleEffects;
+  )
+}
+export default MultipleEffects
 ```
 
-#### Fetch Data
+- We provide **value** in dependency array . Everytime when we change the state of value . The useEffect function will invioke.
+
+#### Fetch Data ( Projects )
 
 ```js
-import Starter from './tutorial/02-useEffect/starter/04-fetch-data.jsx';
+import Starter from "./tutorial/02-useEffect/starter/04-fetch-data.jsx"
 ```
 
 [Javascript Nuggets - Fetch API](https://www.youtube.com/watch?v=C_VIKzfpRrg&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=18&t=343s)
@@ -552,32 +558,71 @@ Setup Challenge :
 - DON'T WORRY ABOUT CSS, MOST IMPORTANT LOGIC !!!
 
 ```js
-import { useState, useEffect } from 'react';
+import { useEffect } from "react"
+import { useState } from "react"
 
-const url = 'https://api.github.com/users';
+const url = "https://api.github.com/users"
 
 const FetchData = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    const showUsers = async () => {
+      try {
+        const resp = await fetch(url)
+        const data = await resp.json()
+        // console.log(data)
+        setUsers(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    showUsers()
+  }, [])
+  return <h1>fetch data url</h1>
+}
+export default FetchData
+```
+
+- value of user === `[]` empty array
+- here inside `useEffect()` , we set **setUsers(data)**
+- that means, we fetch and pass the the data in **setUsers(data)**
+- for that reason value of **users** , coz value of **setUsers(data)** === **users**
+- inspect --> component --> we get the data like that :-
+
+![Relative](./src/assets/WhatsApp%20Image%202024-09-20%20at%204.26.10%20PM.jpeg)
+
+**Render the users on _fetch-data_ jsx**
+
+04-fetch-data.jsx :-
+
+```js
+import { useState, useEffect } from "react"
+
+const url = "https://api.github.com/users"
+
+const FetchData = () => {
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     // you can also setup function outside
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
-        const users = await response.json();
-        setUsers(users);
+        const response = await fetch(url)
+        const users = await response.json()
+        setUsers(users)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
-    fetchData();
-  }, []);
+    }
+    fetchData()
+  }, [])
   return (
     <section>
       <h3>github users</h3>
       <ul className='users'>
         {users.map((user) => {
-          const { id, login, avatar_url, html_url } = user;
+          const { id, login, avatar_url, html_url } = user
           return (
             <li key={id}>
               <img src={avatar_url} alt={login} />
@@ -586,19 +631,19 @@ const FetchData = () => {
                 <a href={html_url}>profile</a>
               </div>
             </li>
-          );
+          )
         })}
       </ul>
     </section>
-  );
-};
-export default FetchData;
+  )
+}
+export default FetchData
 ```
 
 #### Cleanup Function
 
 ```js
-import Starter from './tutorial/02-useEffect/starter/05-cleanup-function.jsx';
+import Starter from "./tutorial/02-useEffect/starter/05-cleanup-function.jsx"
 ```
 
 Will Cover After 03-conditional-rendering
@@ -611,10 +656,10 @@ Will Cover After 03-conditional-rendering
 - inside second component create useEffect and run it only on initial render
 
 ```js
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react"
 
 const CleanupFunction = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(false)
   return (
     <div>
       <button className='btn' onClick={() => setToggle(!toggle)}>
@@ -622,39 +667,39 @@ const CleanupFunction = () => {
       </button>
       {toggle && <RandomComponent />}
     </div>
-  );
-};
+  )
+}
 const RandomComponent = () => {
   useEffect(() => {
-    console.log('hmm, this is interesting');
-  }, []);
-  return <h1>hello there</h1>;
-};
-export default CleanupFunction;
+    console.log("hmm, this is interesting")
+  }, [])
+  return <h1>hello there</h1>
+}
+export default CleanupFunction
 ```
 
 Vanilla JS
 
 ```js
 const intID = setInterval(() => {
-  console.log('hello from interval');
-}, 1000);
-clearInterval(intID);
+  console.log("hello from interval")
+}, 1000)
+clearInterval(intID)
 ```
 
 ```js
 const someFunc = () => {
   // some logic here
-};
-window.addEventListener('scroll', someFunc);
-window.removeEventListener('scroll', someFunc);
+}
+window.addEventListener("scroll", someFunc)
+window.removeEventListener("scroll", someFunc)
 ```
 
 ```js
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react"
 
 const CleanupFunction = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(false)
   return (
     <div>
       <button className='btn' onClick={() => setToggle(!toggle)}>
@@ -662,21 +707,21 @@ const CleanupFunction = () => {
       </button>
       {toggle && <RandomComponent />}
     </div>
-  );
-};
+  )
+}
 const RandomComponent = () => {
   useEffect(() => {
     // console.log('hmm, this is interesting');
     const intID = setInterval(() => {
-      console.log('hello from interval');
-    }, 1000);
+      console.log("hello from interval")
+    }, 1000)
     // does not stop, keeps going
     // every time we render component new interval gets created
-    return () => clearInterval(intID);
-  }, []);
-  return <h1>hello there</h1>;
-};
-export default CleanupFunction;
+    return () => clearInterval(intID)
+  }, [])
+  return <h1>hello there</h1>
+}
+export default CleanupFunction
 ```
 
 ```js
@@ -684,10 +729,10 @@ useEffect(() => {
   // console.log('hmm, this is interesting');
   const someFunc = () => {
     // some logic here
-  };
-  window.addEventListener('scroll', someFunc);
-  return () => window.removeEventListener('scroll', someFunc);
-}, []);
+  }
+  window.addEventListener("scroll", someFunc)
+  return () => window.removeEventListener("scroll", someFunc)
+}, [])
 ```
 
 #### You Might Not Need an Effect
@@ -701,14 +746,14 @@ useEffect(() => {
   replaced by libraries - react query, rtk query, swr or next.js
 
 ```js
-import { useHook } from 'library';
+import { useHook } from "library"
 
 function Example() {
-  const { data, error, isLoading } = useHook('url', fetcher);
+  const { data, error, isLoading } = useHook("url", fetcher)
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
-  return <div>hello {data.name}!</div>;
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <div>loading...</div>
+  return <div>hello {data.name}!</div>
 }
 ```
 
@@ -717,7 +762,7 @@ function Example() {
 #### Multiple Returns - Basics
 
 ```js
-import Starter from './tutorial/03-conditional-rendering/starter/01-multiple-returns-basics.jsx';
+import Starter from "./tutorial/03-conditional-rendering/starter/01-multiple-returns-basics.jsx"
 ```
 
 Vanilla JS
@@ -725,50 +770,50 @@ Vanilla JS
 ```js
 const sayHello = (name) => {
   if (name) {
-    return `Hello, ${name}`;
+    return `Hello, ${name}`
     // exit the function, skip rest of the code
   }
   // so if name provided, won't get to this line
-  return 'Hello, there';
-};
+  return "Hello, there"
+}
 
-const firstResp = sayHello('john');
-console.log(firstResp); // Hello, john
-const secondResp = sayHello();
-console.log(secondResp); // Hello, there
+const firstResp = sayHello("john")
+console.log(firstResp) // Hello, john
+const secondResp = sayHello()
+console.log(secondResp) // Hello, there
 ```
 
 - if no explicit return by default function returns 'undefined'
 
 ```js
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react"
 
 const MultipleReturnsBasics = () => {
   // while fetching data
   // convention with boolean values "isSomething"
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     setTimeout(() => {
       // done fetching data
-      setIsLoading(false);
-    }, 3000);
-  }, []);
+      setIsLoading(false)
+    }, 3000)
+  }, [])
 
   // can return entire app
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2>Loading...</h2>
   }
 
-  return <h2>My App</h2>;
-};
-export default MultipleReturnsBasics;
+  return <h2>My App</h2>
+}
+export default MultipleReturnsBasics
 ```
 
 #### Multiple Returns - Fetch Data
 
 ```js
-import Starter from './tutorial/03-conditional-rendering/starter/02-multiple-returns-fetch-data.jsx';
+import Starter from "./tutorial/03-conditional-rendering/starter/02-multiple-returns-fetch-data.jsx"
 ```
 
 Setup Challenge :
@@ -780,30 +825,30 @@ Setup Challenge :
 - if you see user object in the console, continue with the videos
 
 ```js
-import { useEffect, useState } from 'react';
-const url = 'https://api.github.com/users/QuincyLarson';
+import { useEffect, useState } from "react"
+const url = "https://api.github.com/users/QuincyLarson"
 
 const MultipleReturnsFetchData = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const resp = await fetch(url);
-        const user = await resp.json();
-        console.log(user);
+        const resp = await fetch(url)
+        const user = await resp.json()
+        console.log(user)
       } catch (error) {
         // fetch only cares about network errors
         // will work with axios
-        console.log(error);
+        console.log(error)
       }
-    };
-    fetchUser();
-  }, []);
+    }
+    fetchUser()
+  }, [])
 
-  return <h2>Fetch Example</h2>;
-};
-export default MultipleReturnsFetchData;
+  return <h2>Fetch Example</h2>
+}
+export default MultipleReturnsFetchData
 ```
 
 Data Fetching :
@@ -815,43 +860,43 @@ Data Fetching :
   - success - received data (display data)
 
 ```js
-import { useEffect, useState } from 'react';
-const url = 'https://api.github.com/users/QuincyLarson';
+import { useEffect, useState } from "react"
+const url = "https://api.github.com/users/QuincyLarson"
 
 const MultipleReturnsFetchData = () => {
   // convention to setup booleans with isSomething
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const resp = await fetch(url);
-        const user = await resp.json();
+        const resp = await fetch(url)
+        const user = await resp.json()
         // console.log(user);
-        setUser(user);
+        setUser(user)
       } catch (error) {
-        setIsError(true);
-        console.log(error);
+        setIsError(true)
+        console.log(error)
       }
       // hide loading
-      setIsLoading(false);
-    };
-    fetchUser();
-  }, []);
+      setIsLoading(false)
+    }
+    fetchUser()
+  }, [])
   // order matters
   // don't place user JSX before loading or error
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2>Loading...</h2>
   }
   if (isError) {
-    return <h2>There was an error...</h2>;
+    return <h2>There was an error...</h2>
   }
   return (
     <div>
       <img
-        style={{ width: '150px', borderRadius: '25px' }}
+        style={{ width: "150px", borderRadius: "25px" }}
         src={user.avatar_url}
         alt={user.name}
       />
@@ -859,15 +904,15 @@ const MultipleReturnsFetchData = () => {
       <h4>works at {user.company}</h4>
       <p>{user.bio}</p>
     </div>
-  );
-};
-export default MultipleReturnsFetchData;
+  )
+}
+export default MultipleReturnsFetchData
 ```
 
 #### Fetch Errors "Gotcha" (optional)
 
 ```js
-import Starter from './tutorial/03-conditional-rendering/starter/02-multiple-returns-fetch-data.jsx';
+import Starter from "./tutorial/03-conditional-rendering/starter/02-multiple-returns-fetch-data.jsx"
 ```
 
 Unlike for example Axios, by default, the fetch() API does not consider HTTP status codes in the 4xx or 5xx range to be errors. Instead, it considers these status codes to be indicative of a successful request,
@@ -892,7 +937,7 @@ setUser(user);
 #### Order Matters - Setup
 
 ```js
-import Starter from './tutorial/03-conditional-rendering/starter/02-multiple-returns-fetch-data.jsx';
+import Starter from "./tutorial/03-conditional-rendering/starter/02-multiple-returns-fetch-data.jsx"
 ```
 
 Please don't dismiss this topic. A lot of questions in course Q&A.
@@ -906,7 +951,7 @@ Challenge :
 return (
   <div>
     <img
-      style={{ width: '100px', borderRadius: '25px' }}
+      style={{ width: "100px", borderRadius: "25px" }}
       src={avatar_url}
       alt={name}
     />
@@ -914,7 +959,7 @@ return (
     <h4>works at {company}</h4>
     <p>{bio}</p>
   </div>
-);
+)
 ```
 
 #### Order Matters - Solution
@@ -922,24 +967,24 @@ return (
 - before returns
 
 ```js
-const [user, setUser] = useState(null);
-console.log(user); // still null
+const [user, setUser] = useState(null)
+console.log(user) // still null
 // we can't pull out properties from null
-const { avatar_url, name, company, bio } = user;
+const { avatar_url, name, company, bio } = user
 ```
 
 - after returns
 
 ```js
-console.log(user); // user object;
-const { avatar_url, name, company, bio } = user;
+console.log(user) // user object;
+const { avatar_url, name, company, bio } = user
 ```
 
 ```js
 return (
   <div>
     <img
-      style={{ width: '100px', borderRadius: '25px' }}
+      style={{ width: "100px", borderRadius: "25px" }}
       src={avatar_url}
       alt={name}
     />
@@ -947,29 +992,29 @@ return (
     <h4>works at {company}</h4>
     <p>{bio}</p>
   </div>
-);
+)
 ```
 
 Vanilla JS
 
 ```js
 const someObject = {
-  name: 'jo koy',
-};
+  name: "jo koy",
+}
 // this is cool
-someObject.name; // returns 'jo koy'
-someObject.propertyThatDoesNotExist; // returns undefined
+someObject.name // returns 'jo koy'
+someObject.propertyThatDoesNotExist // returns undefined
 
 // not cool at all, javascript will scream, yell and complain
-const randomValue = null;
-randomValue.name;
+const randomValue = null
+randomValue.name
 
 // this is ok
-const randomList = [];
-console.log(randomList[0]); // returns undefined
+const randomList = []
+console.log(randomList[0]) // returns undefined
 
 // not cool at all, javascript will scream, yell and complain
-console.log(randomList[0].name);
+console.log(randomList[0].name)
 ```
 
 #### Fetch Function Location
@@ -977,11 +1022,11 @@ console.log(randomList[0].name);
 ```js
 const fetchData = async () => {
   // fetch data
-};
+}
 
 useEffect(() => {
-  fetchData();
-}, []);
+  fetchData()
+}, [])
 ```
 
 - DON'T ADD fetchData to dependency array !!!
@@ -990,30 +1035,30 @@ useEffect(() => {
 #### DON'T CALL HOOKS CONDITIONALLY
 
 ```js
-import Starter from './tutorial/03-conditional-rendering/starter/03-hooks-rule.jsx';
+import Starter from "./tutorial/03-conditional-rendering/starter/03-hooks-rule.jsx"
 ```
 
 ```js
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react"
 
 const Example = () => {
-  const [condition, setCondition] = useState(true);
+  const [condition, setCondition] = useState(true)
   if (condition) {
     // won't work
-    const [state, setState] = useState(false);
+    const [state, setState] = useState(false)
   }
 
   if (condition) {
-    return <h2>Hello There</h2>;
+    return <h2>Hello There</h2>
   }
   // this will also fail
   useEffect(() => {
-    console.log('hello there');
-  }, []);
-  return <h2>example</h2>;
-};
+    console.log("hello there")
+  }, [])
+  return <h2>example</h2>
+}
 
-export default Example;
+export default Example
 ```
 
 #### Truthy and Falsy Values (optional)
@@ -1035,24 +1080,24 @@ All other values, including objects and arrays, are considered truthy.
 For example:
 
 ```js
-const x = 'Hello';
-const y = '';
-const z = 0;
+const x = "Hello"
+const y = ""
+const z = 0
 
 if (x) {
-  console.log('x is truthy');
+  console.log("x is truthy")
 }
 
 if (y) {
-  console.log('y is truthy');
+  console.log("y is truthy")
 } else {
-  console.log('y is falsy');
+  console.log("y is falsy")
 }
 
 if (z) {
-  console.log('z is truthy');
+  console.log("z is truthy")
 } else {
-  console.log('z is falsy');
+  console.log("z is falsy")
 }
 
 // Output:
@@ -1074,11 +1119,11 @@ The && operator (logical AND) returns the first operand if it is "falsy", or the
 For example:
 
 ```js
-const x = 0;
-const y = 1;
+const x = 0
+const y = 1
 
-console.log(x && y); // Output: 0 (the first operand is falsy, so it is returned)
-console.log(y && x); // Output: 0 (the second operand is falsy, so it is returned)
+console.log(x && y) // Output: 0 (the first operand is falsy, so it is returned)
+console.log(y && x) // Output: 0 (the second operand is falsy, so it is returned)
 ```
 
 The || operator (logical OR) returns the first operand if it is "truthy", or the second operand if the first operand is "falsy".
@@ -1086,11 +1131,11 @@ The || operator (logical OR) returns the first operand if it is "truthy", or the
 For example:
 
 ```js
-const x = 0;
-const y = 1;
+const x = 0
+const y = 1
 
-console.log(x || y); // Output: 1 (the first operand is falsy, so the second operand is returned)
-console.log(y || x); // Output: 1 (the first operand is truthy, so it is returned)
+console.log(x || y) // Output: 1 (the first operand is falsy, so the second operand is returned)
+console.log(y || x) // Output: 1 (the first operand is truthy, so it is returned)
 ```
 
 Short-circuit evaluation can be useful in cases where you want to perform a certain action only if a certain condition is met, or you want to return a default value if a certain condition is not met.
@@ -1099,11 +1144,11 @@ For example:
 
 ```js
 function displayName(name) {
-  return name || 'Anonymous';
+  return name || "Anonymous"
 }
 
-console.log(displayName('Pizza')); // Output: "Pizza"
-console.log(displayName()); // Output: "Anonymous"
+console.log(displayName("Pizza")) // Output: "Pizza"
+console.log(displayName()) // Output: "Anonymous"
 ```
 
 In this example, the displayName() function returns the name property of the user object if it exists, or "Anonymous" if the name property is not present. This is done using the || operator and short-circuit evaluation.
@@ -1111,7 +1156,7 @@ In this example, the displayName() function returns the name property of the use
 #### Short Circuit Evaluation React - Basics
 
 ```js
-import Starter from './tutorial/03-conditional-rendering/starter/04-short-circuit-overview.jsx';
+import Starter from "./tutorial/03-conditional-rendering/starter/04-short-circuit-overview.jsx"
 ```
 
 Setup Challenge :
@@ -1123,36 +1168,36 @@ Setup Challenge :
   - && AND
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const ShortCircuitOverview = () => {
   // falsy
-  const [text, setText] = useState('');
+  const [text, setText] = useState("")
   // truthy
-  const [name, setName] = useState('susan');
+  const [name, setName] = useState("susan")
 
-  const codeExample = text || 'hello world';
+  const codeExample = text || "hello world"
 
   // can't use if statements
   return (
     <div>
       {/* {if(someCondition){"won't work"}} */}
 
-      <h4>Falsy OR : {text || 'hello world'}</h4>
-      <h4>Falsy AND {text && 'hello world'}</h4>
-      <h4>Truthy OR {name || 'hello world'}</h4>
-      <h4>Truthy AND {name && 'hello world'}</h4>
+      <h4>Falsy OR : {text || "hello world"}</h4>
+      <h4>Falsy AND {text && "hello world"}</h4>
+      <h4>Truthy OR {name || "hello world"}</h4>
+      <h4>Truthy AND {name && "hello world"}</h4>
       {codeExample}
     </div>
-  );
-};
-export default ShortCircuitOverview;
+  )
+}
+export default ShortCircuitOverview
 ```
 
 #### Short Circuit Evaluation in React - Common Approaches
 
 ```js
-import Starter from './tutorial/03-conditional-rendering/starter/05-short-circuit-examples.jsx';
+import Starter from "./tutorial/03-conditional-rendering/starter/05-short-circuit-examples.jsx"
 ```
 
 Vanilla JS (Optional)
@@ -1161,47 +1206,47 @@ The ! operator is a logical operator in JavaScript that negates a boolean value.
 For example:
 
 ```js
-let isTrue = true;
-let isFalse = false;
+let isTrue = true
+let isFalse = false
 
-console.log(!isTrue); // outputs: false
-console.log(!isFalse); // outputs: true
+console.log(!isTrue) // outputs: false
+console.log(!isFalse) // outputs: true
 ```
 
 You can use the ! operator to test if a value is not truthy or falsy:
 
 ```js
-let val = 0;
+let val = 0
 if (!val) {
-  console.log('val is falsy');
+  console.log("val is falsy")
 }
 ```
 
 You can also use the ! operator to convert a value to a boolean and negate it:
 
 ```js
-let val = 'hello';
-let bool = !val; // bool is now false
+let val = "hello"
+let bool = !val // bool is now false
 
-val = '';
-bool = !val; // bool is now true
+val = ""
+bool = !val // bool is now true
 ```
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const ShortCircuitOverview = () => {
   // falsy
-  const [text, setText] = useState('');
+  const [text, setText] = useState("")
   // truthy
-  const [name, setName] = useState('susan');
-  const [user, setUser] = useState({ name: 'john' });
-  const [isEditing, setIsEditing] = useState(false);
+  const [name, setName] = useState("susan")
+  const [user, setUser] = useState({ name: "john" })
+  const [isEditing, setIsEditing] = useState(false)
 
   // can't use if statements
   return (
     <div>
-      <h2>{text || 'default value'}</h2>
+      <h2>{text || "default value"}</h2>
       {text && (
         <div>
           <h2> whatever return</h2>
@@ -1216,8 +1261,8 @@ const ShortCircuitOverview = () => {
         </div>
       )}
       {user && <SomeComponent name={user.name} />}
-      <h2 style={{ margin: '1rem 0' }}>Ternary Operator</h2>
-      <button className='btn'>{isEditing ? 'edit' : 'add'}</button>
+      <h2 style={{ margin: "1rem 0" }}>Ternary Operator</h2>
+      <button className='btn'>{isEditing ? "edit" : "add"}</button>
       {user ? (
         <div>
           <h4>hello there user {user.name}</h4>
@@ -1228,8 +1273,8 @@ const ShortCircuitOverview = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 const SomeComponent = ({ name }) => {
   return (
@@ -1237,9 +1282,9 @@ const SomeComponent = ({ name }) => {
       <h4>hello there, {name}</h4>
       <button className='btn'>log out</button>
     </div>
-  );
-};
-export default ShortCircuitEvaluation;
+  )
+}
+export default ShortCircuitEvaluation
 ```
 
 #### Ternary Operator
@@ -1251,7 +1296,7 @@ In JavaScript, the ternary operator is a way to concisely express a simple condi
 Here is the basic syntax for using the ternary operator:
 
 ```js
-condition ? expression1 : expression2;
+condition ? expression1 : expression2
 ```
 
 If condition is truthy, the operator will return expression1. If condition is falsy, it will return expression2.
@@ -1263,7 +1308,7 @@ Jobster Example
 #### Toggle Challenge
 
 ```js
-import Starter from './tutorial/03-conditional-rendering/starter/06-toggle-challenge.jsx';
+import Starter from "./tutorial/03-conditional-rendering/starter/06-toggle-challenge.jsx"
 ```
 
 - create state value (boolean)
@@ -1275,18 +1320,18 @@ import Starter from './tutorial/03-conditional-rendering/starter/06-toggle-chall
 Initial Setup
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const ToggleChallenge = () => {
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState(false)
 
   const toggleAlert = () => {
     if (showAlert) {
-      setShowAlert(false);
-      return;
+      setShowAlert(false)
+      return
     }
-    setShowAlert(true);
-  };
+    setShowAlert(true)
+  }
 
   return (
     <div>
@@ -1295,13 +1340,13 @@ const ToggleChallenge = () => {
       </button>
       {showAlert && <Alert />}
     </div>
-  );
-};
+  )
+}
 
 const Alert = () => {
-  return <div className='alert alert-danger'>hello world</div>;
-};
-export default ToggleChallenge;
+  return <div className='alert alert-danger'>hello world</div>
+}
+export default ToggleChallenge
 ```
 
 Improvements
@@ -1313,7 +1358,7 @@ Improvements
 #### User Challenge
 
 ```js
-import Starter from './tutorial/03-conditional-rendering/starter/07-user-challenge.jsx';
+import Starter from "./tutorial/03-conditional-rendering/starter/07-user-challenge.jsx"
 ```
 
 - create state value
@@ -1327,18 +1372,18 @@ import Starter from './tutorial/03-conditional-rendering/starter/07-user-challen
 - h4 with "please login " and login button
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const UserChallenge = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
 
   const login = () => {
     // normally connect to db or api
-    setUser({ name: 'vegan food truck' });
-  };
+    setUser({ name: "vegan food truck" })
+  }
   const logout = () => {
-    setUser(null);
-  };
+    setUser(null)
+  }
 
   return (
     <div>
@@ -1358,10 +1403,10 @@ const UserChallenge = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default UserChallenge;
+export default UserChallenge
 ```
 
 #### Project Structure - Default Export
@@ -1392,7 +1437,7 @@ Works but eventually too many index tabs :):):)
 - create index.jsx
 
 ```js
-export { default } from './Navbar';
+export { default } from "./Navbar"
 ```
 
 #### Project Structure - Named Exports
@@ -1414,10 +1459,10 @@ A lot of work/lines of code
 - create index.jsx
 
 ```js
-import Home from './Home';
-import About from './About';
+import Home from "./Home"
+import About from "./About"
 
-export { Home, About };
+export { Home, About }
 ```
 
 in App.jsx
@@ -1458,44 +1503,44 @@ Setup Challenge
 Yes, there will be a bug.
 
 ```js
-import { people } from '../../../data';
+import { people } from "../../../data"
 
 const List = () => {
   return (
     <div>
       {people.map((person) => {
-        return <div>{person.name}</div>;
+        return <div>{person.name}</div>
       })}
     </div>
-  );
-};
-export default List;
+  )
+}
+export default List
 ```
 
 List.jsx
 
 ```js
-import { people } from '../../../data';
-import Person from './Person';
+import { people } from "../../../data"
+import Person from "./Person"
 const List = () => {
   return (
     <div>
       {people.map((person) => {
-        return <Person key={person.name} {...person} />;
+        return <Person key={person.name} {...person} />
       })}
     </div>
-  );
-};
-export default List;
+  )
+}
+export default List
 ```
 
 Person.jsx
 
 ```js
-import React from 'react';
-import avatar from '../../../assets/default-avatar.svg';
+import React from "react"
+import avatar from "../../../assets/default-avatar.svg"
 
-export function Person({ name, nickName = 'shakeAndBake', images }) {
+export function Person({ name, nickName = "shakeAndBake", images }) {
   // before optional chaining
 
   // const img =
@@ -1504,15 +1549,15 @@ export function Person({ name, nickName = 'shakeAndBake', images }) {
   // const img = images?.[0]?.small?.url ?? avatar;
   // ?? vs || - please utilize the search engine
 
-  const img = images?.[0]?.small?.url || avatar;
+  const img = images?.[0]?.small?.url || avatar
 
   return (
     <div>
-      <img src={img} alt={name} style={{ width: '50px' }} />
+      <img src={img} alt={name} style={{ width: "50px" }} />
       <h4>{name} </h4>
       <p>Nickname : {nickName}</p>
     </div>
-  );
+  )
 }
 ```
 
@@ -1524,7 +1569,7 @@ For example, consider the following function, which takes two parameters, x and 
 
 ```js
 function add(x, y) {
-  return x + y;
+  return x + y
 }
 ```
 
@@ -1534,7 +1579,7 @@ We can set default values for x,y as:
 
 ```js
 function add(x = 0, y = 0) {
-  return x + y;
+  return x + y
 }
 ```
 
@@ -1547,14 +1592,14 @@ n JavaScript, the optional chaining operator (?.) is a new feature that allows y
 For example, consider the following code, which accesses the firstName property of an object:
 
 ```js
-const person = { name: { first: 'John', last: 'Doe' } };
-console.log(person.name.first);
+const person = { name: { first: "John", last: "Doe" } }
+console.log(person.name.first)
 ```
 
 If the name property is null or undefined, this code will throw an error. To prevent this, we can use the optional chaining operator:
 
 ```js
-console.log(person?.name?.first);
+console.log(person?.name?.first)
 ```
 
 Now, if the person.name is null or undefined, this code will simply return undefined instead of throwing an error. This make the code more robust and readable.
@@ -1562,7 +1607,7 @@ Now, if the person.name is null or undefined, this code will simply return undef
 #### Controlled Inputs - Setup
 
 ```js
-import Starter from './tutorial/06-forms/starter/01-controlled-inputs.jsx';
+import Starter from "./tutorial/06-forms/starter/01-controlled-inputs.jsx"
 ```
 
 Setup (for all form videos)
@@ -1588,15 +1633,15 @@ const ControlledInputs = () => {
         submit
       </button>
     </form>
-  );
-};
-export default ControlledInputs;
+  )
+}
+export default ControlledInputs
 ```
 
 #### Controlled Inputs - Complete
 
 ```js
-import Starter from './tutorial/06-forms/starter/01-controlled-inputs.jsx';
+import Starter from "./tutorial/06-forms/starter/01-controlled-inputs.jsx"
 ```
 
 - setup state values
@@ -1604,10 +1649,10 @@ import Starter from './tutorial/06-forms/starter/01-controlled-inputs.jsx';
 - setup onSubmit
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 const ControlledInputs = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
 
   // const handleChange = (e) => {
   //   // for now we won't use it
@@ -1616,10 +1661,10 @@ const ControlledInputs = () => {
   // };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // do something
-    console.log(name, email);
-  };
+    console.log(name, email)
+  }
   return (
     <form className='form' onSubmit={handleSubmit}>
       <h4>controlled inputs</h4>
@@ -1651,15 +1696,15 @@ const ControlledInputs = () => {
         submit
       </button>
     </form>
-  );
-};
-export default ControlledInputs;
+  )
+}
+export default ControlledInputs
 ```
 
 #### User Challenge
 
 ```js
-import Starter from './tutorial/06-forms/starter/02-user-challenge.jsx';
+import Starter from "./tutorial/06-forms/starter/02-user-challenge.jsx"
 ```
 
 - setup controlled input (name input)
@@ -1673,33 +1718,33 @@ import Starter from './tutorial/06-forms/starter/02-user-challenge.jsx';
   - add button and setup functionality to remove user
 
 ```js
-import { useState } from 'react';
-import { data } from '../../../data';
+import { useState } from "react"
+import { data } from "../../../data"
 const UserChallenge = () => {
-  const [name, setName] = useState('');
-  const [users, setUsers] = useState(data);
+  const [name, setName] = useState("")
+  const [users, setUsers] = useState(data)
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // do something
-    console.log(name);
+    console.log(name)
     // if no value, do nothing
-    if (!name) return;
+    if (!name) return
     // if value, setup new user and add to current users
-    const fakeId = Date.now();
-    console.log(fakeId);
+    const fakeId = Date.now()
+    console.log(fakeId)
     // const newUser = { id: fakeId, name: name };
-    const newUser = { id: fakeId, name };
-    const updatedUsers = [...users, newUser];
-    setUsers(updatedUsers);
+    const newUser = { id: fakeId, name }
+    const updatedUsers = [...users, newUser]
+    setUsers(updatedUsers)
     // set back to empty
-    setName('');
-  };
+    setName("")
+  }
 
   const removeUser = (id) => {
-    const updatedUsers = users.filter((person) => person.id !== id);
-    setUsers(updatedUsers);
-  };
+    const updatedUsers = users.filter((person) => person.id !== id)
+    setUsers(updatedUsers)
+  }
   return (
     <div>
       <form className='form' onSubmit={handleSubmit}>
@@ -1732,18 +1777,18 @@ const UserChallenge = () => {
               remove
             </button>
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
-export default UserChallenge;
+  )
+}
+export default UserChallenge
 ```
 
 #### Multiple Inputs
 
 ```js
-import Starter from './tutorial/06-forms/starter/03-multiple-inputs.jsx';
+import Starter from "./tutorial/06-forms/starter/03-multiple-inputs.jsx"
 ```
 
 [Javascript Nuggets - Dynamic Object Keys](https://www.youtube.com/watch?v=_qxCYtWm0tw&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=3&t=97s)
@@ -1751,22 +1796,22 @@ import Starter from './tutorial/06-forms/starter/03-multiple-inputs.jsx';
 - inputs must have name attribute
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 const MultipleInputs = () => {
   const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+    name: "",
+    email: "",
+    password: "",
+  })
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(user);
-  };
+    e.preventDefault()
+    console.log(user)
+  }
   return (
     <div>
       <form className='form' onSubmit={handleSubmit}>
@@ -1819,37 +1864,37 @@ const MultipleInputs = () => {
         </button>
       </form>
     </div>
-  );
-};
-export default MultipleInputs;
+  )
+}
+export default MultipleInputs
 ```
 
 #### Other Inputs
 
 ```js
-import Starter from './tutorial/06-forms/starter/04-other-inputs.jsx';
+import Starter from "./tutorial/06-forms/starter/04-other-inputs.jsx"
 ```
 
 ```js
-import { useState } from 'react';
-const frameworks = ['react', 'angular', 'vue', 'svelte'];
+import { useState } from "react"
+const frameworks = ["react", "angular", "vue", "svelte"]
 const OtherInputs = () => {
-  const [shipping, setShipping] = useState(false);
-  const [framework, setFramework] = useState('react');
+  const [shipping, setShipping] = useState(false)
+  const [framework, setFramework] = useState("react")
 
   const handleShipping = (e) => {
-    console.log(e.target.checked);
-    setShipping(e.target.checked);
-  };
+    console.log(e.target.checked)
+    setShipping(e.target.checked)
+  }
   const handleFramework = (e) => {
-    setFramework(e.target.value);
-  };
+    setFramework(e.target.value)
+  }
   return (
     <div>
       <form className='form'>
         <h4>Other Inputs</h4>
         {/* name */}
-        <div className='form-row' style={{ textAlign: 'left' }}>
+        <div className='form-row' style={{ textAlign: "left" }}>
           <input
             type='checkbox'
             checked={shipping}
@@ -1859,7 +1904,7 @@ const OtherInputs = () => {
           />
           <label htmlFor='shipping'> Free Shipping </label>
         </div>
-        <div className='form-row' style={{ textAlign: 'left' }}>
+        <div className='form-row' style={{ textAlign: "left" }}>
           <label htmlFor='framework' className='form-label'>
             Framework
           </label>
@@ -1870,7 +1915,7 @@ const OtherInputs = () => {
             onChange={handleFramework}
           >
             {frameworks.map((framework) => {
-              return <option key={framework}>{framework}</option>;
+              return <option key={framework}>{framework}</option>
             })}
           </select>
         </div>
@@ -1879,15 +1924,15 @@ const OtherInputs = () => {
         </button>
       </form>
     </div>
-  );
-};
-export default OtherInputs;
+  )
+}
+export default OtherInputs
 ```
 
 #### FormData API
 
 ```js
-import Starter from './tutorial/06-forms/starter/05-form-data.jsx';
+import Starter from "./tutorial/06-forms/starter/05-form-data.jsx"
 ```
 
 [JS Nuggets - FormData API](https://youtu.be/5-x4OUM-SP8)
@@ -1898,26 +1943,26 @@ import Starter from './tutorial/06-forms/starter/05-form-data.jsx';
 The FormData interface provides a way to construct a set of key/value pairs representing form fields and their values, which can be sent using the fetch() or XMLHttpRequest.send() method. It uses the same format a form would use if the encoding type were set to "multipart/form-data".
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const UncontrolledInputs = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.currentTarget)
     // const name = formData.get('name');
     // console.log(name);
     // console.log([...formData.entries()]);
-    const newUser = Object.fromEntries(formData);
+    const newUser = Object.fromEntries(formData)
     // do something (post request, add to list, etc)
-    console.log(newUser);
+    console.log(newUser)
     // Gotcha - re-render won't clear out the values
-    setValue(value + 1);
+    setValue(value + 1)
     // reset values
-    e.currentTarget.reset();
-  };
+    e.currentTarget.reset()
+  }
   return (
     <div>
       <form className='form' onSubmit={handleSubmit}>
@@ -1954,9 +1999,9 @@ const UncontrolledInputs = () => {
         </button>
       </form>
     </div>
-  );
-};
-export default UncontrolledInputs;
+  )
+}
+export default UncontrolledInputs
 ```
 
 - e.currentTarget
@@ -1969,13 +2014,13 @@ The Object.fromEntries() static method transforms a list of key-value pairs into
 
 ```js
 const entries = new Map([
-  ['foo', 'bar'],
-  ['baz', 42],
-]);
+  ["foo", "bar"],
+  ["baz", 42],
+])
 
-const obj = Object.fromEntries(entries);
+const obj = Object.fromEntries(entries)
 
-console.log(obj);
+console.log(obj)
 // Expected output: Object { foo: "bar", baz: 42 }
 ```
 
@@ -1986,7 +2031,7 @@ The reset() method is a built-in method in HTML that can be used to reset all fo
 #### useRef
 
 ```js
-import Starter from './tutorial/07-useRef/starter/01-useRef-basics.jsx';
+import Starter from "./tutorial/07-useRef/starter/01-useRef-basics.jsx"
 ```
 
 - DOES NOT TRIGGER RE-RENDER
@@ -1994,37 +2039,37 @@ import Starter from './tutorial/07-useRef/starter/01-useRef-basics.jsx';
 - target DOM nodes/elements
 
 ```js
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react"
 
 const UseRefBasics = () => {
-  const [value, setValue] = useState(0);
-  const refContainer = useRef(null);
+  const [value, setValue] = useState(0)
+  const refContainer = useRef(null)
 
-  console.log(refContainer);
+  console.log(refContainer)
   // {current:null}
   // set value ourselves or DOM node
 
   useEffect(() => {
     // console.log(refContainer.current);
-    refContainer.current.focus();
-  });
+    refContainer.current.focus()
+  })
 
-  const isMounted = useRef(false);
+  const isMounted = useRef(false)
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(refContainer.current);
-    const name = refContainer.current.value;
-    console.log(name);
-  };
+    e.preventDefault()
+    console.log(refContainer.current)
+    const name = refContainer.current.value
+    console.log(name)
+  }
 
   useEffect(() => {
     if (!isMounted.current) {
-      isMounted.current = true;
-      return;
+      isMounted.current = true
+      return
     }
-    console.log('re-render');
-  }, [value]);
+    console.log("re-render")
+  }, [value])
 
   return (
     <div>
@@ -2049,16 +2094,16 @@ const UseRefBasics = () => {
         increase
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default UseRefBasics;
+export default UseRefBasics
 ```
 
 #### Custom Hooks
 
 ```js
-import Starter from './tutorial/08-custom-hooks/starter/01-toggle.jsx';
+import Starter from "./tutorial/08-custom-hooks/starter/01-toggle.jsx"
 ```
 
 - same rules as regular hooks
@@ -2068,17 +2113,17 @@ import Starter from './tutorial/08-custom-hooks/starter/01-toggle.jsx';
 useToggle.js
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const useToggle = (defaultValue) => {
-  const [show, setShow] = useState(defaultValue);
+  const [show, setShow] = useState(defaultValue)
   const toggle = () => {
-    setShow(!show);
-  };
-  return { show, toggle };
-};
+    setShow(!show)
+  }
+  return { show, toggle }
+}
 
-export default useToggle;
+export default useToggle
 ```
 
 - Challenge
@@ -2093,40 +2138,40 @@ export default useToggle;
 useFetchPerson.js
 
 ```js
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react"
 
 const useFetchPerson = (url) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const resp = await fetch(url);
+        const resp = await fetch(url)
         // console.log(resp);
         if (!resp.ok) {
-          setIsError(true);
-          setIsLoading(false);
-          return;
+          setIsError(true)
+          setIsLoading(false)
+          return
         }
 
-        const user = await resp.json();
-        setUser(user);
+        const user = await resp.json()
+        setUser(user)
       } catch (error) {
-        setIsError(true);
+        setIsError(true)
         // console.log(error);
       }
       // hide loading
-      setIsLoading(false);
-    };
-    fetchUser();
-  }, []);
+      setIsLoading(false)
+    }
+    fetchUser()
+  }, [])
 
-  return { isLoading, isError, user };
-};
+  return { isLoading, isError, user }
+}
 
-export default useFetchPerson;
+export default useFetchPerson
 ```
 
 Generic Fetch
@@ -2134,49 +2179,49 @@ Generic Fetch
 useFetch.js
 
 ```js
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react"
 
 const useFetch = (url) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
   // change state value
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     // change name
     const fetchData = async () => {
       try {
-        const resp = await fetch(url);
+        const resp = await fetch(url)
 
         if (!resp.ok) {
-          setIsError(true);
-          setIsLoading(false);
-          return;
+          setIsError(true)
+          setIsLoading(false)
+          return
         }
         // change to response
-        const response = await resp.json();
-        setData(response);
+        const response = await resp.json()
+        setData(response)
       } catch (error) {
-        setIsError(true);
+        setIsError(true)
         // console.log(error);
       }
       // hide loading
-      setIsLoading(false);
-    };
+      setIsLoading(false)
+    }
     // invoke fetch data
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
-  return { isLoading, isError, data };
-};
+  return { isLoading, isError, data }
+}
 
-export default useFetch;
+export default useFetch
 ```
 
 #### Context API
 
 ```js
-import Starter from './tutorial/09-context-api/starter';
+import Starter from "./tutorial/09-context-api/starter"
 ```
 
 Challenge
@@ -2204,28 +2249,28 @@ Challenge
 Navbar.jsx
 
 ```js
-import { useState } from 'react';
-import NavLinks from './NavLinks';
+import { useState } from "react"
+import NavLinks from "./NavLinks"
 
 const Navbar = () => {
-  const [user, setUser] = useState({ name: 'bob' });
+  const [user, setUser] = useState({ name: "bob" })
   const logout = () => {
-    setUser(null);
-  };
+    setUser(null)
+  }
   return (
     <nav className='navbar'>
       <h5>CONTEXT API</h5>
       <NavLinks user={user} logout={logout} />
     </nav>
-  );
-};
-export default Navbar;
+  )
+}
+export default Navbar
 ```
 
 NavLinks.jsx
 
 ```js
-import UserContainer from './UserContainer';
+import UserContainer from "./UserContainer"
 
 const NavLinks = ({ user, logout }) => {
   return (
@@ -2240,9 +2285,9 @@ const NavLinks = ({ user, logout }) => {
       </ul>
       <UserContainer user={user} logout={logout} />
     </div>
-  );
-};
-export default NavLinks;
+  )
+}
+export default NavLinks
 ```
 
 UserContainer.jsx
@@ -2262,9 +2307,9 @@ const UserContainer = ({ user, logout }) => {
         <p>Please Login</p>
       )}
     </div>
-  );
-};
-export default UserContainer;
+  )
+}
+export default UserContainer
 ```
 
 #### Setup Global Context
@@ -2295,7 +2340,7 @@ npm install && npm run dev
 #### useReducer
 
 ```js
-import Starter from './tutorial/10-useReducer/starter/01-useReducer.jsx';
+import Starter from "./tutorial/10-useReducer/starter/01-useReducer.jsx"
 ```
 
 - it's the complete file from 03-useState-array
@@ -2310,51 +2355,51 @@ Challenge
 
 ```js
 const resetList = () => {
-  setPeople(data);
-};
+  setPeople(data)
+}
 
 // JSX
 {
   people.length < 1 ? (
-    <button className='btn' style={{ marginTop: '2rem' }} onClick={resetList}>
+    <button className='btn' style={{ marginTop: "2rem" }} onClick={resetList}>
       reset
     </button>
   ) : (
-    <button className='btn' style={{ marginTop: '2rem' }} onClick={clearList}>
+    <button className='btn' style={{ marginTop: "2rem" }} onClick={clearList}>
       clear
     </button>
-  );
+  )
 }
 ```
 
 ```js
-import React from 'react';
-import { data } from '../../../data';
+import React from "react"
+import { data } from "../../../data"
 const ReducerBasics = () => {
-  const [people, setPeople] = React.useState(data);
+  const [people, setPeople] = React.useState(data)
 
   const removeItem = (id) => {
-    let newPeople = people.filter((person) => person.id !== id);
-    setPeople(newPeople);
-  };
+    let newPeople = people.filter((person) => person.id !== id)
+    setPeople(newPeople)
+  }
   const resetList = () => {
-    setPeople(data);
-  };
+    setPeople(data)
+  }
   return (
     <div>
       {people.map((person) => {
-        const { id, name } = person;
+        const { id, name } = person
         return (
           <div key={id} className='item'>
             <h4>{name}</h4>
             <button onClick={() => removeItem(id)}>remove</button>
           </div>
-        );
+        )
       })}
       {people.length < 1 ? (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={resetList}
         >
           reset
@@ -2362,71 +2407,71 @@ const ReducerBasics = () => {
       ) : (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={clearList}
         >
           clear
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ReducerBasics;
+export default ReducerBasics
 ```
 
 #### Remove useState
 
 ```js
-import { useState, useReducer } from 'react';
-import { data } from '../../../data';
+import { useState, useReducer } from "react"
+import { data } from "../../../data"
 
 // default/initial state
 const defaultState = {
   people: data,
-};
+}
 // reducer function
 // whatever state is returned from the function is the new state
 
 const reducer = (state, action) => {
-  return state;
-};
+  return state
+}
 
 // dispatch({type:'SOME_ACTION'}) an action
 // handle it in reducer, return new state
 
 const ReducerBasics = () => {
-  const [state, dispatch] = useReducer(reducer, defaultState);
+  const [state, dispatch] = useReducer(reducer, defaultState)
 
   const removeItem = (id) => {
     // let newPeople = people.filter((person) => person.id !== id);
     // setPeople(newPeople);
-  };
+  }
 
   const clearList = () => {
     // setPeople([]);
-  };
+  }
   const resetList = () => {
     // setPeople(data);
-  };
+  }
 
   return (
     <div>
       {/* switch to state */}
       {state.people.map((person) => {
-        const { id, name } = person;
+        const { id, name } = person
         return (
           <div key={id} className='item'>
             <h4>{name}</h4>
             <button onClick={() => removeItem(id)}>remove</button>
           </div>
-        );
+        )
       })}
       {/* switch to state */}
       {state.people.length < 1 ? (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={resetList}
         >
           reset
@@ -2434,67 +2479,67 @@ const ReducerBasics = () => {
       ) : (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={clearList}
         >
           clear
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ReducerBasics;
+export default ReducerBasics
 ```
 
 #### First Dispatch
 
 ```js
-import { useState, useReducer } from 'react';
-import { data } from '../../../data';
+import { useState, useReducer } from "react"
+import { data } from "../../../data"
 
 const defaultState = {
   people: data,
   isLoading: false,
-};
+}
 
 const reducer = (state, action) => {
-  if (action.type === 'CLEAR_LIST') {
-    return { ...state, people: [] };
+  if (action.type === "CLEAR_LIST") {
+    return { ...state, people: [] }
   }
-};
+}
 
 const ReducerBasics = () => {
-  const [state, dispatch] = useReducer(reducer, defaultState);
+  const [state, dispatch] = useReducer(reducer, defaultState)
 
   const removeItem = (id) => {
     // let newPeople = people.filter((person) => person.id !== id);
     // setPeople(newPeople);
-  };
+  }
 
   const clearList = () => {
-    dispatch({ type: 'CLEAR_LIST' });
+    dispatch({ type: "CLEAR_LIST" })
     // setPeople([]);
-  };
+  }
   const resetList = () => {
     // setPeople(data);
-  };
-  console.log(state);
+  }
+  console.log(state)
   return (
     <div>
       {state.people.map((person) => {
-        const { id, name } = person;
+        const { id, name } = person
         return (
           <div key={id} className='item'>
             <h4>{name}</h4>
             <button onClick={() => removeItem(id)}>remove</button>
           </div>
-        );
+        )
       })}
       {state.people.length < 1 ? (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={resetList}
         >
           reset
@@ -2502,70 +2547,70 @@ const ReducerBasics = () => {
       ) : (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={clearList}
         >
           clear
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ReducerBasics;
+export default ReducerBasics
 ```
 
 #### Actions and Default State
 
 ```js
-import { useReducer } from 'react';
-import { data } from '../../../data';
+import { useReducer } from "react"
+import { data } from "../../../data"
 
-const CLEAR_LIST = 'CLEAR_LIST';
-const RESET_LIST = 'RESET_LIST';
-const REMOVE_ITEM = 'REMOVE_ITEM';
+const CLEAR_LIST = "CLEAR_LIST"
+const RESET_LIST = "RESET_LIST"
+const REMOVE_ITEM = "REMOVE_ITEM"
 
 const defaultState = {
   people: data,
-};
+}
 
 const reducer = (state, action) => {
-  console.log(action);
+  console.log(action)
   if (action.type === CLEAR_LIST) {
-    return { ...state, people: [] };
+    return { ...state, people: [] }
   }
 
-  throw new Error(`No Matching "${action.type}" - action type`);
-};
+  throw new Error(`No Matching "${action.type}" - action type`)
+}
 
 const ReducerBasics = () => {
-  const [state, dispatch] = useReducer(reducer, defaultState);
+  const [state, dispatch] = useReducer(reducer, defaultState)
 
-  const removeItem = (id) => {};
+  const removeItem = (id) => {}
 
   const clearList = () => {
-    dispatch({ type: CLEAR_LIST });
-  };
+    dispatch({ type: CLEAR_LIST })
+  }
 
-  const resetList = () => {};
+  const resetList = () => {}
   return (
     <div>
       {/* switch to state */}
       {state.people.map((person) => {
-        const { id, name } = person;
+        const { id, name } = person
         return (
           <div key={id} className='item'>
             <h4>{name}</h4>
             <button onClick={() => removeItem(id)}>remove</button>
           </div>
-        );
+        )
       })}
       {/* switch to state */}
 
       {state.people.length < 1 ? (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={resetList}
         >
           reset
@@ -2573,17 +2618,17 @@ const ReducerBasics = () => {
       ) : (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={clearList}
         >
           clear
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ReducerBasics;
+export default ReducerBasics
 ```
 
 #### Reset List Challenge
@@ -2591,58 +2636,58 @@ export default ReducerBasics;
 - setup a dispatch and handle action in the reducer
 
 ```js
-import { useReducer } from 'react';
-import { data } from '../../../data';
+import { useReducer } from "react"
+import { data } from "../../../data"
 
-const CLEAR_LIST = 'CLEAR_LIST';
-const RESET_LIST = 'RESET_LIST';
-const REMOVE_ITEM = 'REMOVE_ITEM';
+const CLEAR_LIST = "CLEAR_LIST"
+const RESET_LIST = "RESET_LIST"
+const REMOVE_ITEM = "REMOVE_ITEM"
 
 const defaultState = {
   people: data,
-};
+}
 
 const reducer = (state, action) => {
-  console.log(action);
+  console.log(action)
   if (action.type === CLEAR_LIST) {
-    return { ...state, people: [] };
+    return { ...state, people: [] }
   }
   if (action.type === RESET_LIST) {
-    return { ...state, people: data };
+    return { ...state, people: data }
   }
-  throw new Error(`No Matching "${action.type}" - action type`);
-};
+  throw new Error(`No Matching "${action.type}" - action type`)
+}
 
 const ReducerBasics = () => {
-  const [state, dispatch] = useReducer(reducer, defaultState);
+  const [state, dispatch] = useReducer(reducer, defaultState)
 
-  const removeItem = (id) => {};
+  const removeItem = (id) => {}
 
   const clearList = () => {
-    dispatch({ type: CLEAR_LIST });
-  };
+    dispatch({ type: CLEAR_LIST })
+  }
   const resetList = () => {
-    dispatch({ type: RESET_LIST });
-  };
+    dispatch({ type: RESET_LIST })
+  }
 
   return (
     <div>
       {/* switch to state */}
       {state.people.map((person) => {
-        const { id, name } = person;
+        const { id, name } = person
         return (
           <div key={id} className='item'>
             <h4>{name}</h4>
             <button onClick={() => removeItem(id)}>remove</button>
           </div>
-        );
+        )
       })}
       {/* switch to state */}
 
       {state.people.length < 1 ? (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={resetList}
         >
           reset
@@ -2650,17 +2695,17 @@ const ReducerBasics = () => {
       ) : (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={clearList}
         >
           clear
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ReducerBasics;
+export default ReducerBasics
 ```
 
 #### Remove Person Challenge
@@ -2669,68 +2714,68 @@ export default ReducerBasics;
 - hint extra property in the object
 
 ```js
-import { useReducer } from 'react';
-import { data } from '../../../data';
+import { useReducer } from "react"
+import { data } from "../../../data"
 
-const CLEAR_LIST = 'CLEAR_LIST';
-const RESET_LIST = 'RESET_LIST';
-const REMOVE_ITEM = 'REMOVE_ITEM';
+const CLEAR_LIST = "CLEAR_LIST"
+const RESET_LIST = "RESET_LIST"
+const REMOVE_ITEM = "REMOVE_ITEM"
 
 const defaultState = {
   people: data,
-};
+}
 
 const reducer = (state, action) => {
-  console.log(action);
+  console.log(action)
   if (action.type === CLEAR_LIST) {
-    return { ...state, people: [] };
+    return { ...state, people: [] }
   }
   if (action.type === RESET_LIST) {
-    return { ...state, people: data };
+    return { ...state, people: data }
   }
   if (action.type === REMOVE_ITEM) {
     let newPeople = state.people.filter(
       (person) => person.id !== action.payload.id
-    );
+    )
 
-    return { ...state, people: newPeople };
+    return { ...state, people: newPeople }
   }
 
-  return state;
-};
+  return state
+}
 
 const ReducerBasics = () => {
-  const [state, dispatch] = useReducer(reducer, defaultState);
+  const [state, dispatch] = useReducer(reducer, defaultState)
 
   const removeItem = (id) => {
-    dispatch({ type: REMOVE_ITEM, payload: { id } });
-  };
+    dispatch({ type: REMOVE_ITEM, payload: { id } })
+  }
 
   const clearList = () => {
-    dispatch({ type: CLEAR_LIST });
-  };
+    dispatch({ type: CLEAR_LIST })
+  }
   const resetList = () => {
-    dispatch({ type: RESET_LIST });
-  };
+    dispatch({ type: RESET_LIST })
+  }
 
   return (
     <div>
       {/* switch to state */}
       {state.people.map((person) => {
-        const { id, name } = person;
+        const { id, name } = person
         return (
           <div key={id} className='item'>
             <h4>{name}</h4>
             <button onClick={() => removeItem(id)}>remove</button>
           </div>
-        );
+        )
       })}
       {/* switch to state */}
 
       {state.people.length < 1 ? (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={resetList}
         >
           reset
@@ -2738,17 +2783,17 @@ const ReducerBasics = () => {
       ) : (
         <button
           className='btn'
-          style={{ marginTop: '2rem' }}
+          style={{ marginTop: "2rem" }}
           onClick={clearList}
         >
           clear
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ReducerBasics;
+export default ReducerBasics
 ```
 
 #### Import / Export
@@ -2770,7 +2815,7 @@ export default ReducerBasics;
 #### Lower State / Push The State Down
 
 ```js
-import Starter from './tutorial/11-performance/starter/01-lower-state';
+import Starter from "./tutorial/11-performance/starter/01-lower-state"
 ```
 
 When Component Re-Renders :
@@ -2782,45 +2827,45 @@ When Component Re-Renders :
 - lower state
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 const Counter = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
   return (
     <button
       className='btn'
       onClick={() => setCount(count + 1)}
-      style={{ marginBottom: '1rem' }}
+      style={{ marginBottom: "1rem" }}
     >
       count {count}
     </button>
-  );
-};
-export default Counter;
+  )
+}
+export default Counter
 ```
 
 #### Lower State Challenge
 
 ```js
-import Starter from './tutorial/11-performance/starter/02-lower-state-challenge';
+import Starter from "./tutorial/11-performance/starter/02-lower-state-challenge"
 ```
 
 - fix the re-rendering
 - hint addPerson fix
 
 ```js
-import { useState } from 'react';
+import { useState } from "react"
 
 const Form = ({ addPerson }) => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("")
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!name) {
-      alert('Please Provide Name Value');
-      return;
+      alert("Please Provide Name Value")
+      return
     }
-    addPerson(name);
-    setName('');
-  };
+    addPerson(name)
+    setName("")
+  }
   return (
     <form className='form' onSubmit={handleSubmit}>
       <div className='form-row'>
@@ -2840,15 +2885,15 @@ const Form = ({ addPerson }) => {
         submit
       </button>
     </form>
-  );
-};
-export default Form;
+  )
+}
+export default Form
 ```
 
 #### React.memo()
 
 ```js
-import Starter from './tutorial/11-performance/starter/03-hooks';
+import Starter from "./tutorial/11-performance/starter/03-hooks"
 ```
 
 React.memo is a higher-order component (HOC) in React that allows you to memoize a component. This means that if the input props to the component have not changed, the memoized component will return the same result from the previous render, instead of re-rendering. This can help improve performance by avoiding unnecessary render cycles.
@@ -2860,7 +2905,7 @@ Here's an example of using React.memo
 ```js
 const MyComponent = React.memo(function MyComponent(props) {
   /* render logic */
-});
+})
 ```
 
 React.memo(Component) - returns memoized component
@@ -2871,9 +2916,9 @@ React.memo(Component) - returns memoized component
 
 ```js
 const removePerson = (id) => {
-  const newPeople = people.filter((person) => person.id !== id);
-  setPeople(newPeople);
-};
+  const newPeople = people.filter((person) => person.id !== id)
+  setPeople(newPeople)
+}
 ```
 
 - pass it down to List and Person
@@ -2887,19 +2932,19 @@ By memoizing the function, you can avoid unnecessary re-renders and improve the 
 Here is an example of how you might use useCallback:
 
 ```js
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState } from "react"
 
 function MyComponent() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
   const handleClick = useCallback(() => {
-    console.log(data);
-  }, [data]);
+    console.log(data)
+  }, [data])
 
   return (
     <div>
       <button onClick={handleClick}>Click me</button>
     </div>
-  );
+  )
 }
 ```
 
@@ -2908,30 +2953,30 @@ In this example, the handleClick function is memoized using useCallback and the 
 #### useCallback - Common Use Case
 
 ```js
-import Final from './tutorial/02-useEffect/final/04-fetch-data';
+import Final from "./tutorial/02-useEffect/final/04-fetch-data"
 ```
 
 ```js
-import { useState, useEffect, useCallback } from 'react';
-const url = 'https://api.github.com/users';
+import { useState, useEffect, useCallback } from "react"
+const url = "https://api.github.com/users"
 
 const FetchData = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([])
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch(url);
-      const users = await response.json();
-      setUsers(users);
+      const response = await fetch(url)
+      const users = await response.json()
+      setUsers(users)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    fetchData()
+  }, [fetchData])
   // rest of the logic
-};
+}
 ```
 
 #### useMemo
@@ -2943,12 +2988,12 @@ By memoizing a value, you can avoid unnecessary calculations and improve the per
 Here is an example of how you might use useMemo:
 
 ```js
-import React, { useMemo } from 'react';
+import React, { useMemo } from "react"
 
 function MyComponent({ data }) {
   const processedData = useMemo(() => {
-    return data.map((item) => item.toUpperCase());
-  }, [data]);
+    return data.map((item) => item.toUpperCase())
+  }, [data])
 
   return (
     <div>
@@ -2956,7 +3001,7 @@ function MyComponent({ data }) {
         <div key={item}>{item}</div>
       ))}
     </div>
-  );
+  )
 }
 ```
 
@@ -2968,14 +3013,14 @@ In this example, the processedData value is memoized using useMemo and the data 
 
 ```js
 const slowFunction = () => {
-  let value = 0;
+  let value = 0
   for (let i = 0; i <= 1000000000; i++) {
-    value += i;
+    value += i
   }
-  return value;
-};
+  return value
+}
 
-export default slowFunction;
+export default slowFunction
 ```
 
 #### useTransition
@@ -2983,20 +3028,20 @@ export default slowFunction;
 [JS Nuggets - Array.from](https://www.youtube.com/watch?v=zg1Bv4xubwo&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=11&t=666s)
 
 ```js
-import Starter from './tutorial/11-performance/starter/04-react-18';
+import Starter from "./tutorial/11-performance/starter/04-react-18"
 ```
 
 - useTransition is a React Hook that lets you update the state without blocking the UI.
 
 ```js
-import { useState, useTransition } from 'react';
+import { useState, useTransition } from "react"
 const LatestReact = () => {
-  const [text, setText] = useState('');
-  const [items, setItems] = useState([]);
-  const [isPending, startTransition] = useTransition();
+  const [text, setText] = useState("")
+  const [items, setItems] = useState([])
+  const [isPending, startTransition] = useTransition()
 
   const handleChange = (e) => {
-    setText(e.target.value);
+    setText(e.target.value)
 
     startTransition(() => {
       const newItems = Array.from({ length: 5000 }, (_, index) => {
@@ -3004,11 +3049,11 @@ const LatestReact = () => {
           <div key={index}>
             <img src='/vite.svg' alt='' />
           </div>
-        );
-      });
-      setItems(newItems);
-    });
-  };
+        )
+      })
+      setItems(newItems)
+    })
+  }
   return (
     <section>
       <form className='form'>
@@ -3021,22 +3066,22 @@ const LatestReact = () => {
       </form>
       <h4>Items Below</h4>
       {isPending ? (
-        'Loading...'
+        "Loading..."
       ) : (
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            marginTop: '2rem',
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            marginTop: "2rem",
           }}
         >
           {items}
         </div>
       )}
     </section>
-  );
-};
-export default LatestReact;
+  )
+}
+export default LatestReact
 ```
 
 #### Suspense API
@@ -3046,29 +3091,29 @@ The Suspense API is a feature in React that allows you to manage the loading sta
 Here is an example of how you might use the Suspense API:
 
 ```js
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from "react"
 
-const DataComponent = lazy(() => import('./DataComponent'));
+const DataComponent = lazy(() => import("./DataComponent"))
 
 function MyComponent() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <DataComponent />
     </Suspense>
-  );
+  )
 }
 ```
 
 ```js
-import { useState, useTransition, lazy, Suspense } from 'react';
-const SlowComponent = lazy(() => import('./SlowComponent'));
+import { useState, useTransition, lazy, Suspense } from "react"
+const SlowComponent = lazy(() => import("./SlowComponent"))
 const LatestReact = () => {
-  const [text, setText] = useState('');
-  const [items, setItems] = useState([]);
-  const [isPending, startTransition] = useTransition();
-  const [show, setShow] = useState(false);
+  const [text, setText] = useState("")
+  const [items, setItems] = useState([])
+  const [isPending, startTransition] = useTransition()
+  const [show, setShow] = useState(false)
   const handleChange = (e) => {
-    setText(e.target.value);
+    setText(e.target.value)
 
     startTransition(() => {
       const newItems = Array.from({ length: 5000 }, (_, index) => {
@@ -3076,11 +3121,11 @@ const LatestReact = () => {
           <div key={index}>
             <img src='/vite.svg' alt='' />
           </div>
-        );
-      });
-      setItems(newItems);
-    });
-  };
+        )
+      })
+      setItems(newItems)
+    })
+  }
   return (
     <section>
       <form className='form'>
@@ -3093,13 +3138,13 @@ const LatestReact = () => {
       </form>
       <h4>Items Below</h4>
       {isPending ? (
-        'Loading...'
+        "Loading..."
       ) : (
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            marginTop: '2rem',
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            marginTop: "2rem",
           }}
         >
           {items}
@@ -3114,9 +3159,9 @@ const LatestReact = () => {
         </Suspense>
       )}
     </section>
-  );
-};
-export default LatestReact;
+  )
+}
+export default LatestReact
 ```
 
 - typical setup (wrap entire return in Suspense)
@@ -3127,5 +3172,5 @@ return (
     {/* rest of the logic */}
     <section>{show && <SlowComponent />}</section>
   </Suspense>
-);
+)
 ```
