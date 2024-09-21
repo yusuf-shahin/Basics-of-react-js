@@ -1,9 +1,9 @@
-import UseStateObject from "./tutorial/01-useState/starter/04-useState-object"
+import MultipleReturnsFetchData from "./tutorial/03-conditional-rendering/starter/02-multiple-returns-fetch-data"
 
 function App() {
   return (
     <div className='container'>
-      <UseStateObject />
+      <MultipleReturnsFetchData />
     </div>
   )
 }

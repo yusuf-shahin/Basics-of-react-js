@@ -298,8 +298,9 @@ const UseStateObject = () => {
 
     // be careful, don't overwrite
     // setPerson('shakeAndBake'); // render nothing
-    // setPerson({ name: 'susan' }); // just render the name
-    // setPerson({ ...person, name: 'susan' });
+    // setPerson({ name: 'susan' }); // just render the name : "susan"
+
+    // setPerson({ ...person, name: 'susan' });  // {name: "peter",age: 24,hobby: "read books"}
   }
   return (
     <>
@@ -315,6 +316,8 @@ const UseStateObject = () => {
 
 export default UseStateObject
 ```
+
+- If I just wanna overwrite one of them `setPerson({ ...person, name: 'susan' })`
 
 #### Set Function "Gotcha"
 
@@ -801,6 +804,8 @@ function Example() {
 
 #### Multiple Returns - Basics
 
+- **Conditional Rendering**
+
 ```js
 import Starter from "./tutorial/03-conditional-rendering/starter/01-multiple-returns-basics.jsx"
 ```
@@ -825,6 +830,8 @@ console.log(secondResp) // Hello, there
 
 - if no explicit return by default function returns 'undefined'
 
+**conditional rendering in react component**
+
 ```js
 import { useEffect, useState } from "react"
 
@@ -833,6 +840,7 @@ const MultipleReturnsBasics = () => {
   // convention with boolean values "isSomething"
   const [isLoading, setIsLoading] = useState(true)
 
+  // invoke this function afet 3 sec
   useEffect(() => {
     setTimeout(() => {
       // done fetching data
@@ -899,6 +907,8 @@ Data Fetching :
   - error - there was an error (display error message)
   - success - received data (display data)
 
+**02-multiple-returns-fetch-data.jsx**
+
 ```js
 import { useEffect, useState } from "react"
 const url = "https://api.github.com/users/QuincyLarson"
@@ -908,15 +918,18 @@ const MultipleReturnsFetchData = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
   const [user, setUser] = useState(null)
+  //# user === null
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const resp = await fetch(url)
         const user = await resp.json()
-        // console.log(user);
+        // console.log(user) //# object
         setUser(user)
+        //# user === obj
       } catch (error) {
+        //! when our url totally wrong, this component will render . Otherwise does not .
         setIsError(true)
         console.log(error)
       }
@@ -925,14 +938,19 @@ const MultipleReturnsFetchData = () => {
     }
     fetchUser()
   }, [])
-  // order matters
-  // don't place user JSX before loading or error
+  //? order matters (placement here in importent)
+
+  //* loading component
   if (isLoading) {
     return <h2>Loading...</h2>
   }
+
+  //* error component
   if (isError) {
     return <h2>There was an error...</h2>
   }
+
+  //* user component
   return (
     <div>
       <img
@@ -948,6 +966,13 @@ const MultipleReturnsFetchData = () => {
 }
 export default MultipleReturnsFetchData
 ```
+
+- order matters (placement here in importent) .
+- as javascript always read the code from top to buttom. We don't place user JSX before loading or error.
+- inside **useEffect()** we fetching the data .
+  - data fetching time it"s render **loading component**
+  - if data fetching successful return: **user component**
+  - otherwise it return **error component**
 
 #### Fetch Errors "Gotcha" (optional)
 
