@@ -1,20 +1,21 @@
-import { useState } from 'react';
+import { useState } from "react"
 
 const UseStateGotcha = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
 
   const handleClick = () => {
     // setTimeout(() => {
-    // console.log('clicked the button');
-    //   setValue(value + 1);
-    // }, 3000);
+    //   console.log("clicked the button")
+    //   setValue(value + 1)
+    // }, 3000)
+    //? correct way
     setTimeout(() => {
-      console.log('clicked the button');
+      console.log("clicked the button")
       setValue((currentState) => {
-        return currentState + 1;
-      });
-    }, 3000);
-  };
+        return currentState + 1
+      })
+    }, 3000)
+  }
   return (
     <div>
       <h1>{value}</h1>
@@ -22,7 +23,7 @@ const UseStateGotcha = () => {
         increase
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default UseStateGotcha;
+export default UseStateGotcha

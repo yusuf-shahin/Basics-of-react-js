@@ -1,15 +1,15 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import First from "./components/First.jsx";
-import SimpleRender from "./components/SimpleRender.jsx";
-import SimpleBookList from "./components/SimpleBookList.jsx";
-import PropsBookList from "./components/PropsBookList.jsx";
-import PropsBookListTwo from "./components/PropsBookListTwo.jsx";
-import MapPropsBookList from "./components/MapPropsBookList.jsx";
-import FirstEvent from "./components/FirstEvent.jsx";
-import FromSubmission from "./components/FromSubmission.jsx";
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import First from "./components/First.jsx"
+import SimpleRender from "./components/SimpleRender.jsx"
+import SimpleBookList from "./components/SimpleBookList.jsx"
+import PropsBookList from "./components/PropsBookList.jsx"
+import PropsBookListTwo from "./components/PropsBookListTwo.jsx"
+import MapPropsBookList from "./components/MapPropsBookList.jsx"
+import FirstEvent from "./components/FirstEvent.jsx"
+import FromSubmission from "./components/FromSubmission.jsx"
 
-const root = document.getElementById("root");
+const root = document.getElementById("root")
 createRoot(root).render(
   <StrictMode>
     {/* <First /> */}
@@ -17,8 +17,8 @@ createRoot(root).render(
     {/* <SimpleBookList /> */}
     {/* <PropsBookList /> */}
     {/* <PropsBookListTwo /> */}
-    {/* <MapPropsBookList /> */}
+    <MapPropsBookList />
     {/* <FirstEvent /> */}
-    <FromSubmission />
+    {/* <FromSubmission /> */}
   </StrictMode>
-);
+)

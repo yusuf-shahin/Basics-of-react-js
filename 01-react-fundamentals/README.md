@@ -10,11 +10,14 @@
   - [First Component in Detail](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#component-in-detail)
   - [JSX Rules](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#jsx-rules)
   - Nest Components
+  - Simple Book List (Simple Projects)
   - Gloval CSS
   - Local Images (Public Folder)
-  - JSX CSS (optional)
-  - JSX javascript
+  - JSX - CSS (inline styles)
+  - [JSX javascript](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#jsx---javascript)
 - [Props ( Initial Setup )](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#props)
+  - [Simple list (using MAP method)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#simple-list-using-map-method)
+  - [Pass the intire obj as props](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#personal-preference)
 - [Events in React](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#events---fundamentals)
 
 ## Basics
@@ -57,19 +60,19 @@ function Show() {
       <Hello />
       <Name />
     </div>
-  );
+  )
 }
 
 //# starting name of component must be upper case
 function Hello() {
-  return <h1>Hello world</h1>;
+  return <h1>Hello world</h1>
 }
 
 function Name() {
-  return <h4>My name is yusuf</h4>;
+  return <h4>My name is yusuf</h4>
 }
 
-export default First;
+export default First
 ```
 
 **_In component_**
@@ -84,16 +87,16 @@ export default First;
 **Main.jsx**
 
 ```js
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from "react"
+import ReactDOM from "react-dom/client"
 
 function Greeting() {
-  return <h2>My First Component</h2>;
+  return <h2>My First Component</h2>
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root"))
 
-root.render(<Greeting />);
+root.render(<Greeting />)
 ```
 
 - create a div ---> <div id="root"></div> in **index.html**.
@@ -110,7 +113,7 @@ createRoot(root).render(
     <Main />
     <Footer />
   </StrictMode>
-);
+)
 ```
 
 #### Component in Detail
@@ -125,8 +128,8 @@ createRoot(root).render(
 
 ```js
 const Greeting = () => {
-  return React.createElement("h2", {}, "hello world");
-};
+  return React.createElement("h2", {}, "hello world")
+}
 ```
 
 ```js
@@ -135,7 +138,7 @@ function Greeting() {
     <div>
       <h2>hello world</h2>
     </div>
-  );
+  )
 }
 
 const Greeting = () => {
@@ -143,8 +146,8 @@ const Greeting = () => {
     "div",
     {},
     React.createElement("h2", {}, "hello world")
-  );
-};
+  )
+}
 ```
 
 #### JSX Rules
@@ -155,11 +158,11 @@ const Greeting = () => {
   - Fragment - let's us group elements without adding extra nodes
 
 ```js
-return <React.Fragment>...rest of the return</React.Fragment>;
+return <React.Fragment>...rest of the return</React.Fragment>
 
 // shorthand
 
-return <>...rest of the return</>;
+return <>...rest of the return</>
 ```
 
 - camelCase property naming convention
@@ -173,7 +176,7 @@ return (
     <label htmlFor='name'>Name</label>
     <input readOnly={true} id='name' />
   </div>
-);
+)
 ```
 
 **in HTML**
@@ -189,15 +192,15 @@ return (
 - className instead of class
 
 ```js
-return <div className='someValue'>hello</div>;
+return <div className='someValue'>hello</div>
 ```
 
 - close every element
 
 ```js
-return <img />;
+return <img />
 // or
-return <input />;
+return <input />
 ```
 
 - formatting
@@ -218,7 +221,7 @@ function Greeting() {
       <h2>hello world</h2>
       <input type='text' name='' id='' />
     </>
-  );
+  )
 }
 ```
 
@@ -233,13 +236,13 @@ function Greeting() {
       <Person />
       <Message />
     </div>
-  );
+  )
 }
 
-const Person = () => <h2>john doe</h2>;
+const Person = () => <h2>john doe</h2>
 const Message = () => {
-  return <p>this is my message</p>;
-};
+  return <p>this is my message</p>
+}
 ```
 
 #### Simple Book List (Simple Projects)
@@ -257,7 +260,7 @@ function SimpleBookList() {
       <Book />
       <Book />
     </section>
-  );
+  )
 }
 
 const Book = () => {
@@ -267,27 +270,30 @@ const Book = () => {
       <Title />
       <Author />
     </article>
-  );
-};
+  )
+}
 
 const Image = () => (
   <img
     src='https://images-na.ssl-images-amazon.com/images/I/71m+Qtq+HrL._AC_UL900_SR900,600_.jpg'
     alt='Interesting Facts For Curious Minds'
   />
-);
+)
 const Title = () => {
-  return <h2>Interesting Facts For Curious Minds</h2>;
-};
-const Author = () => <h4>Jordan Moore </h4>;
+  return <h2>Interesting Facts For Curious Minds</h2>
+}
+const Author = () => <h4>Jordan Moore </h4>
 
-export default SimpleBookList;
+export default SimpleBookList
 ```
+
+**In Browser**
+![Relative](./public/WhatsApp%20Image%202024-09-22%20at%2010.01.14%20AM.jpeg)
 
 - root.render(<BookList />) --> inside **SimpleBooklist** component we pass **Book** component in four times. So browser gonna show us **Book** component in four time
 - Inside **Book** component we create a structure with three components..
 
-#### CSS
+#### Gloal CSS
 
 - create index.css in src
 
@@ -309,7 +315,7 @@ body {
 - import file and add classes
 
 ```js
-import "./index.css";
+import "./index.css"
 
 function SimpleBookList() {
   return (
@@ -319,7 +325,7 @@ function SimpleBookList() {
       <Book />
       <Book />
     </section>
-  );
+  )
 }
 
 const Book = () => {
@@ -329,8 +335,8 @@ const Book = () => {
       <Title />
       <Author />
     </article>
-  );
-};
+  )
+}
 ```
 
 - complete css
@@ -384,7 +390,7 @@ const Book = () => {
 ```js
 const Image = () => (
   <img src='./images/book-1.jpg' alt='Interesting Facts For Curious Minds' />
-);
+)
 ```
 
 - whatever assets we place in public - instantly available
@@ -403,7 +409,7 @@ const Author = () => (
   <h4 style={{ color: "#617d98", fontSize: "0.75rem", marginTop: "0.5rem" }}>
     Jordan Moore
   </h4>
-);
+)
 ```
 
 - css rules still apply (inline vs external css)
@@ -429,9 +435,9 @@ const Author = () => {
     color: "#617d98",
     fontSize: "0.75rem",
     marginTop: "0.5rem",
-  };
-  return <h4 style={inlineHeadingStyles}>Jordan Moore </h4>;
-};
+  }
+  return <h4 style={inlineHeadingStyles}>Jordan Moore </h4>
+}
 ```
 
 - FOR THE MOST PART, MULTIPLE APPROACHES AVAILABLE !!!
@@ -453,8 +459,8 @@ const Book = () => {
       <h2>Interesting Facts For Curious Minds</h2>
       <h4>Jordan Moore </h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 ```css
@@ -474,10 +480,10 @@ const Book = () => {
 **SimpleBookList.jsx** using js in jsx
 
 ```js
-const author = "Elizabeth Strout";
-const title = "Tell Me Everything";
+const author = "Elizabeth Strout"
+const title = "Tell Me Everything"
 const img =
-  "https://images-na.ssl-images-amazon.com/images/I/71XX7KlB7HL._AC_UL254_SR254,254_.jpg";
+  "https://images-na.ssl-images-amazon.com/images/I/71XX7KlB7HL._AC_UL254_SR254,254_.jpg"
 
 function SimpleBookList() {
   return (
@@ -485,7 +491,7 @@ function SimpleBookList() {
       <Book />
       <Book />
     </section>
-  );
+  )
 }
 
 //? inside curly bracket , must be a expression
@@ -497,17 +503,19 @@ const Book = () => {
       <h2>{title}</h2>
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 
-export default SimpleBookList;
+export default SimpleBookList
 ```
 
 - toggle line comment Edit/Toggle Line Comment
 
 ### Props
 
-- [Personal Preference](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/react-fundamentals#personal-preference)
+- [Simple list (using map method)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#simple-list-using-map-method)
+- [Key Props](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#key-prop)
+- [Personal Preference](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/01-react-fundamentals#personal-preference)
 
 #### Initial Setup (Props)
 
@@ -520,14 +528,14 @@ create a component :-
 
 ```js
 const Book = (props) => {
-  console.log(props); // --> {} empty object
+  console.log(props) // --> {} empty object
   return (
     <article className='book'>
       <h2>Name : {props.name}</h2>
       <h4>Author : {props.author}</h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 - Here we create **Book** component.
@@ -560,10 +568,10 @@ function Person() {
       <Book name='Yusuf' age='27' address='andorkillah' wife='amatullah' />
       <Book name='Nazmul' age='25' address='hazarigoli' num='164575876' />
     </section>
-  );
+  )
 }
 const Book = (props) => {
-  console.log(props);
+  console.log(props)
   return (
     <article className='book'>
       <h1>Hello , my name is {props.name}</h1>
@@ -572,8 +580,8 @@ const Book = (props) => {
       <p>I live in , {props.address}</p>
       <p>{props.num}</p>
     </article>
-  );
-};
+  )
+}
 ```
 
 **Result**:-
@@ -585,10 +593,10 @@ const Book = (props) => {
 **PropsBookList** :-
 
 ```js
-const author = "Elizabeth Strout";
-const title = "Tell Me Everything";
+const author = "Elizabeth Strout"
+const title = "Tell Me Everything"
 const img =
-  "https://images-na.ssl-images-amazon.com/images/I/71XX7KlB7HL._AC_UL254_SR254,254_.jpg";
+  "https://images-na.ssl-images-amazon.com/images/I/71XX7KlB7HL._AC_UL254_SR254,254_.jpg"
 
 function PropsBookList() {
   return (
@@ -596,32 +604,35 @@ function PropsBookList() {
       <Book author={author} title={title} img={img} />
       <Book author={author} title={title} img={img} />
     </section>
-  );
+  )
 }
 const Book = (props) => {
-  console.log(props);
+  console.log(props)
   return (
     <article className='book'>
       <img src={props.img} alt={props.title} />
       <h2>{props.title}</h2>
       <h4>{props.author} </h4>
     </article>
-  );
-};
+  )
+}
 
-export default PropsBookList;
+export default PropsBookList
 ```
+
+**in browser**
+![Relative](./public/WhatsApp%20Image%202024-09-22%20at%209.45.23%20AM.jpeg)
 
 #### Props - Somewhat Dynamic Setup
 
-- setup an object
-- setup props
+- create two different obj
+- pass the value of obj as props
 
 - _Using props show different two books._
   **PropsBookListTwo.jsx** :
 
 ```js
-import "./index.css";
+import "./index.css"
 
 //! ================
 //? passing different different value using props
@@ -632,12 +643,12 @@ const firstBook = {
   author: "Casey Means",
   title: "Good Energy",
   img: "https://images-na.ssl-images-amazon.com/images/I/71KTwO53SnL._AC_UL600_SR600,400_.jpg",
-};
+}
 const secondBook = {
   author: "James Clear",
   title: "Atomic Habits",
   img: "https://images-na.ssl-images-amazon.com/images/I/81YkqyaFVEL._AC_UL600_SR600,400_.jpg",
-};
+}
 
 function PropsBookListTwo() {
   return (
@@ -653,21 +664,24 @@ function PropsBookListTwo() {
         img={secondBook.img}
       />
     </section>
-  );
+  )
 }
 const Book = (props) => {
-  console.log(props);
+  console.log(props)
   return (
     <article className='book'>
       <img src={props.img} alt={props.title} />
       <h2>{props.title}</h2>
       <h4>{props.author} </h4>
     </article>
-  );
-};
+  )
+}
 
-export default PropsBookListTwo;
+export default PropsBookListTwo
 ```
+
+**in Browser**
+![Relative](./public/WhatsApp%20Image%202024-09-22%20at%209.48.33%20AM.jpeg)
 
 #### Access Props - Multiple Approaches
 
@@ -683,18 +697,18 @@ export default PropsBookListTwo;
 
 ```js
 const Book = (props) => {
-  const { img, title, author } = props;
+  const { img, title, author } = props
   return (
     <article className='book'>
       <img src={img} alt={title} />
       <h2>{title}</h2>
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 ```
 
-- destructure in function parameters (in our case props)
+- destructure **props** inside of function parameters
 - if you have console.log(props) - it won't be defined
 
 **first approach**
@@ -707,8 +721,8 @@ const Book = ({ img, title, author }) => {
       <h2>{title}</h2>
       <h4>{author}</h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 #### Children Prop (Side Topic)
@@ -739,15 +753,15 @@ function BookList() {
         img={secondBook.img}
       />
     </section>
-  );
+  )
 }
 
 const Book = ({ img, title, author, children }) => {
   // rest of the logic
-};
+}
 const Book = (props) => {
-  const { img, title, author, children } = props;
-  console.log(props);
+  const { img, title, author, children } = props
+  console.log(props)
   return (
     <article className='book'>
       <img src={img} alt={title} />
@@ -755,8 +769,8 @@ const Book = (props) => {
       <h4>{author} </h4>
       {children}
     </article>
-  );
-};
+  )
+}
 ```
 
 - optional CSS
@@ -800,6 +814,7 @@ const books = [
 function BookList() {
   return <section className='booklist'>{books}</section>;
 }
+// its render noathing
 
 const Book = (props) => {
   const { img, title, author } = props;
@@ -822,9 +837,9 @@ const Book = (props) => {
 **For Example :**
 
 ```js
-const names = ["john", "peter", "susan"];
+const names = ["john", "peter", "susan"]
 function NameList() {
-  return <section className='booklist'>{names}</section>;
+  return <section className='booklist'>{names}</section>
 }
 ```
 
@@ -834,15 +849,15 @@ function NameList() {
 - using **map** method
 
 ```js
-const names = ["john", "peter", "susan"];
+const names = ["john", "peter", "susan"]
 const newNames = names.map((name) => {
-  return <h1 key={Math.random()}>{name}</h1>;
-});
+  return <h1 key={Math.random()}>{name}</h1>
+})
 
 // newNames = [<h1 key={Math.random()}>john</h1>,<h1 key={Math.random()}>peter</h1>,<h1 key={Math.random()}>susan</h1>]
 
 function BookList() {
-  return <section className='booklist'>{newNames}</section>;
+  return <section className='booklist'>{newNames}</section>
 }
 
 // or
@@ -851,10 +866,10 @@ function BookList() {
   return (
     <section className='booklist'>
       {names.map((name) => {
-        return <h1 key={Math.random()}>{name}</h1>;
+        return <h1 key={Math.random()}>{name}</h1>
       })}
     </section>
-  );
+  )
 }
 ```
 
@@ -870,7 +885,7 @@ function BookList() {
           <h1 key={Math.random()}>susan</h1>,
         ]}
       </section>
-    );
+    )
   }
   ```
 
@@ -885,7 +900,7 @@ function NameList() {
     <section className='booklist'>
       {[<h1>john</h1>, <h1>peter</h1>, <h1>susan</h1>]}
     </section>
-  );
+  )
 }
 ```
 
@@ -912,18 +927,19 @@ const books = [
     title: "Atomic Habits",
     img: "https://images-na.ssl-images-amazon.com/images/I/81YkqyaFVEL._AC_UL600_SR600,400_.jpg",
   },
-];
+]
 function BookList() {
   return (
     <section className='booklist'>
+      {/*using map method we get the element of books array, which is obj  */}
       {books.map((book) => {
-        // destructuring two obj element of book array
-        const { img, title, author } = book;
+        // destructuring the elemnt of obj
+        const { img, title, author } = book
         // indivitualy pass the value of propes
-        return <Book img={img} title={title} author={author} />;
+        return <Book img={img} title={title} author={author} />
       })}
     </section>
-  );
+  )
   const Book = (props) => {
     return (
       <article className='book'>
@@ -931,8 +947,8 @@ function BookList() {
         <h2>{props.title}</h2>
         <h4>{props.author} </h4>
       </article>
-    );
-  };
+    )
+  }
 }
 ```
 
@@ -950,28 +966,28 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        console.log(book);
-        const { img, title, author, id } = book;
-        return <Book book={book} key={id} />;
+        console.log(book)
+        const { img, title, author, id } = book
+        return <Book book={book} key={id} />
       })}
     </section>
-  );
+  )
 }
 ```
 
-- in map method we also get the index . We also pass the index as key value.
+- in map method we also get the index . We also pass the index as **key value**.
 
 ```js
 function BookList() {
   return (
     <section className='booklist'>
       {book.map((book, index) => {
-        console.log(book);
-        const { img, title, author, id } = book;
-        return <Book book={book} key={index} />;
+        console.log(book)
+        const { img, title, author, id } = book
+        return <Book book={book} key={index} />
       })}
     </section>
-  );
+  )
 }
 ```
 
@@ -996,23 +1012,23 @@ const books = [
     img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
     id: 2,
   },
-];
+]
 function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
         // book --> obj, element of books array
-        console.log(book);
-        return <Book book={book} key={Math.random()} />;
+        console.log(book)
+        return <Book book={book} key={Math.random()} />
         // here we get two different types of Book component inside array.
       })}
     </section>
-  );
+  )
 }
 
 const Book = (props) => {
   // obj inside array
-  const { img, title, author } = props.book;
+  const { img, title, author } = props.book
 
   return (
     <article className='book'>
@@ -1020,8 +1036,8 @@ const Book = (props) => {
       <h2>{title}</h2>
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 - inside the props we get the intire obj indivitually .
@@ -1034,7 +1050,7 @@ const Book = (props) => {
       img: "./images/book-1.jpg",
       id: 1,
     },
-  };
+  }
   ```
 
 - alternative
@@ -1048,8 +1064,8 @@ const Book = ({ books: { img, title, author } }) => {
       <h2>{title}</h2>
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 #### Personal Preference
@@ -1060,19 +1076,19 @@ const Book = ({ books: { img, title, author } }) => {
 **Spread Operator**
 
 ```js
-const friends = ["john", "peter", "anna"];
-const newFriends = [...friends, "susan"];
-console.log(friends); // ["john", "peter", "anna"]
-console.log(newFriends); // ["john", "peter", "anna", "susan"]
+const friends = ["john", "peter", "anna"]
+const newFriends = [...friends, "susan"]
+console.log(friends) // ["john", "peter", "anna"]
+console.log(newFriends) // ["john", "peter", "anna", "susan"]
 const someObject = {
   name: "john",
   job: "developer",
-};
+}
 // in obj and array , data are pass by referance .
 // spread operatior create a copy of array and obj .In different referance .
-const newObject = { ...someObject, location: "florida" };
-console.log(someObject);
-console.log(newObject);
+const newObject = { ...someObject, location: "florida" }
+console.log(someObject)
+console.log(newObject)
 ```
 
 **BookList.jsx** :-
@@ -1091,33 +1107,33 @@ const books = [
     img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
     id: 2,
   },
-];
+]
 function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
         // passing the copy of obj  using spread operator via propes
-        return <Book {...book} key={book.id} />;
+        return <Book {...book} key={book.id} />
       })}
     </section>
-  );
+  )
 }
 
 const Book = (props) => {
-  const { img, title, author } = props;
+  const { img, title, author } = props
   return (
     <article className='book'>
       <img src={img} alt={title} />
       <h2>{title}</h2>
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 
 // different approach
 const Book = ({ img, title, author }) => {
   // rest of the code
-};
+}
 ```
 
 - inside the props we get the intire copy of book obj .
@@ -1130,7 +1146,7 @@ props = {
   title: "Atomic Habits",
   img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
   id: 2,
-};
+}
 ```
 
 - if we dont use spread operator and pass the name of obj like :-
@@ -1154,11 +1170,11 @@ props = {
 - In Vanilla JS
 
 ```js
-const btn = document.getElementById("btn");
+const btn = document.getElementById("btn")
 
 btn.addEventListener("click", function () {
-  alert("handle button click");
-});
+  alert("handle button click")
+})
 ```
 
 - In React
@@ -1166,14 +1182,14 @@ btn.addEventListener("click", function () {
 ```js
 const EventExamples = () => {
   const handleButtonClick = () => {
-    alert("handle button click");
-  };
+    alert("handle button click")
+  }
   return (
     <section>
       <button onClick={handleButtonClick}>click me</button>
     </section>
-  );
-};
+  )
+}
 ```
 
 - Here we diclare the `handleButtonClick` function
@@ -1193,19 +1209,19 @@ function BookList() {
     <section className='booklist'>
       <EventExamples />
       {books.map((book) => {
-        return <Book {...book} key={book.id} />;
+        return <Book {...book} key={book.id} />
       })}
     </section>
-  );
+  )
 }
 
 const EventExamples = () => {
   const handleFormInput = () => {
-    console.log("handle form input");
-  };
+    console.log("handle form input")
+  }
   const handleButtonClick = () => {
-    alert("handle button click");
-  };
+    alert("handle button click")
+  }
   return (
     <section>
       <form>
@@ -1219,8 +1235,8 @@ const EventExamples = () => {
       </form>
       <button onClick={handleButtonClick}>click me</button>
     </section>
-  );
-};
+  )
+}
 ```
 
 #### Event Object and Form Submission
@@ -1230,22 +1246,22 @@ const EventExamples = () => {
 ```js
 const EventExamples = () => {
   const handleFormInput = (e) => {
-    console.log(e);
+    console.log(e)
     // e.target - element
-    console.log(`Input Name : ${e.target.name}`);
+    console.log(`Input Name : ${e.target.name}`)
     // target the input name
-    console.log(`Input Value : ${e.target.value}`);
+    console.log(`Input Value : ${e.target.value}`)
     // target the input value
 
     // console.log('handle form input');
-  };
+  }
   const handleButtonClick = () => {
-    alert("handle button click");
-  };
+    alert("handle button click")
+  }
   const handleFormSubmission = (e) => {
-    e.preventDefault();
-    console.log("form submitted");
-  };
+    e.preventDefault()
+    console.log("form submitted")
+  }
   return (
     <section>
       {/* add onSubmit Event Handler */}
@@ -1262,8 +1278,8 @@ const EventExamples = () => {
       </form>
       <button onClick={handleButtonClick}>click me</button>
     </section>
-  );
-};
+  )
+}
 ```
 
 - add button with type='submit'
@@ -1301,8 +1317,8 @@ const EventExamples = () => {
     <section>
       <button onClick={() => console.log("hello there")}>click me</button>
     </section>
-  );
-};
+  )
+}
 ```
 
 - also can access event object
@@ -1322,8 +1338,8 @@ const EventExamples = () => {
       </form>
       <button onClick={() => console.log("you clicked me")}>click me</button>
     </section>
-  );
-};
+  )
+}
 ```
 
 #### Mind Grenade #2
@@ -1336,17 +1352,17 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        return <Book {...book} key={book.id} />;
+        return <Book {...book} key={book.id} />
       })}
     </section>
-  );
+  )
 }
 
 const Book = (props) => {
-  const { img, title, author } = props;
+  const { img, title, author } = props
   const displayTitle = () => {
-    console.log(title);
-  };
+    console.log(title)
+  }
 
   return (
     <article className='book'>
@@ -1355,8 +1371,8 @@ const Book = (props) => {
       <button onClick={displayTitle}>display title</button>
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 - remove button
@@ -1369,21 +1385,21 @@ const Book = (props) => {
 
 ```js
 function BookList() {
-  const someValue = "shakeAndBake";
+  const someValue = "shakeAndBake"
   const displayValue = () => {
-    console.log(someValue);
-  };
+    console.log(someValue)
+  }
   return (
     <section className='booklist'>
       {books.map((book) => {
-        return <Book {...book} key={book.id} displayValue={displayValue} />;
+        return <Book {...book} key={book.id} displayValue={displayValue} />
       })}
     </section>
-  );
+  )
 }
 
 const Book = (props) => {
-  const { img, title, author, displayValue } = props;
+  const { img, title, author, displayValue } = props
 
   return (
     <article className='book'>
@@ -1392,8 +1408,8 @@ const Book = (props) => {
       <button onClick={displayValue}>click me</button>
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 - create **displayValue** on **_BookList_** component .
@@ -1415,21 +1431,21 @@ const Book = (props) => {
 ```js
 const BookList = () => {
   const getBook = (id) => {
-    const book = books.find((book) => book.id === id);
-    console.log(book);
-  };
+    const book = books.find((book) => book.id === id)
+    console.log(book)
+  }
 
   return (
     <section className='booklist'>
       {books.map((book) => {
-        return <Book {...book} key={book.id} getBook={getBook} />;
+        return <Book {...book} key={book.id} getBook={getBook} />
       })}
     </section>
-  );
-};
+  )
+}
 
 const Book = (props) => {
-  const { img, title, author, getBook, id } = props;
+  const { img, title, author, getBook, id } = props
   // console.log(props);
 
   return (
@@ -1441,8 +1457,8 @@ const Book = (props) => {
       {/*we always pass the function name, we never invoke this function . */}
       <h4>{author}</h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 - we create **getBook** function in _BookList_ component.
@@ -1459,11 +1475,11 @@ const Book = (props) => {
 
 ```js
 const Book = (props) => {
-  const { img, title, author, getBook, id } = props;
+  const { img, title, author, getBook, id } = props
   // console.log(props);
   const getSingleBook = () => {
-    getBook(id);
-  };
+    getBook(id)
+  }
   return (
     <article className='book'>
       <img src={img} alt={title} />
@@ -1471,8 +1487,8 @@ const Book = (props) => {
       <button onClick={getSingleBook}>display title</button>
       <h4>{author}</h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 - here in **Book** component , we create _getSingleBook_ function, invoke the **getBook** function inside it.
@@ -1484,11 +1500,11 @@ const Book = (props) => {
 
 ```js
 const Book = (props) => {
-  const { img, title, author, getBook, id } = props;
+  const { img, title, author, getBook, id } = props
   // console.log(props);
   const getSingleBook = () => {
-    getBook(id);
-  };
+    getBook(id)
+  }
   return (
     <article className='book'>
       <img src={img} alt={title} />
@@ -1497,8 +1513,8 @@ const Book = (props) => {
       <button onClick={() => getBook(id)}>display title</button>
       <h4>{author}</h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 - personal prefarance
@@ -1512,14 +1528,14 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        return <Book {...book} key={book.id} />;
+        return <Book {...book} key={book.id} />
       })}
     </section>
-  );
+  )
 }
 
 const Book = (props) => {
-  const { img, title, author } = props;
+  const { img, title, author } = props
 
   return (
     <article className='book'>
@@ -1528,8 +1544,8 @@ const Book = (props) => {
 
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 ```
 
 - setup two files in src books.js and Book.js
@@ -1552,7 +1568,7 @@ const books = [
     img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
     id: 2,
   },
-];
+]
 ```
 
 - two flavors named and default exports
@@ -1576,20 +1592,20 @@ export const books = [
     img: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg",
     id: 2,
   },
-];
+]
 ```
 
 index.js
 
 ```js
-import { books } from "./books";
+import { books } from "./books"
 ```
 
 - default export
 
 ```js
 const Book = (props) => {
-  const { img, title, author } = props;
+  const { img, title, author } = props
 
   return (
     <article className='book'>
@@ -1598,16 +1614,16 @@ const Book = (props) => {
 
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 
-export default Book;
+export default Book
 ```
 
 index.js
 
 ```js
-import Book from "./Book";
+import Book from "./Book"
 ```
 
 #### Local Images (src folder)
@@ -1621,9 +1637,9 @@ import Book from "./Book";
 - and yes each image requires new import
 
 ```js
-import img1 from "./images/book-1.jpg";
-import img2 from "./images/book-2.jpg";
-import img3 from "./images/book-3.jpg";
+import img1 from "./images/book-1.jpg"
+import img2 from "./images/book-2.jpg"
+import img3 from "./images/book-3.jpg"
 
 export const books = [
   {
@@ -1644,7 +1660,7 @@ export const books = [
     img: img3,
     id: 3,
   },
-];
+]
 ```
 
 ### Challenges
@@ -1660,14 +1676,14 @@ const BookList = () => {
   return (
     <section className='booklist'>
       {books.map((book, index) => {
-        return <Book {...book} key={book.id} number={index} />;
+        return <Book {...book} key={book.id} number={index} />
       })}
     </section>
-  );
-};
+  )
+}
 
 const Book = (props) => {
-  const { img, title, author, number } = props;
+  const { img, title, author, number } = props
 
   return (
     <article className='book'>
@@ -1677,8 +1693,8 @@ const Book = (props) => {
       <h4>{author}</h4>
       <span className='number'>{`# ${number + 1}`}</span>
     </article>
-  );
-};
+  )
+}
 ```
 
 index.css
@@ -1720,11 +1736,11 @@ function BookList() {
       <h1>amazon best sellers</h1>
       <section className='booklist'>
         {books.map((book) => {
-          return <Book {...book} key={book.id} />;
+          return <Book {...book} key={book.id} />
         })}
       </section>
     </>
-  );
+  )
 }
 ```
 
@@ -1762,32 +1778,32 @@ public/index.html
 - index.js
 
 ```js
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from "react"
+import ReactDOM from "react-dom/client"
 
 // styles (typically global)
-import "./index.css";
+import "./index.css"
 
 // convention to name it App and setup in a separate file
-import App from "./App";
+import App from "./App"
 // import report web vitals
-import reportWebVitals from "./reportWebVitals";
+import reportWebVitals from "./reportWebVitals"
 
 // StrictMode
 
 // StrictMode is a tool for highlighting potential problems in an application.Activates additional checks and warnings for its descendants.Runs only in Development, does not impact the production build. RENDERS TWICE !!! Possible to remove.
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()
 ```
 
 - remove in src
@@ -1802,10 +1818,10 @@ App.js
 
 ```js
 function App() {
-  return <h1>backroads app</h1>;
+  return <h1>backroads app</h1>
 }
 
-export default App;
+export default App
 ```
 
 - remove

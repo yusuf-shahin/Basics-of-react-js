@@ -1,9 +1,9 @@
-import MultipleReturnsFetchData from "./tutorial/03-conditional-rendering/starter/02-multiple-returns-fetch-data"
+import UseStateGotcha from "./tutorial/01-useState/final/05-useState-gotcha"
 
 function App() {
   return (
     <div className='container'>
-      <MultipleReturnsFetchData />
+      <UseStateGotcha />
     </div>
   )
 }

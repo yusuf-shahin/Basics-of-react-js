@@ -27,9 +27,6 @@ const MultipleReturnsFetchData = () => {
     }
     fetchUser()
   }, [])
-  //? order matters (placement here in importent)
-  //! don't place user JSX before loading or error
-  //? fetching data(loading jsx) ---> resolve(return: user jsx) ---> reject(return: error jsx)
 
   if (isLoading) {
     return <h2>Loading...</h2>

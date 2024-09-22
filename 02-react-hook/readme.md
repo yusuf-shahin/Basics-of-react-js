@@ -319,13 +319,13 @@ export default UseStateObject
 
 - If I just wanna overwrite one of them `setPerson({ ...person, name: 'susan' })`
 
-#### Set Function "Gotcha"
+#### useState() "Gotcha"
 
 ```js
 import Starter from "./tutorial/01-useState/starter/05-useState-gotcha.jsx"
 ```
 
-Setup Challenge :
+**Setup Challenge :**
 
 - setup a state value and the button
 - add functionality to increase value by 1
@@ -362,15 +362,11 @@ const UseStateGotcha = () => {
 export default UseStateGotcha
 ```
 
-If you want to update the state immediately and synchronously, you can pass a function to setState that receives the previous state as an argument and returns the new state. For example:
+**In Browser**
 
-```js
-setState((prevState) => {
-  return { ...prevState, value: newValue }
-})
-```
+![Relative](./src/assets/WhatsApp%20Image%202024-09-21%20at%2011.54.31%20PM.jpeg)
 
-This can be useful if you need to update the state based on the previous state, or if you need to update the state synchronously.
+**If you want to update the state immediately and synchronously, you can pass a function to setState that receives the previous state as an argument and returns the new state. For example:**
 
 ```js
 const handleClick = () => {
@@ -383,14 +379,34 @@ const handleClick = () => {
 }
 ```
 
-- setTimeout Example
+**Same as obj** intead of this `setPerson({ ...person, name: 'john' })` we can use this :-
+
+```js
+setState((prevObj) => {
+  return { ...prevObj, name: "john" }
+})
+```
+
+This can be useful if you need to update the state based on the previous state, or if you need to update the state synchronously.
+
+- **setTimeout Example**
 
 ```js
 const handleClick = () => {
-  // setTimeout(() => {
-  // console.log('clicked the button');
-  //   setValue(value + 1);
-  // }, 3000);
+  setTimeout(() => {
+    console.log("clicked the button")
+    setValue(value + 1)
+  }, 3000)
+}
+```
+
+- click five time of button within _3 secoend_
+
+**in browser we see**
+![Relative](./src/assets/WhatsApp%20Image%202024-09-22%20at%2012.09.41%20AM.jpeg)
+
+```js
+const handleClick = () => {
   setTimeout(() => {
     console.log("clicked the button")
     setValue((currentState) => {
@@ -399,6 +415,10 @@ const handleClick = () => {
   }, 3000)
 }
 ```
+
+- click five time of button within _3 secoend_
+  **in browser we see**
+  ![Relative](./src/assets/WhatsApp%20Image%202024-09-22%20at%2012.15.39%20AM.jpeg)
 
 - as an example refactor code in
   /tutorial/01-useState/03-useState-array
