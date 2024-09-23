@@ -3,6 +3,8 @@
 - General Rules of Hooks
   - Initial Render and Re-Renders
   - [useState hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usestate-basics)
+  - [useEffect hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useeffect-basics)
+  - [Multiple Returns (**Conditional Rendering**)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-returns---basics)
 
 ### General Rules of Hooks
 
@@ -10,7 +12,7 @@
 - component must be uppercase
 - **invoke inside function/component body**
 - don't call hooks conditionally (cover later)
-- set functions don't update state immediately (cover later)
+- [set functions don't update state immediately](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usestate-gotcha)
 
 ### App.jsx (Setup)
 
@@ -160,13 +162,18 @@ Setup Challenge :
   - one that removes single item from the list
   - one that clears entire list
 
-1. **render the list**
+  **UseStateArray.jsx**
 
 ```js
 import React from "react"
-import { data } from "../../../data"
+const data = [
+  { id: 1, name: "john" },
+  { id: 2, name: "peter" },
+  { id: 3, name: "susan" },
+  { id: 4, name: "anna" },
+]
 const UseStateArray = () => {
-  const [people, setPeople] = React.useState(data)
+  const [people, setPeople] = useState(data)
 
   return (
     <div>
@@ -191,9 +198,14 @@ export default UseStateArray
 
 ```js
 import React from "react"
-import { data } from "../../../data"
+const data = [
+  { id: 1, name: "john" },
+  { id: 2, name: "peter" },
+  { id: 3, name: "susan" },
+  { id: 4, name: "anna" },
+]
 const UseStateArray = () => {
-  const [people, setPeople] = React.useState(data)
+  const [people, setPeople] = useState(data)
 
   const removeItem = (id) => {
     let newPeople = people.filter((person) => person.id !== id)
@@ -300,7 +312,7 @@ const UseStateObject = () => {
     // setPerson('shakeAndBake'); // render nothing
     // setPerson({ name: 'susan' }); // just render the name : "susan"
 
-    // setPerson({ ...person, name: 'susan' });  // {name: "peter",age: 24,hobby: "read books"}
+    // setPerson({ ...person, name: 'susan' });  // {name: "susan",age: 24,hobby: "read books"}
   }
   return (
     <>
@@ -366,6 +378,8 @@ export default UseStateGotcha
 
 ![Relative](./src/assets/WhatsApp%20Image%202024-09-21%20at%2011.54.31%20PM.jpeg)
 
+- **browser** shwo _15_ , **console** show _14_
+
 **If you want to update the state immediately and synchronously, you can pass a function to setState that receives the previous state as an argument and returns the new state. For example:**
 
 ```js
@@ -405,8 +419,9 @@ const handleClick = () => {
 **in browser we see**
 ![Relative](./src/assets/WhatsApp%20Image%202024-09-22%20at%2012.09.41%20AM.jpeg)
 
+- state change just one time
+
 ```js
-const handleClick = () => {
   setTimeout(() => {
     console.log("clicked the button")
     setValue((currentState) => {
@@ -420,11 +435,24 @@ const handleClick = () => {
   **in browser we see**
   ![Relative](./src/assets/WhatsApp%20Image%202024-09-22%20at%2012.15.39%20AM.jpeg)
 
-- as an example refactor code in
-  /tutorial/01-useState/03-useState-array
-- should we use functional update approach for everything?
+```js
+const handleClick = () => {
+  setTimeout(() => {
+    console.log("clicked the button")
+    setValue((currentState) => {
+      const newState = currentState + 1
+      console.log(newState)
 
-#### Code Example
+      return newState
+    })
+  }, 3000)
+}
+```
+
+**In browser**
+![Relative](./src/assets/WhatsApp%20Image%202024-09-22%20at%202.49.20%20PM.jpeg)
+
+#### Code Example (Be ready for useEffect)
 
 ```js
 import Starter from "./tutorial/02-useEffect/starter/01-code-example.jsx"
@@ -481,6 +509,8 @@ sayHello()
 
 ### useEffect Basics
 
+- [FetchDataAPI](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#fetch-data--projects-)
+
 ```js
 import Starter from "./tutorial/02-useEffect/starter/02-useEffect-basics.jsx"
 ```
@@ -489,11 +519,11 @@ useEffect is a hook in React that allows you to perform side effects in function
 
 - useEffect hook
 - accepts two arguments (second optional)
-- first argument - cb function
-- second argument - dependency array
-- by default runs on each render (initial and re-render)
+  - first argument - cb function
+  - second argument - dependency array
+- **by default runs on each render (initial and re-render)**
 - cb can't return promise (so can't make it async)
-- if dependency array empty [] runs only on initial render
+- **if dependency array empty [] runs only on initial render**
 
 ```js
 import { useState, useEffect } from "react"
@@ -503,17 +533,17 @@ const UseEffectBasics = () => {
   const sayHello = () => {
     console.log("hello there")
   }
+  // always
+  // sayHello()
 
-  sayHello()
-
-  // without dependency array
+  // without dependency array (always inoking the function)
   useEffect(() => {
-    console.log("hello from useEffect")
+    sayHello()
   })
 
   // dependency array
   useEffect(() => {
-    console.log("hello from useEffect")
+    sayHello()
   }, [])
 
   return (
@@ -529,6 +559,37 @@ export default UseEffectBasics
 ```
 
 - If we have just the plain function or we invoke the function inside of the component, it's going to run on initial render and on every re-render.
+
+- same as , in **useEffect()** without dependency array (always inoking the function)
+
+**in browser**
+![Relative](./src/assets/WhatsApp%20Image%202024-09-22%20at%206.11.51%20PM.jpeg)
+
+- plane function and **useEffect()** hook without dependency array . Result of both are same.
+
+#### Initial rendering
+
+**06-first-render.jsx**
+
+```js
+import React, { useEffect, useState } from "react"
+
+const InitialRender = () => {
+  const [name, setName] = useState("")
+  useEffect(() => {
+    setName("Yusuf Shahin")
+  }, [])
+  return (
+    <div>
+      <h1>{name}</h1>
+    </div>
+  )
+}
+
+export default InitialRender
+```
+
+![Relative](./src/assets/WhatsApp%20Image%202024-09-22%20at%206.23.21%20PM.jpeg)
 
 #### Multiple Effects
 
@@ -798,7 +859,7 @@ useEffect(() => {
 }, [])
 ```
 
-#### You Might Not Need an Effect
+#### You Might Not Need an Effect (Off Topic)
 
 [You Might Not Need an Effect](https://beta.reactjs.org/learn/you-might-not-need-an-effect)
 
@@ -892,6 +953,8 @@ Setup Challenge :
 - fetch data from the url (for now just log result)
 - if you see user object in the console, continue with the videos
 
+**02-multiple-returns-fetch-data.jsx**
+
 ```js
 import { useEffect, useState } from "react"
 const url = "https://api.github.com/users/QuincyLarson"
@@ -921,11 +984,12 @@ export default MultipleReturnsFetchData
 
 Data Fetching :
 
-- usually three options
+- **usually three options**
 
-  - loading - waiting for data to arrive (display loading state)
-  - error - there was an error (display error message)
-  - success - received data (display data)
+  - **loading** - waiting for data to arrive (display loading state)
+  - **error** - there was an error (display error message)
+  - **success** - received data (display data)
+  - `loading ---> success or error`
 
 **02-multiple-returns-fetch-data.jsx**
 
@@ -935,6 +999,8 @@ const url = "https://api.github.com/users/QuincyLarson"
 
 const MultipleReturnsFetchData = () => {
   // convention to setup booleans with isSomething
+
+  // loading always be --> true
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
   const [user, setUser] = useState(null)
@@ -944,17 +1010,24 @@ const MultipleReturnsFetchData = () => {
     const fetchUser = async () => {
       try {
         const resp = await fetch(url)
+        // console.log(resp);
+
+        //* if resp is not okk
+        if (!resp.ok) {
+          setIsError(true)
+          setIsLoading(false)
+          return
+        }
+
         const user = await resp.json()
-        // console.log(user) //# object
         setUser(user)
-        //# user === obj
+
+        // hide loading
+        setIsLoading(false)
       } catch (error) {
-        //! when our url totally wrong, this component will render . Otherwise does not .
         setIsError(true)
-        console.log(error)
+        // console.log(error);
       }
-      // hide loading
-      setIsLoading(false)
     }
     fetchUser()
   }, [])
@@ -1030,9 +1103,10 @@ Please don't dismiss this topic. A lot of questions in course Q&A.
 Challenge :
 
 - destructure properties and remove user from JSX
-- you might or might not encounter the bug
 
 ```js
+const { avatar_url, name, company, bio } = user
+
 return (
   <div>
     <img
@@ -1049,18 +1123,47 @@ return (
 
 #### Order Matters - Solution
 
-- before returns
+**we dont destructuring obj before _loading_ and _error_ return**
 
 ```js
-const [user, setUser] = useState(null)
-console.log(user) // still null
-// we can't pull out properties from null
-const { avatar_url, name, company, bio } = user
+const { avatar_url, name, company, bio } = user // user still null
+if (isLoading) {
+  return <h2>Loading...</h2>
+}
+if (isError) {
+  return <h2>There was an error...</h2>
+}
+
+return (
+  <div>
+    <img
+      style={{ width: "150px", borderRadius: "25px" }}
+      src={avatar_url}
+      alt={name}
+    />
+    <h2>{name}</h2>
+    <h4>works at {company}</h4>
+    <p>{bio}</p>
+  </div>
+)
 ```
 
-- after returns
+- we get error in here
+
+**we destructuring obj after _loading_ and _error_ return**
 
 ```js
+if (isLoading) {
+  return <h2>Loading...</h2>
+}
+// loading is done
+
+if (isError) {
+  return <h2>There was an error...</h2>
+}
+// have not error
+
+// get the obj in user
 console.log(user) // user object;
 const { avatar_url, name, company, bio } = user
 ```
@@ -1080,7 +1183,10 @@ return (
 )
 ```
 
-Vanilla JS
+**in browser**
+![Relative](./src/assets/WhatsApp%20Image%202024-09-23%20at%209.19.24%20PM.jpeg)
+
+**return nothing example :-** _Vanilla JS_
 
 ```js
 const someObject = {

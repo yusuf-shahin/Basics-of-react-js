@@ -1,47 +1,50 @@
-import { useEffect, useState } from 'react';
-const url = 'https://api.github.com/users/QuincyLarson';
+import { useEffect, useState } from "react"
+const url = "https://api.github.com/users/QuincyLarson"
 
 const MultipleReturnsFetchData = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const resp = await fetch(url);
+        const resp = await fetch(url)
         // console.log(resp);
+
+        //* if resp is not okk
         if (!resp.ok) {
-          setIsError(true);
-          setIsLoading(false);
-          return;
+          setIsError(true)
+          setIsLoading(false)
+          return
         }
 
-        const user = await resp.json();
-        setUser(user);
+        const user = await resp.json()
+        setUser(user)
+
+        // hide loading
+        setIsLoading(false)
       } catch (error) {
-        setIsError(true);
+        setIsError(true)
         // console.log(error);
       }
-      // hide loading
-      setIsLoading(false);
-    };
-    fetchUser();
-  }, []);
-  // order matters
-  // don't place user JSX before loading or error
+    }
+    fetchUser()
+  }, [])
+  //# order matters
+  //# don't place user JSX before loading or error
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2>Loading...</h2>
   }
   if (isError) {
-    return <h2>There was an error...</h2>;
+    return <h2>There was an error...</h2>
   }
-  const { avatar_url, name, company, bio } = user;
+  const { avatar_url, name, company, bio } = user
   return (
     <div>
       <img
-        style={{ width: '150px', borderRadius: '25px' }}
+        style={{ width: "150px", borderRadius: "25px" }}
         src={avatar_url}
         alt={name}
       />
@@ -49,6 +52,6 @@ const MultipleReturnsFetchData = () => {
       <h4>works at {company}</h4>
       <p>{bio}</p>
     </div>
-  );
-};
-export default MultipleReturnsFetchData;
+  )
+}
+export default MultipleReturnsFetchData

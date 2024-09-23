@@ -1,9 +1,15 @@
-import UseStateGotcha from "./tutorial/01-useState/final/05-useState-gotcha"
+import CleanupFunction from "./tutorial/02-useEffect/final/05-cleanup-function"
+import CodeExample from "./tutorial/02-useEffect/starter/01-code-example"
+import MultipleReturnsBasics from "./tutorial/03-conditional-rendering/final/01-multiple-returns-basics"
+import MultipleReturnsFetchData from "./tutorial/03-conditional-rendering/final/02-multiple-returns-fetch-data"
 
 function App() {
   return (
     <div className='container'>
-      <UseStateGotcha />
+      {/* <CodeExample /> */}
+      {/* <CleanupFunction /> */}
+      {/* <MultipleReturnsBasics /> */}
+      <MultipleReturnsFetchData />
     </div>
   )
 }

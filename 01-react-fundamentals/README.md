@@ -1149,8 +1149,8 @@ props = {
 }
 ```
 
-- if we dont use spread operator and pass the name of obj like :-
-- `<Book {book} key={book.id}`
+- if we dont use spread operator and pass the name of obj like as props like :-
+- `<Book {book} key={book.id} />`
 
 ```js
   props = {
