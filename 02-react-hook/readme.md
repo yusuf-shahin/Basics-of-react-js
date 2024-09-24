@@ -1,10 +1,12 @@
 ## Table of Content
 
-- General Rules of Hooks
-  - Initial Render and Re-Renders
-  - [useState hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usestate-basics)
-  - [useEffect hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useeffect-basics)
-  - [Multiple Returns (**Conditional Rendering**)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-returns---basics)
+- General Rules of Hooks :-
+- Initial Render and Re-Renders
+- [useState hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usestate-basics)
+- [useEffect hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useeffect-basics)
+  - [Cleanup Function](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#cleanup-function)
+- [Multiple Returns (**Conditional Rendering**)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-returns---basics)
+  - [Short Chrcuit Evaution](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#short-circuit-evaluation-optional)
 
 ### General Rules of Hooks
 
@@ -779,6 +781,8 @@ Will Cover After 03-conditional-rendering
 - based on condition return second component (simple return)
 - inside second component create useEffect and run it only on initial render
 
+**05-cleanup-function**
+
 ```js
 import { useEffect, useState } from "react"
 
@@ -883,7 +887,7 @@ function Example() {
 
 - rest of them by refactoring code
 
-#### Multiple Returns - Basics
+### Multiple Returns - Basics
 
 - **Conditional Rendering**
 
@@ -1365,7 +1369,7 @@ const ShortCircuitOverview = () => {
   // falsy
   const [text, setText] = useState("")
   // truthy
-  const [name, setName] = useState("susan")
+  const [name, setName] = useState(true)
 
   const codeExample = text || "hello world"
 
@@ -1376,8 +1380,8 @@ const ShortCircuitOverview = () => {
 
       <h4>Falsy OR : {text || "hello world"}</h4>
       <h4>Falsy AND {text && "hello world"}</h4>
-      <h4>Truthy OR {name || "hello world"}</h4>
-      <h4>Truthy AND {name && "hello world"}</h4>
+      <h4>Truthy OR {name || "Hello World"}</h4>
+      <h4>Truthy AND {name && "Hello World"}</h4>
       {codeExample}
     </div>
   )
@@ -1385,14 +1389,13 @@ const ShortCircuitOverview = () => {
 export default ShortCircuitOverview
 ```
 
-#### Short Circuit Evaluation in React - Common Approaches
-
-```js
-import Starter from "./tutorial/03-conditional-rendering/starter/05-short-circuit-examples.jsx"
-```
+- **false || data** --> render the next data
+- **false && data** --> return the false
+- **true || data** --> return the truth
+- **true && data** --> render the next data
 
 Vanilla JS (Optional)
-The ! operator is a logical operator in JavaScript that negates a boolean value. It is equivalent to the not operator in other programming languages.
+The `!` operator is a logical operator in JavaScript that negates a boolean value. It is equivalent to the not operator in other programming languages.
 
 For example:
 
@@ -1423,79 +1426,6 @@ val = ""
 bool = !val // bool is now true
 ```
 
-```js
-import { useState } from "react"
-
-const ShortCircuitOverview = () => {
-  // falsy
-  const [text, setText] = useState("")
-  // truthy
-  const [name, setName] = useState("susan")
-  const [user, setUser] = useState({ name: "john" })
-  const [isEditing, setIsEditing] = useState(false)
-
-  // can't use if statements
-  return (
-    <div>
-      <h2>{text || "default value"}</h2>
-      {text && (
-        <div>
-          <h2> whatever return</h2>
-          <h2>{name}</h2>
-        </div>
-      )}
-      {/* more info below */}
-      {!text && (
-        <div>
-          <h2> whatever return</h2>
-          <h2>{name}</h2>
-        </div>
-      )}
-      {user && <SomeComponent name={user.name} />}
-      <h2 style={{ margin: "1rem 0" }}>Ternary Operator</h2>
-      <button className='btn'>{isEditing ? "edit" : "add"}</button>
-      {user ? (
-        <div>
-          <h4>hello there user {user.name}</h4>
-        </div>
-      ) : (
-        <div>
-          <h2>please login</h2>
-        </div>
-      )}
-    </div>
-  )
-}
-
-const SomeComponent = ({ name }) => {
-  return (
-    <div>
-      <h4>hello there, {name}</h4>
-      <button className='btn'>log out</button>
-    </div>
-  )
-}
-export default ShortCircuitEvaluation
-```
-
-#### Ternary Operator
-
-Vanilla JS
-
-In JavaScript, the ternary operator is a way to concisely express a simple conditional statement. It is often called the "conditional operator" or the "ternary conditional operator".
-
-Here is the basic syntax for using the ternary operator:
-
-```js
-condition ? expression1 : expression2
-```
-
-If condition is truthy, the operator will return expression1. If condition is falsy, it will return expression2.
-
-Jobster Example
-
-[Jobster ](https://redux-toolkit-jobster.netlify.app/landing)
-
 #### Toggle Challenge
 
 ```js
@@ -1505,10 +1435,13 @@ import Starter from "./tutorial/03-conditional-rendering/starter/06-toggle-chall
 - create state value (boolean)
 - return a button and a component/element
 - when user clicks the button
+
   - toggle state value
   - conditionally render component/element
 
-Initial Setup
+- Initial Setup :-
+
+**06-toggle-challenge.jsx**
 
 ```js
 import { useState } from "react"
@@ -1546,6 +1479,20 @@ Improvements
 <button className='btn' onClick={() => setShowAlert(!showAlert)}>
 ```
 
+#### Ternary Operator
+
+Vanilla JS
+
+In JavaScript, the ternary operator is a way to concisely express a simple conditional statement. It is often called the "conditional operator" or the "ternary conditional operator".
+
+Here is the basic syntax for using the ternary operator:
+
+```js
+condition ? expression1 : expression2
+```
+
+If condition is truthy, the operator will return expression1. If condition is falsy, it will return expression2.
+
 #### User Challenge
 
 ```js
@@ -1561,6 +1508,8 @@ import Starter from "./tutorial/03-conditional-rendering/starter/07-user-challen
 
 - h4 with "hello there, user name" and logout button
 - h4 with "please login " and login button
+
+**07-user-challenge.jsx**
 
 ```js
 import { useState } from "react"
@@ -1599,6 +1548,71 @@ const UserChallenge = () => {
 
 export default UserChallenge
 ```
+
+#### Short Circuit Evaluation and Ternary operators in React - Common Approaches
+
+```js
+import Starter from "./tutorial/03-conditional-rendering/starter/05-short-circuit-examples.jsx"
+```
+
+**05-short-circuit-examples.jsx**
+
+```js
+import { useState } from "react"
+
+const ShortCircuitExamples = () => {
+  // falsy
+  const [text, setText] = useState("")
+  // truthy
+  const [name, setName] = useState("susan")
+  const [user, setUser] = useState({ name: "Yusuf" })
+  const [isEditing, setIsEditing] = useState(false)
+
+  return (
+    <div>
+      {/* content inside element --> render "default value" */}
+      <h2>{text || "default value"}</h2>
+      {/* toggle element --> render noathing */}
+      {text && (
+        <div>
+          <h2> whatever return</h2>
+          <h2>{name}</h2>
+        </div>
+      )}
+      {/* more info below --> render <h4>also works</h4> */}
+      {!text && <h4>also works</h4>}
+      {/* toggle component --> render component */}
+      {user && <SomeComponent name={user.name} />}
+      <h2 style={{ margin: "1rem 0" }}>Ternary Operator</h2>
+      {/* inside element --> btn name */}
+      <button className='btn'>{isEditing ? "edit" : "add"}</button>
+      {/* toggle components ternaey operator */}
+      {user ? (
+        <div>
+          <h4>hello there user {user.name}</h4>
+        </div>
+      ) : (
+        <div>
+          <h2>please login</h2>
+        </div>
+      )}
+    </div>
+  )
+}
+
+const SomeComponent = ({ name }) => {
+  return (
+    <div>
+      <h4>hello there, {name}</h4>
+      <button className='btn'>log out</button>
+    </div>
+  )
+}
+export default ShortCircuitExamples
+```
+
+**in browser we see that**
+![Relative](./src/assets/WhatsApp%20Image%202024-09-24%20at%2012.11.05%20PM.jpeg)
 
 #### Project Structure - Default Export
 

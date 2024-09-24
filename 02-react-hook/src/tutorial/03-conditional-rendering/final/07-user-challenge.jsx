@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useState } from "react"
 
 const UserChallenge = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
 
   const login = () => {
     // normally connect to db or api
-    setUser({ name: 'vegan food truck' });
-  };
+    setUser({ name: "vegan food truck" })
+  }
   const logout = () => {
-    setUser(null);
-  };
-
+    setUser(null)
+  }
+  //  render two different component...
   return (
     <div>
       {user ? (
@@ -29,7 +29,7 @@ const UserChallenge = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default UserChallenge;
+export default UserChallenge
