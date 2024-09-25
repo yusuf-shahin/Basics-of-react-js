@@ -1,6 +1,6 @@
 ## Table of Content
 
-- General Rules of Hooks :-
+- General Rules of Hooks
 - Initial Render and Re-Renders
 - [useState hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usestate-basics)
 - [useEffect hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useeffect-basics)
@@ -1350,6 +1350,8 @@ In this example, the displayName() function returns the name property of the use
 
 #### Short Circuit Evaluation React - Basics
 
+- render the component or hide the component
+
 ```js
 import Starter from "./tutorial/03-conditional-rendering/starter/04-short-circuit-overview.jsx"
 ```
@@ -1359,8 +1361,8 @@ Setup Challenge :
 - create two state values
 - one "falsy" and second "truthy"
 - setup both conditions for each operator in JSX - hint {}
-  - || OR
-  - && AND
+  - || **OR**
+  - && **AND**
 
 ```js
 import { useState } from "react"
@@ -1415,6 +1417,8 @@ if (!val) {
   console.log("val is falsy")
 }
 ```
+
+- in console : "val is falsy"
 
 You can also use the ! operator to convert a value to a boolean and negate it:
 
@@ -1473,6 +1477,10 @@ const Alert = () => {
 export default ToggleChallenge
 ```
 
+- if the value of showAlert is `false` then it truns into `true`
+- if the value of showAlert is `true` then it truns into `false`
+- its repet itself in everytime
+
 Improvements
 
 ```js
@@ -1480,6 +1488,8 @@ Improvements
 ```
 
 #### Ternary Operator
+
+- everytime rendering different different data .
 
 Vanilla JS
 
@@ -1853,6 +1863,8 @@ import Starter from "./tutorial/06-forms/starter/01-controlled-inputs.jsx"
 - add value and onChange to each input
 - setup onSubmit
 
+**01-controlled-inputs.jsx**
+
 ```js
 import { useState } from "react"
 const ControlledInputs = () => {
@@ -1905,6 +1917,25 @@ const ControlledInputs = () => {
 }
 export default ControlledInputs
 ```
+
+- here **value** of `id= "name"` input is _name_ and **value** of `id= "email"` is _email_ . Which is empty string.
+  - ```
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    ```
+- we pass **onChange** event property inside of , we pass **event** obj and target the value of input and change the set of it .
+  - `onChange={(e) => setName(e.target.value)}`
+  - ```js
+    <input
+      type='name'
+      className='form-input'
+      id='name'
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
+    ```
+- we pass **handleSubmit** function inside **onSubmit** event property of form .
+  - `<form className='form' onSubmit={handleSubmit}>`
 
 #### User Challenge
 
