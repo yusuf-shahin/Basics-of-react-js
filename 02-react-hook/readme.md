@@ -7,6 +7,7 @@
   - [Cleanup Function](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#cleanup-function)
 - [Multiple Returns (**Conditional Rendering**)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-returns---basics)
   - [Short Chrcuit Evaution](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#short-circuit-evaluation-optional)
+- [Controlled Inputs - Setup](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#controlled-inputs---setup)
 
 ### General Rules of Hooks
 
@@ -1819,7 +1820,7 @@ console.log(person?.name?.first)
 
 Now, if the person.name is null or undefined, this code will simply return undefined instead of throwing an error. This make the code more robust and readable.
 
-#### Controlled Inputs - Setup
+### Controlled Inputs - Setup
 
 ```js
 import Starter from "./tutorial/06-forms/starter/01-controlled-inputs.jsx"
@@ -1923,7 +1924,7 @@ export default ControlledInputs
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     ```
-- we pass **onChange** event property inside of , we pass **event** obj and target the value of input and change the set of it .
+- we pass **onChange** event property inside of input, we pass **event** obj and target the value of input and change the set of it .
   - `onChange={(e) => setName(e.target.value)}`
   - ```js
     <input
@@ -1936,6 +1937,117 @@ export default ControlledInputs
     ```
 - we pass **handleSubmit** function inside **onSubmit** event property of form .
   - `<form className='form' onSubmit={handleSubmit}>`
+    **instead of that we also do this on button**
+  - ` <button onClick={handleSubmit} className='btn btn-block' type='submit'>`
+
+**in browser we get that**
+![Relative](./src/assets/WhatsApp%20Image%202024-09-25%20at%2010.10.13%20PM.jpeg)
+
+#### Simple CRUD operation :-
+
+```js
+import { useState } from "react"
+const UserChallenge = () => {
+  const [name, setName] = useState("")
+  const [users, setUsers] = useState([])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    console.log(name)
+    //* if no value, nothing happened
+    if (!name) return
+
+    //* if value, setup new user and add to current users
+    const fakeId = Date.now()
+    // console.log(fakeId)
+
+    // const newUser = { id: fakeId, name: name };
+    const newUser = { id: fakeId, name } // ----> name is a state
+    //# example :- newUser = {id: 1 , name : "yusuf"}
+
+    const updatedUsers = [...users, newUser]
+    setUsers(updatedUsers) // ---> complete array
+    // [{id: 1 , name : "yusuf"}]
+    // user === [{id: 1 , name : "yusuf"}]
+    // set back to empty
+    setName("")
+  }
+
+  //* remove user from array
+  const removeUser = (id) => {
+    const updatedUsers = users.filter((person) => person.id !== id)
+    setUsers(updatedUsers)
+  }
+  return (
+    <div>
+      <form className='form' onSubmit={handleSubmit}>
+        <h4>Add User</h4>
+        <div className='form-row'>
+          <label htmlFor='name' className='form-label'>
+            name
+          </label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            type='text'
+            className='form-input'
+            id='name'
+          />
+        </div>
+
+        <button type='submit' className='btn btn-block'>
+          submit
+        </button>
+      </form>
+      {/* render users below */}
+      <h2>users</h2>
+
+      {users.map((user) => {
+        return (
+          <div key={user.id}>
+            <h4>{user.name}</h4>
+            <button onClick={() => removeUser(user.id)} className='btn'>
+              remove
+            </button>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+```
+
+- simple CRUD operation .
+- **make this CRUD operation using pure JS :-**
+
+  - ```js
+    let user = []
+    let newUser = { id: 1, name: "yusuf" }
+    let updateUser = [...user, newUser]
+    user = updateUser
+    // user is updated
+    newUser = { id: 2, name: "shahin" }
+
+    upDateUser = [...user, newUser]
+
+    user = upDateUser
+    //user is also updated
+
+    newUser = { id: 3, name: "tushar" }
+    upDateUser = [...user, newUser]
+
+    console.log(upDateUser)
+
+    const removeUser = (id) => {
+      let userID = upDateUser.filter((mrUser) => {
+        return mrUser.id !== id
+      })
+      return userID
+    }
+
+    console.log(removeUser(2))
+    ```
 
 #### User Challenge
 
@@ -1966,11 +2078,14 @@ const UserChallenge = () => {
     console.log(name)
     // if no value, do nothing
     if (!name) return
-    // if value, setup new user and add to current users
+
+    // if value, setup new user and add to current users , that means here we contract the user
     const fakeId = Date.now()
     console.log(fakeId)
     // const newUser = { id: fakeId, name: name };
     const newUser = { id: fakeId, name }
+
+    // destructer the array add newUser
     const updatedUsers = [...users, newUser]
     setUsers(updatedUsers)
     // set back to empty
@@ -2022,6 +2137,8 @@ export default UserChallenge
 ```
 
 #### Multiple Inputs
+
+- set up one state value for multiple inputs.
 
 ```js
 import Starter from "./tutorial/06-forms/starter/03-multiple-inputs.jsx"

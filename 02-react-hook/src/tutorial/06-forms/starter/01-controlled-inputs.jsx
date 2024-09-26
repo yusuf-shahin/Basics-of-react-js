@@ -7,6 +7,8 @@ const ControlledInputs = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(name, email)
+    setName("")
+    setEmail("")
   }
 
   return (

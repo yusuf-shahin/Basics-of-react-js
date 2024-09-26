@@ -1,26 +1,36 @@
 import { useState } from "react"
-import { data } from "../../../data"
 const UserChallenge = () => {
   const [name, setName] = useState("")
   const [users, setUsers] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // do something
+
     console.log(name)
-    // if no value, do nothing
+    //* if no value, nothing happened
     if (!name) return
-    // if value, setup new user and add to current users
+
+    //* if value, setup new user and add to current users
     const fakeId = Date.now()
-    console.log(fakeId)
+    // console.log(fakeId)
+
     // const newUser = { id: fakeId, name: name };
-    const newUser = { id: fakeId, name }
+    const newUser = { id: fakeId, name } // ----> name is a state
+    //# example :- newUser = {id: 1 , name : "yusuf"}
+
     const updatedUsers = [...users, newUser]
-    setUsers(updatedUsers)
+    setUsers(updatedUsers) // ---> complete array
+    // [{id: 1 , name : "yusuf"}]
+    // user === [{id: 1 , name : "yusuf"}]
     // set back to empty
     setName("")
   }
 
+  //* remove user from array
+  const removeUser = (id) => {
+    const updatedUsers = users.filter((person) => person.id !== id)
+    setUsers(updatedUsers)
+  }
   return (
     <div>
       <form className='form' onSubmit={handleSubmit}>
