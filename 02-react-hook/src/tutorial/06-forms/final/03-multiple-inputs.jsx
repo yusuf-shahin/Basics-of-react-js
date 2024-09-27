@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useState } from "react"
 const MultipleInputs = () => {
   const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+    name: "",
+    email: "",
+    password: "",
+  })
 
   const handleChange = (e) => {
-    console.log(e.target.name);
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+    console.log(e.target.name)
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {}
   return (
     <div>
       <form className='form' onSubmit={handleSubmit}>
@@ -64,6 +64,6 @@ const MultipleInputs = () => {
         </button>
       </form>
     </div>
-  );
-};
-export default MultipleInputs;
+  )
+}
+export default MultipleInputs

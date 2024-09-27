@@ -8,6 +8,9 @@
 - [Multiple Returns (**Conditional Rendering**)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-returns---basics)
   - [Short Chrcuit Evaution](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#short-circuit-evaluation-optional)
 - [Controlled Inputs - Setup](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#controlled-inputs---setup)
+  - [CRUD Operation](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#simple-crud-operation--)
+  - [Multiple Inputs](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-inputs)
+  - [FormData API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#formdata-api)
 
 ### General Rules of Hooks
 
@@ -1945,6 +1948,15 @@ export default ControlledInputs
 
 #### Simple CRUD operation :-
 
+**Simple things**
+
+- first we type, in our **input** .
+- before typing , the value of our input is **name**
+- _value_ of name === "" as `const [name, setName] = useState("")`
+- we change the value of **name** by `onChange()` method
+- `onChange={(e) => setName(e.target.value)}`
+- we writte _yusuf_ , so the _value_ of name === "yusuf"
+
 ```js
 import { useState } from "react"
 const UserChallenge = () => {
@@ -1955,7 +1967,7 @@ const UserChallenge = () => {
     e.preventDefault()
 
     console.log(name)
-    //* if no value, nothing happened
+    //* if no value, value === " nothing happened
     if (!name) return
 
     //* if value, setup new user and add to current users
@@ -1967,8 +1979,12 @@ const UserChallenge = () => {
     //# example :- newUser = {id: 1 , name : "yusuf"}
 
     const updatedUsers = [...users, newUser]
+    // set the value of set user
     setUsers(updatedUsers) // ---> complete array
+    // or setUsers([...users, newUser])
     // [{id: 1 , name : "yusuf"}]
+
+    // mow
     // user === [{id: 1 , name : "yusuf"}]
     // set back to empty
     setName("")
@@ -1978,6 +1994,8 @@ const UserChallenge = () => {
   const removeUser = (id) => {
     const updatedUsers = users.filter((person) => person.id !== id)
     setUsers(updatedUsers)
+    // or
+    // setUsers(users.filter((person) => person.id !== id))
   }
   return (
     <div>
@@ -2005,6 +2023,7 @@ const UserChallenge = () => {
 
       {users.map((user) => {
         return (
+          // every obj has its indivitual id
           <div key={user.id}>
             <h4>{user.name}</h4>
             <button onClick={() => removeUser(user.id)} className='btn'>
@@ -2159,7 +2178,15 @@ const MultipleInputs = () => {
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
+    // setUser({ ...user, name: e.target.value, email: e.target.value ,
+    // password: e.target.value })
   }
+
+  // let appState = "loading"
+  // let app = {
+  //   [appState]: true,
+  // }
+  // console.log(app) //# {loading: true}
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -2221,6 +2248,24 @@ const MultipleInputs = () => {
 }
 export default MultipleInputs
 ```
+
+- inside **handleChange** function , `setUser({ ...user, [e.target.name]: e.target.value })`
+
+  - `[e.target.name]: e.target.value` how that things basically work?
+  - ```js
+    let appState = "loading"
+
+    let app = {
+      [appState]: true,
+    }
+    console.log(app) //# {loading: true}
+    ```
+
+- [appState] === loading
+- [varible] === value
+
+**in browser we see that**
+![Relative](./src/assets/WhatsApp%20Image%202024-09-27%20at%2012.40.03%20PM.jpeg)
 
 #### Other Inputs
 
