@@ -2178,6 +2178,7 @@ const MultipleInputs = () => {
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
+    // [e.target.name] ---> name="name"
     // setUser({ ...user, name: e.target.value, email: e.target.value ,
     // password: e.target.value })
   }
@@ -2426,7 +2427,7 @@ console.log(obj)
 
 The reset() method is a built-in method in HTML that can be used to reset all form controls to their initial values. When this method is called on a form element, it will clear any user-entered data and reset the values of all form elements to their default values.
 
-#### useRef
+### useRef
 
 ```js
 import Starter from "./tutorial/07-useRef/starter/01-useRef-basics.jsx"
@@ -2498,7 +2499,7 @@ const UseRefBasics = () => {
 export default UseRefBasics
 ```
 
-#### Custom Hooks
+### Custom Hooks
 
 ```js
 import Starter from "./tutorial/08-custom-hooks/starter/01-toggle.jsx"
@@ -2616,7 +2617,7 @@ const useFetch = (url) => {
 export default useFetch
 ```
 
-#### Context API
+### Context API
 
 ```js
 import Starter from "./tutorial/09-context-api/starter"
@@ -2735,7 +2736,7 @@ npm install && npm run dev
 - access in App.jsx
 - log result
 
-#### useReducer
+### useReducer
 
 ```js
 import Starter from "./tutorial/10-useReducer/starter/01-useReducer.jsx"
@@ -2818,7 +2819,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-#### Remove useState
+### Remove useState
 
 ```js
 import { useState, useReducer } from "react"
@@ -2890,7 +2891,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-#### First Dispatch
+### First Dispatch
 
 ```js
 import { useState, useReducer } from "react"
@@ -2958,7 +2959,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-#### Actions and Default State
+### Actions and Default State
 
 ```js
 import { useReducer } from "react"
@@ -3029,7 +3030,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-#### Reset List Challenge
+### Reset List Challenge
 
 - setup a dispatch and handle action in the reducer
 
@@ -3106,7 +3107,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-#### Remove Person Challenge
+### Remove Person Challenge
 
 - remove single person
 - hint extra property in the object
@@ -3321,7 +3322,7 @@ const removePerson = (id) => {
 
 - pass it down to List and Person
 
-#### UseCallback
+### UseCallback
 
 The useCallback hook is a hook in React that allows you to memoize a function. It takes two arguments: the first is the function you want to memoize, and the second is an array of dependencies. The hook will return a memoized version of the function that only changes if one of the values in the dependency array changes.
 
@@ -3377,7 +3378,7 @@ const FetchData = () => {
 }
 ```
 
-#### useMemo
+### useMemo
 
 The useMemo hook is a hook in React that allows you to memoize a value. It takes two arguments: the first is a function that returns the value you want to memoize, and the second is an array of dependencies. The hook will return the memoized value that will only change if one of the values in the dependency array changes.
 
@@ -3421,7 +3422,7 @@ const slowFunction = () => {
 export default slowFunction
 ```
 
-#### useTransition
+### useTransition
 
 [JS Nuggets - Array.from](https://www.youtube.com/watch?v=zg1Bv4xubwo&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=11&t=666s)
 
@@ -3482,7 +3483,7 @@ const LatestReact = () => {
 export default LatestReact
 ```
 
-#### Suspense API
+### Suspense API
 
 The Suspense API is a feature in React that allows you to manage the loading state of your components. It provides a way to "suspend" rendering of a component until some data has been fetched, and display a fallback UI in the meantime. This makes it easier to handle asynchronous data loading and provide a smooth user experience in your React application.
 
