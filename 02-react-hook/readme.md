@@ -11,6 +11,14 @@
   - [CRUD Operation](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#simple-crud-operation--)
   - [Multiple Inputs](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-inputs)
   - [FormData API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#formdata-api)
+- [useRef](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useref)
+- [Custom Hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#custom-hooks)
+- [Context API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#context-api)
+- [useReducer](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usereducer)
+- [Remove useState](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#remove-usestate)
+- [Reset List Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#reset-list-challenge)
+- [Remove Person Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#remove-person-challenge)
+- [Lower State Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#remove-person-challenge)
 
 ### General Rules of Hooks
 
@@ -2463,8 +2471,10 @@ const UseRefBasics = () => {
   }
 
   useEffect(() => {
+    //
     if (!isMounted.current) {
       isMounted.current = true
+      // value of isMounted.current === true
       return
     }
     console.log("re-render")
@@ -2498,6 +2508,18 @@ const UseRefBasics = () => {
 
 export default UseRefBasics
 ```
+
+**If**
+
+- `const refContainer = useRef(null)`
+- userRef() contain a obj , which have a only one propery. That is current
+- we set **refContainer()** as **_ref_** in our input `<input type="text" id="name" ref={refContainer} />`
+- what happen ?
+- ```js
+  useEffect(() => {
+    console.log(refContainer) //# {current: input#name.form-input}
+  })
+  ```
 
 ### Custom Hooks
 
@@ -3211,7 +3233,7 @@ export default ReducerBasics
 
 #### Performance
 
-#### Lower State / Push The State Down
+### Lower State / Push The State Down
 
 ```js
 import Starter from "./tutorial/11-performance/starter/01-lower-state"
@@ -3289,7 +3311,7 @@ const Form = ({ addPerson }) => {
 export default Form
 ```
 
-#### React.memo()
+### React.memo()
 
 ```js
 import Starter from "./tutorial/11-performance/starter/03-hooks"

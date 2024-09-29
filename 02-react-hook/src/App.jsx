@@ -1,13 +1,9 @@
-import UserChallenge from "./tutorial/06-forms/starter/02-user-challenge"
-import ControlledInputs from "./tutorial/06-forms/starter/01-controlled-inputs"
-import MultipleInputs from "./tutorial/06-forms/starter/03-multiple-inputs"
+import ToggleExample from "./tutorial/08-custom-hooks/final/01-toggle"
 
 function App() {
   return (
     <div className='container'>
-      {/* <ControlledInputs /> */}
-      {/* <UserChallenge /> */}
-      <MultipleInputs />
+      <ToggleExample />
     </div>
   )
 }
