@@ -2645,13 +2645,13 @@ export default useFetch
 import Starter from "./tutorial/09-context-api/starter"
 ```
 
-Challenge
+**Challenge**
 
 - create three components and nest them in such way :
 
-- Navbar.jsx
+- Navbar.jsx --->
 
-  - NavLinks.jsx (nested in Navbar)
+  - NavLinks.jsx (nested in Navbar) --->
     - UserContainer.jsx (nested in NavLinks)
 
 - import Navbar.jsx in App.jsx (remove container - CSS)
@@ -2667,7 +2667,9 @@ Challenge
 - extra challenge
 - if user null, in UserContainer display <p>please login</p>
 
-**First we pass data from parent component to child component by _prop drilling_**
+**First we pass data from parent component to child component by** --->
+
+- **_prop drilling_:**
 
 Navbar.jsx
 
@@ -2735,13 +2737,17 @@ const UserContainer = ({ user, logout }) => {
 export default UserContainer
 ```
 
+- here we passing data by prop drilling .
+
 **Passing Data by Context API**
 
-- **Parent component :-** First we import `createContext` from React .
+- We directly pass data from **Navbar.jsx** ---> to **UserContainer.jsx** by Context API .
 
-  - It is a function which is provide two things: 1. Provider , 2. Consumer .
-  - Store this `createContext` in a value and export it :- `export const navbarContext = createContext()`
-  - warp the container by **navbarContext** and pass the **props** as obj value .
+- **Parent component :-** First we import `createContext` function from _react_ .
+
+  - It is a function which is return two property: 1. Provider , 2. Consumer .
+  - Store this `createContext()` in a value and export it. Example :- `export const navbarContext = createContext()`
+  - warp the container by **navbarContext.Provider** and pass the **props** as obj value .
   - ```jsx
     <navbarContext.Provider value={{ user, logout }}>
       <nav className='navbar'>
@@ -2751,49 +2757,87 @@ export default UserContainer
     </navbarContext.Provider>
     ```
 
-  - Navbar.jsx :-
+**Navbar.jsx :-**
 
-  ```js
-   import { useState, createContext } from "react"
-   import NavLinks from "./NavLinks"
+```js
+import { useState, createContext } from "react"
+import NavLinks from "./NavLinks"
 
-   export const navbarContext = createContext()
-   console.log(navbarContext) //# obj which return two things --> 1
-   Provider , 2. Consumer
+// export this to UserContainer.jsx
+export const navbarContext = createContext()
+console.log(navbarContext) //# obj which return two things --> 1  Provider , 2. Consumer
 
-   const Navbar = () => {
-   const [user, setUser] = useState({ name: "bob" })
-   const logout = () => {
-   setUser(null)
+const Navbar = () => {
+  const [user, setUser] = useState({ name: "bob" })
+  const logout = () => {
+    setUser(null)
   }
+
   return (
-    <navbarContext.Provider value={{user, logout}}>
+    <navbarContext.Provider value={{ user, logout }}>
       <nav className='navbar'>
         <h5>CONTEXT API</h5>
         <NavLinks />
       </nav>
     </navbarContext.Provider>
   )
-  }
-  export default Navbar
-  ```
+}
+
+export default Navbar
+```
 
 - **Child Component** :- import **useContext()** from _"react"_ and **NavbarContext** from _"./Navbar"_
-  -
+- value of **NavbarContext** is a obj .
+- pass this **NavbarContext** as parameter of **useContext()** . Now can receive the value of **NavbarContext** in component .
+- `const { user, logout } = useContext(NavbarContext)`
+
+**UserContainer.jsx**
 
 ```js
+import { useContext } from "react"
+import { NavbarContext } from "./Navbar"
+
+const UserContainer = () => {
+  const value = useContext(NavbarContext)
+  console.log(value) //# obj which hold property which gonna pass from
+
+  const { user, logout } = value
+
+  // const { user, logout } = useContext(NavbarContext)
+
+  return (
+    <div className='user-container'>
+      {user ? (
+        <>
+          <p>Hello There, {user.name}</p>
+          <button type='button' className='btn' onClick={logout}>
+            logout
+          </button>
+        </>
+      ) : (
+        <p>Please Login</p>
+      )}
+    </div>
+  )
+}
+export default UserContainer
+```
+
+**Custom Hook** in Context API
+
+- provide the **useContext()** form parent component :
+
+**Navbar.jsx**
+
+```jsx
 import { createContext } from "react"
 import { useContext } from "react"
 import { useState } from "react"
 import NavLinks from "./NavLinks"
 
 export const NavbarContext = createContext()
-// returns two components
-// Provider - wrap return in Parent Component
-// Consumer - replaced by useContext() hook
 
 // custom hook
-
 export const useAppContext = () => useContext(NavbarContext)
 
 const Navbar = () => {
@@ -2811,6 +2855,30 @@ const Navbar = () => {
   )
 }
 export default Navbar
+```
+
+**UserContsiner.jsx :-**
+
+```jsx
+import { useAppContext } from "./Navbar"
+const UserContainer = () => {
+  const { user, logout } = useAppContext()
+  return (
+    <div className='user-container'>
+      {user ? (
+        <>
+          <p>Hello There, {user.name.toUpperCase()}</p>
+          <button type='button' className='btn' onClick={logout}>
+            logout
+          </button>
+        </>
+      ) : (
+        <p>Please Login</p>
+      )}
+    </div>
+  )
+}
+export default UserContainer
 ```
 
 #### Setup Global Context

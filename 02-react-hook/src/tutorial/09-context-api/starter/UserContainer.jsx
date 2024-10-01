@@ -2,16 +2,19 @@ import { useContext } from "react"
 import { NavbarContext } from "./Navbar"
 
 const UserContainer = () => {
-  const value = useContext(NavbarContext)
-  console.log(value) //# obj which hold property which gonna pass from
+  console.log(useContext)
 
-  const { user, logout } = value
+  // const value = useContext(NavbarContext)
+  // console.log(value) //# obj which hold property which gonna pass from
+
+  // const { user, logout } = value
+  const { user, logout } = useContext(NavbarContext)
 
   return (
     <div className='user-container'>
       {user ? (
         <>
-          <p>Hello There,</p>
+          <p>Hello There, {user.name} </p>
           <button type='button' className='btn' onClick={logout}>
             logout
           </button>
