@@ -12,8 +12,13 @@
   - [Multiple Inputs](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-inputs)
   - [FormData API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#formdata-api)
 - [useRef](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useref)
+  - [Difference between useState and useRef hook]
 - [Custom Hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#custom-hooks)
 - [Context API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#context-api)
+  - [Prop Drilling]
+  - [Context API]
+  - [Custom Hook (Context API)]
+  - [Setup Global Context]
 - [useReducer](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usereducer)
 - [Remove useState](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#remove-usestate)
 - [Reset List Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#reset-list-challenge)
@@ -2445,6 +2450,128 @@ import Starter from "./tutorial/07-useRef/starter/01-useRef-basics.jsx"
 - preserves the value between renders
 - target DOM nodes/elements
 
+**Basically**
+
+- **useRef** hook is return a obj, and the property of this obj is _current_ .
+- we can store this in varible , and pass this as **ref**, which is avelible in JSX
+- Example :-
+
+```js
+const refContainer = useRef(null)
+
+ <h1 ref={refContainer}>Hello world</h1>
+  <button
+    className='btn'
+    onClick={() => (refContainer.current.textContent = "Hello People")}
+  >
+    change
+  </button>
+```
+
+- here we derectly controll the DOM element by using **useRef** hook
+
+#### Difference between **useState** and **useRef** hook :-
+
+**useRef**
+
+```js
+import { useEffect, useRef} from "react"
+
+const UseRefBasics = () => {
+  const [value, setValue] = useState(0)
+
+  const refContainer = useRef(null)
+  // console.log(refContainer) //# {current: null}
+
+  //? userRef() contain a obj , which have a only one propery. That is current
+
+  // useEffect(() => {
+  //   console.log(refContainer) //# {current: input#name.form-input}
+  // })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(refContainer.current.value)
+  }
+
+  return (
+    <div>
+      <form className='form' onSubmit={handleSubmit}>
+        <div className='form-row'>
+          <label htmlFor='name' className='form-label'>
+            Name
+          </label>
+          <input
+            type='text'
+            id='name'
+            ref={refContainer}
+            className='form-input'
+          />
+        </div>
+      </form>
+  )
+}
+
+export default UseRefBasics
+```
+
+- we dont set any value in here.
+- here we pass the **refContainer** as **_ref_** of input , `<input type="text" id="name" ref={refContainer} />`
+- using this we grab the value of input in console.
+- `console.log(refContainer.current.value)`
+
+**In browser we see that**
+![Relative](./src/assets/WhatsApp%20Image%202024-10-02%20at%2010.07.06%20AM.jpeg)
+
+**useState**
+
+```js
+import { useEffect, useRef, useState } from "react"
+
+const UseRefBasics = () => {
+  // const refContainer = useRef(null)
+
+  const [name, setName] = useState("")
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // console.log(refContainer.current.value)
+    console.log(name)
+  }
+
+  return (
+    <div>
+      <form className='form' onSubmit={handleSubmit}>
+        <div className='form-row'>
+          <label htmlFor='name' className='form-label'>
+            Name
+          </label>
+          <input
+            type='text'
+            id='name'
+            className='form-input'
+            // ref={refContainer}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <button type='submit' className='btn btn-block'>
+          submit
+        </button>
+      </form>
+    </div>
+  )
+}
+export default UseRefBasics
+```
+
+- here we set the value of input === name , which is empty string
+- using **onChange()** we change the state of name .
+- then we console the value of name .
+
+**in browser we see that**
+![Relative](./src/assets/WhatsApp%20Image%202024-10-02%20at%2010.07.06%20AM.jpeg)
+
 ```js
 import { useEffect, useRef, useState } from "react"
 
@@ -2465,9 +2592,9 @@ const UseRefBasics = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(refContainer.current)
+    // console.log(refContainer.current)
     const name = refContainer.current.value
-    console.log(name)
+    // console.log(name)
   }
 
   useEffect(() => {
@@ -2509,11 +2636,10 @@ const UseRefBasics = () => {
 export default UseRefBasics
 ```
 
-**If**
-
-- `const refContainer = useRef(null)`
-- userRef() contain a obj , which have a only one propery. That is current
-- we set **refContainer()** as **_ref_** in our input `<input type="text" id="name" ref={refContainer} />`
+- **useRef()** hook return a obj with current property.
+- **useRrf("yusuf")** ---> `curremt: "yusuf"`
+- we can store it in a varible, `const refContainer = useRef(null)`
+- we set **refContainer** as **_ref_** in our input `<input type="text" id="name" ref={refContainer} />`
 - what happen ?
 - ```js
   useEffect(() => {
@@ -2669,7 +2795,7 @@ import Starter from "./tutorial/09-context-api/starter"
 
 **First we pass data from parent component to child component by** --->
 
-- **_prop drilling_:**
+#### Passing Data by Prop Drilling:
 
 Navbar.jsx
 
@@ -2739,7 +2865,7 @@ export default UserContainer
 
 - here we passing data by prop drilling .
 
-**Passing Data by Context API**
+#### Passing Data by **Context API**
 
 - We directly pass data from **Navbar.jsx** ---> to **UserContainer.jsx** by Context API .
 
@@ -2823,9 +2949,9 @@ const UserContainer = () => {
 export default UserContainer
 ```
 
-**Custom Hook** in Context API
+#### **Custom Hook** in Context API
 
-- provide the **useContext()** form parent component :
+- provide the **useContext() Hook** form parent component :
 
 **Navbar.jsx**
 
@@ -2833,9 +2959,10 @@ export default UserContainer
 import { createContext } from "react"
 import { useContext } from "react"
 import { useState } from "react"
+// component
 import NavLinks from "./NavLinks"
 
-export const NavbarContext = createContext()
+const NavbarContext = createContext()
 
 // custom hook
 export const useAppContext = () => useContext(NavbarContext)
