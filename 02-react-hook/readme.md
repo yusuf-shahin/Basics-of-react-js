@@ -1,29 +1,34 @@
 ## Table of Content
 
-- General Rules of Hooks
-- Initial Render and Re-Renders
+- [General Rules of Hooks](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#general-rules-of-hooks)
+- [Initial Render and Re-Renders](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#initial-render-and-re-renders)
 - [useState hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usestate-basics)
 - [useEffect hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useeffect-basics)
   - [Cleanup Function](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#cleanup-function)
-- [Multiple Returns (**Conditional Rendering**)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-returns---basics)
+- [Multiple Returns (Conditional Rendering)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-returns---basics)
   - [Short Chrcuit Evaution](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#short-circuit-evaluation-optional)
 - [Controlled Inputs - Setup](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#controlled-inputs---setup)
   - [CRUD Operation](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#simple-crud-operation--)
   - [Multiple Inputs](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-inputs)
   - [FormData API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#formdata-api)
 - [useRef](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useref)
-  - [Difference between useState and useRef hook]
+  - [Difference between useState and useRef hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#difference-between-usestate-and-useref-hook--)
 - [Custom Hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#custom-hooks)
 - [Context API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#context-api)
-  - [Prop Drilling]
-  - [Context API]
-  - [Custom Hook (Context API)]
-  - [Setup Global Context]
+  - [Prop Drilling](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#passing-data-by-prop-drilling)
+  - [Context API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#passing-data-by-context-api)
+  - [Custom Hook (Context API)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#custom-hook-in-context-api)
+  - [Setup Global Context](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#setup-global-context)
 - [useReducer](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usereducer)
 - [Remove useState](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#remove-usestate)
 - [Reset List Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#reset-list-challenge)
 - [Remove Person Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#remove-person-challenge)
-- [Lower State Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#remove-person-challenge)
+- [Lower State / Push The State Down](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#lower-state--push-the-state-down)
+- [React.memo()](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#reactmemo)
+- [useCallback](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usecallback)
+- [useMemo](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usememo)
+- [useTransition](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usetransition)
+- [Suspense API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#suspense-api)
 
 ### General Rules of Hooks
 
@@ -3078,9 +3083,17 @@ const ReducerBasics = () => {
     let newPeople = people.filter((person) => person.id !== id)
     setPeople(newPeople)
   }
+
+  // reset
   const resetList = () => {
     setPeople(data)
   }
+
+  // clear
+  const clearList = () => {
+    setPeople([])
+  }
+
   return (
     <div>
       {people.map((person) => {
