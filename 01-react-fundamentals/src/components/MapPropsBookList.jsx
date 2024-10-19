@@ -9,7 +9,7 @@ const books = [
     title: "Atomic Habits",
     img: "https://images-na.ssl-images-amazon.com/images/I/81YkqyaFVEL._AC_UL600_SR600,400_.jpg",
   },
-];
+]
 
 // function MapPropsBookList() {
 //   return (
@@ -79,17 +79,18 @@ const books = [
 function MapPropsBookList() {
   return (
     <section className='booklist'>
-      {books.map((book, index) => {
+      {/* {books.map((book, index) => {
         return <Book {...book} key={index} />;
-      })}
+      })} */}
+      <h1>hello world</h1>, <h1>hello world</h1>
     </section>
-  );
+  )
 }
 
 const Book = (props) => {
   // here props is also obj.
   // const props = {};
-  const { img, title, author } = props;
+  const { img, title, author } = props
 
   return (
     <article className='book'>
@@ -97,7 +98,7 @@ const Book = (props) => {
       <h2>{title}</h2>
       <h4>{author} </h4>
     </article>
-  );
-};
+  )
+}
 
-export default MapPropsBookList;
+export default MapPropsBookList

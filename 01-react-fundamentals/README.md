@@ -795,6 +795,8 @@ const Book = (props) => {
 
 **refactor**
 
+- nothing will render
+
 ```js
 //* create  a array of obj
 const books = [
