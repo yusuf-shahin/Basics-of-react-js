@@ -1,34 +1,34 @@
 ## Table of Content
 
-- [General Rules of Hooks](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#general-rules-of-hooks)
-- [Initial Render and Re-Renders](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#initial-render-and-re-renders)
-- [useState hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usestate-basics)
-- [useEffect hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useeffect-basics)
-  - [Cleanup Function](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#cleanup-function)
-- [Multiple Returns (Conditional Rendering)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-returns---basics)
-  - [Short Chrcuit Evaution](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#short-circuit-evaluation-optional)
-- [Controlled Inputs - Setup](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#controlled-inputs---setup)
-  - [CRUD Operation](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#simple-crud-operation--)
-  - [Multiple Inputs](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#multiple-inputs)
-  - [FormData API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#formdata-api)
-- [useRef](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#useref)
-  - [Difference between useState and useRef hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#difference-between-usestate-and-useref-hook--)
-- [Custom Hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#custom-hooks)
-- [Context API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#context-api)
-  - [Prop Drilling](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#passing-data-by-prop-drilling)
-  - [Context API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#passing-data-by-context-api)
-  - [Custom Hook (Context API)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#custom-hook-in-context-api)
-  - [Setup Global Context](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#setup-global-context)
-- [useReducer](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usereducer)
-- [Remove useState](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#remove-usestate)
-- [Reset List Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#reset-list-challenge)
-- [Remove Person Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#remove-person-challenge)
-- [Lower State / Push The State Down](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#lower-state--push-the-state-down)
-- [React.memo()](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#reactmemo)
-- [useCallback](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usecallback)
-- [useMemo](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usememo)
-- [useTransition](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#usetransition)
-- [Suspense API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-hook#suspense-api)
+- [General Rules of Hooks](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#general-rules-of-hooks)
+- [Initial Render and Re-Renders](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#initial-render-and-re-renders)
+- [useState hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#usestate-basics)
+- [useEffect hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#useeffect-basics)
+  - [Cleanup Function](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#cleanup-function)
+- [Multiple Returns (Conditional Rendering)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#multiple-returns---basics)
+  - [Short Chrcuit Evaution](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#short-circuit-evaluation-optional)
+- [Controlled Inputs - Setup](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#controlled-inputs---setup)
+  - [CRUD Operation](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#simple-crud-operation--)
+  - [Multiple Inputs](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#multiple-inputs)
+  - [FormData API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#formdata-api)
+- [useRef](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#useref)
+  - [Difference between useState and useRef hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#difference-between-usestate-and-useref-hook--)
+- [Custom Hook](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#custom-hooks)
+- [Context API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#context-api)
+  - [Prop Drilling](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#passing-data-by-prop-drilling)
+  - [Context API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#passing-data-by-context-api)
+  - [Custom Hook (Context API)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#custom-hook-in-context-api)
+  - [Setup Global Context](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#setup-global-context)
+- [useReducer](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#usereducer)
+- [Remove useState](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#remove-usestate)
+- [Reset List Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#reset-list-challenge)
+- [Remove Person Challenge](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#remove-person-challenge)
+- [Lower State / Push The State Down](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#lower-state--push-the-state-down)
+- [React.memo()](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#reactmemo)
+- [useCallback](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#usecallback)
+- [useMemo](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#usememo)
+- [useTransition](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#usetransition)
+- [Suspense API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#suspense-api)
 
 ### General Rules of Hooks
 
@@ -2451,17 +2451,40 @@ The reset() method is a built-in method in HTML that can be used to reset all fo
 import Starter from "./tutorial/07-useRef/starter/01-useRef-basics.jsx"
 ```
 
-- DOES NOT TRIGGER RE-RENDER
+- DOES NOT TRIGGER RE-RENDER (Basically it is completely seperate from our component render cycle)
 - preserves the value between renders
 - target DOM nodes/elements
+
+![Relative](./src/assets/WhatsApp%20Image%202024-10-29%20at%209.00.25%20AM.jpeg)
 
 **Basically**
 
 - **useRef** hook is return a obj, and the property of this obj is _current_ .
-- we can store this in varible , and pass this as **ref**, which is avelible in JSX
+
+```jsx
+const ref = useRef(0)
+console.log(ref) // {current : 0}
+```
+
+- we can store any property inside useRef .
 - Example :-
 
-```js
+```jsx
+const refContainer = useRef(null)
+console.log(refContainer) //# {current : null}
+<h1 ref={refContainer}>Hello world</h1>
+<button onClick={() => console.log(refContainer)} >click</button>
+```
+
+- initially the value of current property is `null`
+- if we click the button, in console we find that => `{current: h1}`
+- if we write this, `onClick={() => console.log(refContainer.current)}` in console we find `<h1>Hello world</h1>`
+
+![Relative](./src/assets/WhatsApp%20Image%202024-10-29%20at%208.38.34%20AM.jpeg)
+
+**Now we have full excess of `h1` property, we can change the value of this :-**
+
+```jsx
 const refContainer = useRef(null)
 
  <h1 ref={refContainer}>Hello world</h1>

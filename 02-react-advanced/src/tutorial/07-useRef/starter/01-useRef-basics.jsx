@@ -4,13 +4,13 @@ const UseRefBasics = () => {
   const [value, setValue] = useState(0)
 
   const refContainer = useRef(null)
-  // console.log(refContainer) //# {current: null}
+  console.log(refContainer) //# {current: null}
 
   //? userRef() contain a obj , which have a only one propery. That is current
 
   useEffect(() => {
     // console.log(refContainer) //# {current: input#name.form-input}
-    console.log(refContainer.current.innerText)
+    // console.log(refContainer.current.innerText)
   })
 
   // start
@@ -19,8 +19,8 @@ const UseRefBasics = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // const name = refContainer.current.value
-    // console.log(name)
+    const innerValue = refContainer.current.value
+    setName(innerValue)
     // console.log(name)
   }
 
@@ -35,28 +35,41 @@ const UseRefBasics = () => {
             type='text'
             id='name'
             className='form-input'
-            // ref={refContainer}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            ref={refContainer}
+            // value={name}
+            // onChange={(e) => setName(e.target.value)}
           />
         </div>
         <button type='submit' className='btn btn-block'>
           submit
         </button>
       </form>
+      <h3>Hello , my name is {name}</h3>
       {/* <h1>value : {value}</h1>
       <button onClick={() => setValue(value + 1)} className='btn'>
         increase
       </button> */}
-      <h1 ref={refContainer}>Hello world</h1>
-      <button
+      {/* <h1 ref={refContainer}>Hello world</h1> */}
+      {/* <button
         className='btn'
-        onClick={() => (refContainer.current.textContent = "Hello People")}
+        onClick={() => {
+          // refContainer.current.textContent = "My name is Shahin"
+          // const innerMessage = refContainer.current
+          // innerMessage.textContent = "My name is Yusuf"
+        }}
       >
         change
-      </button>
+      </button> */}
     </div>
   )
+  // return (
+  //   <div>
+  //     <h1 ref={refContainer}>Hello world</h1>
+  //     <button className='btn' onClick={() => console.log(refContainer)}>
+  //       change
+  //     </button>
+  //   </div>
+  // )
 }
 
 export default UseRefBasics
