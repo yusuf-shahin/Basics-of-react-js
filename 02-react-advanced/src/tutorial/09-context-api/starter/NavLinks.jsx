@@ -1,3 +1,4 @@
+import CustomUser from "./CustomUser"
 import UserContainer from "./UserContainer"
 
 const NavLinks = () => {
@@ -12,6 +13,7 @@ const NavLinks = () => {
         </li>
       </ul>
       <UserContainer />
+      {/* <CustomUser /> */}
     </div>
   )
 }

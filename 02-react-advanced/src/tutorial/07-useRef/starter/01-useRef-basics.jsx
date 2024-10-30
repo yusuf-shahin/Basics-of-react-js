@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react"
+import { glovalNameContext } from "../../09-context-api/final/global setup/context"
 
 const UseRefBasics = () => {
   const [value, setValue] = useState(0)
+
+  const { glovalName } = glovalNameContext()
+  console.log(glovalName)
 
   const refContainer = useRef(null)
   console.log(refContainer) //# {current: null}

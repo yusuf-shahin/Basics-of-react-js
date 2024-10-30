@@ -2455,19 +2455,16 @@ import Starter from "./tutorial/07-useRef/starter/01-useRef-basics.jsx"
 - preserves the value between renders
 - target DOM nodes/elements
 
-![Relative](./src/assets/WhatsApp%20Image%202024-10-29%20at%209.00.25%20AM.jpeg)
-
 **Basically**
 
-- **useRef** hook is return a obj, and the property of this obj is _current_ .
+- **useRef** hook is return a obj, it has only one property :- _current_ .
 
 ```jsx
 const ref = useRef(0)
 console.log(ref) // {current : 0}
 ```
 
-- we can store any property inside useRef .
-- Example :-
+- `useRef(0)` --> here initial value is `0` .
 
 ```jsx
 const refContainer = useRef(null)
@@ -2674,6 +2671,8 @@ export default UseRefBasics
     console.log(refContainer) //# {current: input#name.form-input}
   })
   ```
+
+![Relative](./src/assets/WhatsApp%20Image%202024-10-29%20at%209.00.25%20AM.jpeg)
 
 ### Custom Hooks
 
@@ -2976,6 +2975,14 @@ const UserContainer = () => {
 }
 export default UserContainer
 ```
+
+#### Main things :-
+
+- First in parent component we create a context by createContext() then we store it in a varible . Then we must must export this.
+- `export const NavbarContext = createContext()`
+- JSX of parent component wrap by `<NavbarContext.Provider value={{ user, logout }}>{jsx}</NavbarContext.Provider>` and pass the all propos inside value.
+- Here we pass the props as object.
+- Now we easily get the value at any component by `useContext(NavbarContext)`
 
 #### **Custom Hook** in Context API
 
