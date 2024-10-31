@@ -743,7 +743,7 @@ function BookList() {
       >
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque
-          repudiandae inventore eos qui animi sed iusto alias eius ea sapiente.
+          repudiandae inventore eos qui animi .
         </p>
         <button>click me</button>
       </Book>
@@ -772,6 +772,25 @@ const Book = (props) => {
   )
 }
 ```
+
+**In browser we see that**
+![Relative](./public/WhatsApp%20Image%202024-10-31%20at%209.43.50%20AM.jpeg)
+
+- we basically pass our props from parent component to child component.
+  `Book  author={firstBook.author} title={secondBook.title} img={secondBook.img} />`
+- ```jsx
+  <Book>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit . Itaque
+      repudiandae inventore eos qui animi .
+    </p>
+    <button>click me</button>
+  </Book>
+  ```
+
+  - everything we render between component tags .
+  - pass this in child component via children props .
+  - finally our we see the paragraph and button in our first component .
 
 - optional CSS
 

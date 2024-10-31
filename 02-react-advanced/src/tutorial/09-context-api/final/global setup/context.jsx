@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react"
 
 export const GlovalContext = createContext()
 export const glovalNameContext = () => useContext(GlovalContext)
+
 //* jsx
 
 const AppContext = ({ children }) => {
