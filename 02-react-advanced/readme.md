@@ -3048,7 +3048,7 @@ export default UserContainer
 
 #### Setup Global Context
 
-final code in the repo under w-assets
+Who Global Context work? [click here](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced/src/tutorial/09-context-api/final/global%20setup)
 
 - create new VITE project
 

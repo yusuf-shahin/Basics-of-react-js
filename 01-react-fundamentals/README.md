@@ -788,9 +788,10 @@ const Book = (props) => {
   </Book>
   ```
 
-  - everything we render between component tags .
-  - pass this in child component via children props .
-  - finally our we see the paragraph and button in our first component .
+  - here we create a `paragraph and button` tag between first **Book** component .
+  - get those two things as children props in our **Book** component.
+  - finally our we see the paragraph and button in our first **Book** component .
+  - in second **Book** component we dont pass nothing as children .
 
 - optional CSS
 
