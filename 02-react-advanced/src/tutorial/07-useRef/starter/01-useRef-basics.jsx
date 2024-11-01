@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { glovalNameContext } from "../../09-context-api/final/global setup/context"
+import { glovalNameContext } from "../../09-context-api/final/global setup/AppContext"
 
 const UseRefBasics = () => {
   const [value, setValue] = useState(0)

@@ -2917,8 +2917,8 @@ import { useState, createContext } from "react"
 import NavLinks from "./NavLinks"
 
 // export this to UserContainer.jsx
-export const navbarContext = createContext()
-console.log(navbarContext) //# obj which return two things --> 1  Provider , 2. Consumer
+export const NavbarContext = createContext()
+console.log(NavbarContext) //# obj which return two things --> 1  Provider , 2. Consumer
 
 const Navbar = () => {
   const [user, setUser] = useState({ name: "bob" })
@@ -2927,12 +2927,12 @@ const Navbar = () => {
   }
 
   return (
-    <navbarContext.Provider value={{ user, logout }}>
+    <NavbarContext.Provider value={{ user, logout }}>
       <nav className='navbar'>
         <h5>CONTEXT API</h5>
         <NavLinks />
       </nav>
-    </navbarContext.Provider>
+    </NavbarContext.Provider>
   )
 }
 
@@ -2997,7 +2997,7 @@ import { useState } from "react"
 // component
 import NavLinks from "./NavLinks"
 
-const NavbarContext = createContext()
+export const NavbarContext = createContext()
 
 // custom hook
 export const useAppContext = () => useContext(NavbarContext)
@@ -3018,6 +3018,9 @@ const Navbar = () => {
 }
 export default Navbar
 ```
+
+- Here we warp the jsx by `NavbarContext`
+- So, we must must export `NavbarContext`
 
 **UserContsiner.jsx :-**
 

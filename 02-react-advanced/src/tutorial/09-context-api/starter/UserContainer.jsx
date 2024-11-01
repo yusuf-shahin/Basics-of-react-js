@@ -4,7 +4,7 @@ import { NavbarContext } from "./Navbar"
 const UserContainer = () => {
   // console.log(NavbarContext.Provider.value)
   const abc = useContext(NavbarContext)
-  console.log(useContext(NavbarContext))
+  // console.log(useContext(NavbarContext))
 
   // console.log(abc) //# obj which hold property which gonna pass from NAvbar.jsx
 

@@ -12,8 +12,8 @@ const NavLinks = () => {
           <a href='#'>about</a>
         </li>
       </ul>
-      <UserContainer />
-      {/* <CustomUser /> */}
+      {/* <UserContainer /> */}
+      <CustomUser />
     </div>
   )
 }

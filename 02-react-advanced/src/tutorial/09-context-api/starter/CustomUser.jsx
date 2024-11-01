@@ -1,7 +1,11 @@
-// import { useAppContext } from "./Navbar"
+import { glovalNameContext } from "../final/global setup/AppContext"
+import { useAppContext } from "./Navbar"
 const CustomUser = () => {
   //@ useAppContext() function return the value
   const { user, logout } = useAppContext()
+  // const { glovalName } = glovalNameContext()
+  // console.log(glovalName)
+
   return (
     <div className='user-container'>
       {user ? (

@@ -1,15 +1,15 @@
-import { useState, createContext, useContext } from "react"
+import { createContext } from "react"
+import { useContext } from "react"
+import { useState } from "react"
+// component
 import NavLinks from "./NavLinks"
 
 export const NavbarContext = createContext()
-// we must export this , coz we use it inside useContext
-console.log(NavbarContext) //# obj which return two things --> 1.Provider , 2. Consumer
 
+//? here we warp the jsx by NavbarContext . so we must export it
+
+// custom hook
 export const useAppContext = () => useContext(NavbarContext)
-
-// console.log(useAppContext)
-
-//! here we basically export two things, first "useAppContext" and "NavbarContext"
 
 const Navbar = () => {
   const [user, setUser] = useState({ name: "bob" })
@@ -18,7 +18,6 @@ const Navbar = () => {
   }
   return (
     <NavbarContext.Provider value={{ user, logout }}>
-      {/*//! here the props name always be value  */}
       <nav className='navbar'>
         <h5>CONTEXT API</h5>
         <NavLinks />
@@ -27,3 +26,32 @@ const Navbar = () => {
   )
 }
 export default Navbar
+
+// ==============
+//@ UserContainer.jsx
+// ==============
+
+// import { useState, createContext } from "react"
+// import NavLinks from "./NavLinks"
+
+// // export this to UserContainer.jsx
+// export const NavbarContext = createContext()
+// console.log(NavbarContext) //# obj which return two things --> 1  Provider , 2. Consumer
+
+// const Navbar = () => {
+//   const [user, setUser] = useState({ name: "bob" })
+//   const logout = () => {
+//     setUser(null)
+//   }
+
+//   return (
+//     <NavbarContext.Provider value={{ user, logout }}>
+//       <nav className='navbar'>
+//         <h5>CONTEXT API</h5>
+//         <NavLinks />
+//       </nav>
+//     </NavbarContext.Provider>
+//   )
+// }
+
+// export default Navbar
