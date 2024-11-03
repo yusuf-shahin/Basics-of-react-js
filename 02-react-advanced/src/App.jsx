@@ -2,12 +2,15 @@ import UseRefBasics from "./tutorial/07-useRef/starter/01-useRef-basics"
 import AppContext from "./tutorial/09-context-api/final/global setup/AppContext"
 import Navbar from "./tutorial/09-context-api/starter/Navbar"
 import ReducerBasics from "./tutorial/10-useReducer/starter/01-useReducer"
+import PracticeUseReducer from "./tutorial/10-useReducer/starter/PracticeUseReducer"
 
 function App() {
   return (
     <AppContext>
       <div className='container'>
-        <Navbar />
+        {/* <ReducerBasics /> */}
+        <PracticeUseReducer />
+        {/* <Navbar /> */}
         {/* <UseRefBasics /> */}
         {/* <ReducerBasics /> */}
       </div>

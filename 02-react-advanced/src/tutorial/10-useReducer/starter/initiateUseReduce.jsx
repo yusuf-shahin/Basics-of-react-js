@@ -1,48 +1,26 @@
 import React, { useReducer } from "react"
 import { useState } from "react"
-import { data, people } from "../../../data"
+import { data } from "../../../data"
 
 const defaultState = {
   people: data,
   name: "yusuf",
 }
 
-const reducer = (abc, action) => {
-  //@ here state === previous defaultState
-  //@ action to set the condition
-  console.log(action) //# { type: "clear_list" }
-
-  if (action.type === "clear_list") {
-    return { ...abc, people: [] } //# {people: Array(0), name: 'yusuf'}
-  }
-}
+const reducer = () => {}
 
 const ReducerBasics = () => {
-  const [abc, dispatch] = useReducer(reducer, defaultState)
+  const [state, dispatch] = useReducer(reducer, defaultState)
   //! reducer === function && defaultState === object
   //@ state === defaultState
 
-  console.log(abc) //# we get everything of defaultState varible
+  console.log(state) //# we get everything of defaultState varible
 
   //? In useReducer, we need to pass in two things. We need to pass in a default state.
 
-  const removeItem = (removeId) => {
-    // let newPeople = people.filter(({ id }) => id !== removeId)
-    // setPeople(newPeople)
-  }
-
-  const clearList = () => {
-    dispatch({ type: "clear_list" }) //# ==> those are go to the action
-    // setPeople([])
-  }
-
-  const resetList = () => {
-    // setPeople(data)
-  }
-
   return (
     <div>
-      {abc.people.map(({ id, name }) => {
+      {state.people.map(({ id, name }) => {
         // const { id, name } = person
         return (
           <div key={id} className='item'>
@@ -51,7 +29,7 @@ const ReducerBasics = () => {
           </div>
         )
       })}
-      {abc.people.length > 0 ? (
+      {state.people.length > 0 ? (
         <button
           className='btn'
           style={{ marginTop: "2rem" }}
@@ -72,4 +50,4 @@ const ReducerBasics = () => {
   )
 }
 
-export default ReducerBasics
+// export default ReducerBasics
