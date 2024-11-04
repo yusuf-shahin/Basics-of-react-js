@@ -8,8 +8,8 @@ function App() {
   return (
     <AppContext>
       <div className='container'>
-        {/* <ReducerBasics /> */}
-        <PracticeUseReducer />
+        <ReducerBasics />
+        {/* <PracticeUseReducer /> */}
         {/* <Navbar /> */}
         {/* <UseRefBasics /> */}
         {/* <ReducerBasics /> */}

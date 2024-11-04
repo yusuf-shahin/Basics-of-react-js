@@ -7,43 +7,58 @@ const defaultState = {
   name: "yusuf",
 }
 
-const reducer = (abc, action) => {
+const reducer = (state, action) => {
   //@ here state === previous defaultState
   //@ action to set the condition
-  console.log(action) //# { type: "clear_list" }
+  // console.log(action) //# { type: "clear_list" }
+  //* here we basically manupulate the "people" array which is situaded "state" object
+  if (action.type === "clear_list") return { ...state, people: [] } //# {people: Array(0), name: 'yusuf'}
+  if (action.type === "reset_list") return { ...state, people: data }
+  if (action.type === "remove_item") {
+    const newThings = state.people.filter(
+      (person) => person.id !== action.removeId
+    )
+    return { ...state, people: newThings }
 
-  if (action.type === "clear_list") {
-    return { ...abc, people: [] } //# {people: Array(0), name: 'yusuf'}
+    // console.log(action)
+    // return state
   }
 }
 
 const ReducerBasics = () => {
-  const [abc, dispatch] = useReducer(reducer, defaultState)
+  const [state, dispatch] = useReducer(reducer, defaultState)
   //! reducer === function && defaultState === object
   //@ state === defaultState
 
-  console.log(abc) //# we get everything of defaultState varible
+  //? action of reducer func implement in dispatch
+
+  //? In dispatch, we pass the argument for reducer function
+
+  // console.log(state) //# we get everything of defaultState varible
 
   //? In useReducer, we need to pass in two things. We need to pass in a default state.
 
-  const removeItem = (removeId) => {
-    // let newPeople = people.filter(({ id }) => id !== removeId)
-    // setPeople(newPeople)
-  }
-
+  //* clear item
   const clearList = () => {
     dispatch({ type: "clear_list" }) //# ==> those are go to the action
     // setPeople([])
   }
 
+  //* reset item
   const resetList = () => {
+    dispatch({ type: "reset_list" })
     // setPeople(data)
+  }
+
+  //* remove item
+  const removeItem = (removeId) => {
+    dispatch({ type: "remove_item", removeId })
   }
 
   return (
     <div>
-      {abc.people.map(({ id, name }) => {
-        // const { id, name } = person
+      {state.people.map((person) => {
+        const { id, name } = person
         return (
           <div key={id} className='item'>
             <h4>{name}</h4>
@@ -51,7 +66,7 @@ const ReducerBasics = () => {
           </div>
         )
       })}
-      {abc.people.length > 0 ? (
+      {state.people.length > 0 ? (
         <button
           className='btn'
           style={{ marginTop: "2rem" }}
