@@ -4,21 +4,20 @@ import { data, people } from "../../../data"
 
 const defaultState = {
   people: data,
-  name: "yusuf",
 }
 
 const reducer = (state, action) => {
   //@ here state === previous defaultState
-  //@ action to set the condition
+  //@ action === argument of dispatch
   // console.log(action) //# { type: "clear_list" }
   //* here we basically manupulate the "people" array which is situaded "state" object
-  if (action.type === "clear_list") return { ...state, people: [] } //# {people: Array(0), name: 'yusuf'}
-  if (action.type === "reset_list") return { ...state, people: data }
+  if (action.type === "clear_list") return { people: [] } //# {people: Array(0)}
+  if (action.type === "reset_list") return { people: data }
   if (action.type === "remove_item") {
     const newThings = state.people.filter(
       (person) => person.id !== action.removeId
     )
-    return { ...state, people: newThings }
+    return { people: newThings }
 
     // console.log(action)
     // return state
@@ -27,7 +26,7 @@ const reducer = (state, action) => {
 
 const ReducerBasics = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
-  //! reducer === function && defaultState === object
+  //! reducer === function && defaultState === object ( which is diclare in upside )
   //@ state === defaultState
 
   //? action of reducer func implement in dispatch
@@ -41,12 +40,14 @@ const ReducerBasics = () => {
   //* clear item
   const clearList = () => {
     dispatch({ type: "clear_list" }) //# ==> those are go to the action
+    //@ imagine,  action = { type: "clear_list" }
     // setPeople([])
   }
 
   //* reset item
   const resetList = () => {
     dispatch({ type: "reset_list" })
+    //@ imagine action = { type: "reset_list" }
     // setPeople(data)
   }
 

@@ -2,12 +2,14 @@
 
 import FetchDataAPI from "./Component/FetchDataAPI"
 import PracticeOne from "./Component/PracticeOne"
+import MainPage from "./Component/Two State Addition/MainPage"
 
 function App() {
   return (
     <main>
       {/* <PracticeOne /> */}
-      <FetchDataAPI />
+      {/* <FetchDataAPI /> */}
+      <MainPage />
     </main>
   )
 }

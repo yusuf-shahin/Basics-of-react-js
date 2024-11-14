@@ -3074,12 +3074,12 @@ npm install && npm run dev
 ### useReducer
 
 ```js
-import Starter from "./tutorial/10-useReducer/starter/01-useReducer.jsx"
+import Starter from "./tutorial/10-useReducer/starter/useStateDemo.jsx"
 ```
 
-- it's the complete file from 03-useState-array
+#### useState Demo :-
 
-Challenge
+**Challenge**
 
 - let's add reset functionality
 - create function that set's people back to data array
@@ -3088,29 +3088,10 @@ Challenge
   depending on people value
 
 ```js
-const resetList = () => {
-  setPeople(data)
-}
-
-// JSX
-{
-  people.length < 1 ? (
-    <button className='btn' style={{ marginTop: "2rem" }} onClick={resetList}>
-      reset
-    </button>
-  ) : (
-    <button className='btn' style={{ marginTop: "2rem" }} onClick={clearList}>
-      clear
-    </button>
-  )
-}
-```
-
-```js
 import React from "react"
 import { data } from "../../../data"
-const ReducerBasics = () => {
-  const [people, setPeople] = React.useState(data)
+const UseStateDemo = () => {
+  const [people, setPeople] = useState(data)
 
   const removeItem = (id) => {
     let newPeople = people.filter((person) => person.id !== id)
@@ -3162,7 +3143,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-### Remove useState
+#### useReducer Basic :-
 
 ```js
 import { useState, useReducer } from "react"
@@ -3180,7 +3161,6 @@ const reducer = (state, action) => {
 }
 
 // dispatch({type:'SOME_ACTION'}) an action
-// handle it in reducer, return new state
 
 const ReducerBasics = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
@@ -3234,7 +3214,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-### First Dispatch
+#### First Dispatch
 
 ```js
 import { useState, useReducer } from "react"
@@ -3302,7 +3282,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-### Actions and Default State
+#### Actions and Default State
 
 ```js
 import { useReducer } from "react"
@@ -3373,7 +3353,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-### Reset List Challenge
+#### Reset List Challenge
 
 - setup a dispatch and handle action in the reducer
 
@@ -3450,7 +3430,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-### Remove Person Challenge
+#### Remove Person Challenge
 
 - remove single person
 - hint extra property in the object
@@ -3490,6 +3470,7 @@ const ReducerBasics = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
 
   const removeItem = (id) => {
+    // in dispatch we pass everything as object .
     dispatch({ type: REMOVE_ITEM, payload: { id } })
   }
 

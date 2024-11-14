@@ -9,7 +9,7 @@ const defaultState = {
 
 const reducer = () => {}
 
-const ReducerBasics = () => {
+const InitialReducer = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
   //! reducer === function && defaultState === object
   //@ state === defaultState
@@ -50,4 +50,4 @@ const ReducerBasics = () => {
   )
 }
 
-// export default ReducerBasics
+// export default InitialReducer

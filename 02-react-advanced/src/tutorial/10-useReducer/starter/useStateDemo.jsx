@@ -1,7 +1,8 @@
 import React from "react"
 import { useState } from "react"
 import { data } from "../../../data"
-const ReducerBasics = () => {
+
+const UseStateDemo = () => {
   const [people, setPeople] = useState(data)
 
   const removeItem = (removeId) => {
@@ -41,4 +42,4 @@ const ReducerBasics = () => {
   )
 }
 
-// export default ReducerBasics
+export default UseStateDemo
