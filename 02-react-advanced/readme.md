@@ -8,7 +8,7 @@
 - [Multiple Returns (Conditional Rendering)](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#multiple-returns---basics)
   - [Short Chrcuit Evaution](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#short-circuit-evaluation-optional)
 - [Controlled Inputs - Setup](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#controlled-inputs---setup)
-  - [CRUD Operation](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#simple-crud-operation--)
+  - [Create and Delete Operation](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#simple-crud-operation--)
   - [Multiple Inputs](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#multiple-inputs)
   - [FormData API](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#formdata-api)
 - [useRef](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced#useref)
@@ -1843,6 +1843,8 @@ Now, if the person.name is null or undefined, this code will simply return undef
 
 ### Controlled Inputs - Setup
 
+- To know details about everything about form , [**click here**](https://github.com/yusuf-shahin/Basics-of-react-js/tree/main/02-react-advanced/src/tutorial/06-forms/starter)
+
 ```js
 import Starter from "./tutorial/06-forms/starter/01-controlled-inputs.jsx"
 ```
@@ -1874,6 +1876,9 @@ const ControlledInputs = () => {
 }
 export default ControlledInputs
 ```
+
+- here in **lavel** tag **htmlFor** value and **input** tag **id** value are need to match .
+- `<label htmlFor='name'>` and `<input id='name' />`
 
 #### Controlled Inputs - Complete
 
@@ -1964,7 +1969,7 @@ export default ControlledInputs
 **in browser we get that**
 ![Relative](./src/assets/WhatsApp%20Image%202024-09-25%20at%2010.10.13%20PM.jpeg)
 
-#### Simple CRUD operation :-
+#### Simple create and delete operation :-
 
 **Simple things**
 
@@ -2055,36 +2060,37 @@ const UserChallenge = () => {
 }
 ```
 
-- simple CRUD operation .
-- **make this CRUD operation using pure JS :-**
+- simple create and delete operation .
+- **make this create and delete operation using pure JS :-**
 
-  - ```js
-    let user = []
-    let newUser = { id: 1, name: "yusuf" }
-    let updateUser = [...user, newUser]
-    user = updateUser
-    // user is updated
-    newUser = { id: 2, name: "shahin" }
+  ```jsx
+  let user = []
+  // create user
+  let newUser = { id: 1, name: "yusuf" }
+  user = [...user, newUser]
 
-    upDateUser = [...user, newUser]
+  newUser = { id: 2, name: "shahin" }
 
-    user = upDateUser
-    //user is also updated
+  user = [...user, newUser]
 
-    newUser = { id: 3, name: "tushar" }
-    upDateUser = [...user, newUser]
+  newUser = { id: 3, name: "tushar" }
 
-    console.log(upDateUser)
+  user = [...user, newUser]
 
-    const removeUser = (id) => {
-      let userID = upDateUser.filter((mrUser) => {
-        return mrUser.id !== id
-      })
-      return userID
-    }
+  console.log(user)
 
-    console.log(removeUser(2))
-    ```
+  // in console
+  // [{ id: 1, name: 'yusuf' },{ id: 2, name: 'shahin' }, { id: 3, name: 'tushar' }]
+
+  const removeUser = (id) => {
+    let userID = user.filter((mrUser) => {
+      return mrUser.id !== id
+    })
+    return userID
+  }
+
+  console.log(removeUser(2))
+  ```
 
 #### User Challenge
 
@@ -2184,6 +2190,24 @@ import Starter from "./tutorial/06-forms/starter/03-multiple-inputs.jsx"
 [Javascript Nuggets - Dynamic Object Keys](https://www.youtube.com/watch?v=_qxCYtWm0tw&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=3&t=97s)
 
 - inputs must have name attribute
+  **Example**
+
+```js
+const state = {}
+
+const setState = (key, value) => {
+  state[key] = value
+}
+
+setState("id", 1234)
+setState("name", "Yusuf")
+setState("job", "vaegabond")
+
+console.log(state)
+
+// output
+// { id: 1234, name: 'Yusuf', job: 'vaegabond' }
+```
 
 ```js
 import { useState } from "react"
@@ -3079,7 +3103,7 @@ import Starter from "./tutorial/10-useReducer/starter/useStateDemo.jsx"
 
 #### useState Demo :-
 
-**Challenge**
+**Challenge**(_Solve this challange using useState hook_)
 
 - let's add reset functionality
 - create function that set's people back to data array
@@ -3142,6 +3166,11 @@ const UseStateDemo = () => {
 
 export default ReducerBasics
 ```
+
+**in browser we see that**
+[!Relative](./src/assets/WhatsApp%20Image%202024-11-14%20at%209.17.02%20AM.jpeg)
+
+**Do the same thing, step by step to use useReduce() hook**
 
 #### useReducer Basic :-
 
@@ -3214,7 +3243,7 @@ const ReducerBasics = () => {
 export default ReducerBasics
 ```
 
-#### First Dispatch
+#### Dispatch for action
 
 ```js
 import { useState, useReducer } from "react"
@@ -3470,7 +3499,7 @@ const ReducerBasics = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
 
   const removeItem = (id) => {
-    // in dispatch we pass everything as object .
+    // in dispatch we pass anything as key value pair .
     dispatch({ type: REMOVE_ITEM, payload: { id } })
   }
 

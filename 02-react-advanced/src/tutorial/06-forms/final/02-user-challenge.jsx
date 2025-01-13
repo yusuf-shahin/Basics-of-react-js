@@ -1,30 +1,30 @@
-import { useState } from 'react';
-import { data } from '../../../data';
+import { useState } from "react"
+import { data } from "../../../data"
 const UserChallenge = () => {
-  const [name, setName] = useState('');
-  const [users, setUsers] = useState(data);
+  const [name, setName] = useState("")
+  const [users, setUsers] = useState(data)
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // do something
-    console.log(name);
+    console.log(name)
     // if no value, do nothing
-    if (!name) return;
+    if (!name) return
     // if value, setup new user and add to current users
-    const fakeId = Date.now();
-    console.log(fakeId);
+    const fakeId = Date.now()
+    console.log(fakeId)
     // const newUser = { id: fakeId, name: name };
-    const newUser = { id: fakeId, name };
-    const updatedUsers = [...users, newUser];
-    setUsers(updatedUsers);
+    const newUser = { id: fakeId, name }
+    const updatedUsers = [...users, newUser]
+    setUsers(updatedUsers)
     // set back to empty
-    setName('');
-  };
+    setName("")
+  }
 
   const removeUser = (id) => {
-    const updatedUsers = users.filter((person) => person.id !== id);
-    setUsers(updatedUsers);
-  };
+    const updatedUsers = users.filter((person) => person.id !== id)
+    setUsers(updatedUsers)
+  }
   return (
     <div>
       <form className='form' onSubmit={handleSubmit}>
@@ -57,9 +57,9 @@ const UserChallenge = () => {
               remove
             </button>
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
-export default UserChallenge;
+  )
+}
+export default UserChallenge

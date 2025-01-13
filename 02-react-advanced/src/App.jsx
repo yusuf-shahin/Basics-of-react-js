@@ -1,3 +1,6 @@
+import MultipleInputs from "./tutorial/06-forms/final/03-multiple-inputs"
+import ControlledInputs from "./tutorial/06-forms/starter/01-controlled-inputs"
+import UserChallenge from "./tutorial/06-forms/starter/02-user-challenge"
 import UseRefBasics from "./tutorial/07-useRef/starter/01-useRef-basics"
 import AppContext from "./tutorial/09-context-api/final/global setup/AppContext"
 import Navbar from "./tutorial/09-context-api/starter/Navbar"
@@ -8,11 +11,14 @@ function App() {
   return (
     <AppContext>
       <div className='container'>
-        <ReducerBasics />
+        {/* <ReducerBasics /> */}
         {/* <PracticeUseReducer /> */}
         {/* <Navbar /> */}
         {/* <UseRefBasics /> */}
         {/* <ReducerBasics /> */}
+        {/* <ControlledInputs /> */}
+        {/* <UserChallenge /> */}
+        <MultipleInputs />
       </div>
     </AppContext>
   )

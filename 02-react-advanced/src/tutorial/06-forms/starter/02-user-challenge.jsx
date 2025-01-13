@@ -1,12 +1,19 @@
 import { useState } from "react"
 const UserChallenge = () => {
+  const data = [
+    { id: 1, name: "john" },
+    { id: 2, name: "peter" },
+    { id: 3, name: "susan" },
+    { id: 4, name: "anna" },
+  ]
   const [name, setName] = useState("")
-  const [users, setUsers] = useState([])
+  // const [users, setUsers] = useState([])
+  const [users, setUsers] = useState(data)
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log(name)
+    // console.log(name)
     //* if no value, nothing happened
     if (!name) return
 
@@ -15,7 +22,7 @@ const UserChallenge = () => {
     // console.log(fakeId)
 
     // const newUser = { id: fakeId, name: name };
-    const newUser = { id: fakeId, name } // ----> name is a state
+    const newUser = { id: fakeId, name } // ----> name is come from state state
     //# example :- newUser = {id: 1 , name : "yusuf"}
 
     const updatedUsers = [...users, newUser]
