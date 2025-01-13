@@ -7,7 +7,6 @@ const MultipleInputs = () => {
   })
 
   const handleChange = (e) => {
-    // e.target.name
     setUser({ ...user, [e.target.name]: e.target.value })
   }
 

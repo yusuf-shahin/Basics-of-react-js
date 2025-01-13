@@ -13,12 +13,20 @@ const MultipleInputs = () => {
     setUsers({ ...users, [e.target.name]: e.target.value })
   }
 
-  // let appState = "loading"
+  // const state = {}
 
-  // let app = {
-  //   [appState]: true,
+  // const setState = (key, value) => {
+  //   state[key] = value
   // }
-  // console.log(app) //# {loading: true}
+
+  // setState("id", 1234)
+  // setState("name", "Yusuf")
+  // setState("job", "vaegabond")
+
+  // console.log(state)
+
+  // output
+  // { id: 1234, name: 'Yusuf', job: 'vaegabond' }
 
   const handleSubmit = (e) => {
     e.preventDefault()

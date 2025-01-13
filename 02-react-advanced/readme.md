@@ -2187,27 +2187,25 @@ export default UserChallenge
 import Starter from "./tutorial/06-forms/starter/03-multiple-inputs.jsx"
 ```
 
-[Javascript Nuggets - Dynamic Object Keys](https://www.youtube.com/watch?v=_qxCYtWm0tw&list=PLnHJACx3NwAfRUcuKaYhZ6T5NRIpzgNGJ&index=3&t=97s)
-
 - inputs must have name attribute
-  **Example**
+  **Example of Dyanamic Object Key**
 
-```js
-const state = {}
+  ```js
+  const state = {}
 
-const setState = (key, value) => {
-  state[key] = value
-}
+  const setState = (key, value) => {
+    state[key] = value
+  }
 
-setState("id", 1234)
-setState("name", "Yusuf")
-setState("job", "vaegabond")
+  setState("id", 1234)
+  setState("name", "Yusuf")
+  setState("job", "vaegabond")
 
-console.log(state)
+  console.log(state)
 
-// output
-// { id: 1234, name: 'Yusuf', job: 'vaegabond' }
-```
+  // output
+  // { id: 1234, name: 'Yusuf', job: 'vaegabond' }
+  ```
 
 ```js
 import { useState } from "react"
